@@ -104,7 +104,7 @@ export function Declarations() {
               <Button
                 variant="outline"
                 onClick={() => navigate(`/purpose-of-visit?code=${code}`)}
-                className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
+                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
               >
                 Back
               </Button>

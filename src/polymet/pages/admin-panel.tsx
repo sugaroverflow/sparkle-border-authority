@@ -264,7 +264,7 @@ export function AdminPanel() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleReprintVisa(foundGuest.code)}
-                      className="border-purple-400/30 text-purple-200"
+                      className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
                     >
                       <PrinterIcon className="w-4 h-4 mr-1" />
                       Reprint
@@ -273,7 +273,7 @@ export function AdminPanel() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleOverrideRejection(foundGuest.code)}
-                      className="border-amber-400/40 text-amber-200 hover:bg-amber-950/40"
+                      className="border-amber-400/50 bg-transparent text-amber-100 hover:bg-amber-950/50 hover:text-white"
                     >
                       Override + Print
                     </Button>
@@ -345,7 +345,7 @@ export function AdminPanel() {
               <Button
                 onClick={handlePrinterTest}
                 variant="outline"
-                className="border-purple-400/30 text-purple-200"
+                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
               >
                 <PrinterIcon className="w-4 h-4 mr-2" />
                 Run Printer Test
@@ -353,7 +353,7 @@ export function AdminPanel() {
               <Button
                 onClick={() => setIsAuthenticated(false)}
                 variant="outline"
-                className="border-red-400/30 text-red-200"
+                className="border-red-400/50 bg-transparent text-red-100 hover:bg-red-950/50 hover:text-white"
               >
                 Logout
               </Button>

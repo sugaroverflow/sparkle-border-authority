@@ -8,7 +8,7 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 ## Project overview
 
-- **Guest list**: Stored in `public/guests.json`. Each guest has a unique 4-character `code` (e.g. `7A8X`), `name`, `agentCode`, `status`, `passportType`, `visaClass`, `basePrivileges`, and `printed` / `arrived` flags.
+- **Guest list**: Stored in `data/guests.json`. Each guest has a unique 4-character `code` (e.g. `7A8X`), `name`, `agentCode`, `status`, `passportType`, `visaClass`, `basePrivileges`, and `printed` / `arrived` flags. The app copies this file to `public/guests.json` at dev/build time so it can be fetched at runtime.
 - **Visa taglines**: Random one-liners for approved visas come from `public/visa-taglines.json`.
 - **Decision engine**: Validates 1–2 purposes of visit and ≥1 declaration; can trigger secondary screening (random ~7.5%); assigns privileges from guest record plus optional extras from a pool.
 - **Printing**: A6 visa card with CSS `@page`; print preview then success/instructions.
@@ -40,7 +40,7 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 ## Passport and document types
 
-**Passport type** (per guest in `guests.json`)
+**Passport type** (per guest in `data/guests.json`)
 
 - **`fancy`** – Citizen / VIP / Special Envoy style (full “Ration Club” citizen look).
 - **`visitor`** – Visitor style (Visitor Admission Permit).
@@ -66,7 +66,7 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 ## Guest statuses and privileges
 
-**Guest status** (in `guests.json`): `Citizen` | `Visitor` | `VIP` | `Diplomat` | `Special Envoy`
+**Guest status** (in `data/guests.json`): `Citizen` | `Visitor` | `VIP` | `Diplomat` | `Special Envoy`
 
 Privileges are stored in each guest’s `basePrivileges` and can be extended by the decision engine (e.g. Glitter Transit Waiver, Galactic Trade Authorization). Examples used in data: Standard Sparkle Protocol, Lounge Access, Sparkle Clearance II/III, Cake Priority Queue, Polaroid Access, Trusted Agent, Hug Privilege.
 

@@ -141,14 +141,14 @@ export function IdentityConfirmation() {
             {guest.passportType === "fancy" && (
               <div className="p-4 bg-pink-950/20 border border-pink-400/30 rounded-lg">
                 <p className="text-sm text-pink-200 text-center">
-                  <strong>Note:</strong> Staff will retrieve your named passport envelope
+                  <strong>Note:</strong> Retrieve your passport booklet by finding your named envelope
                 </p>
               </div>
             )}
             {guest.passportType === "visitor" && (
               <div className="p-4 bg-amber-950/20 border border-amber-400/30 rounded-lg">
                 <p className="text-sm text-amber-200 text-center">
-                  <strong>Note:</strong> You can retrieve your passport booklet by finding your designated envelope
+                  <strong>Note:</strong> Retrieve a visitor booklet from the box near the kiosk.
                 </p>
               </div>
             )}
@@ -158,7 +158,7 @@ export function IdentityConfirmation() {
               <Button
                 variant="outline"
                 onClick={handleManualReview}
-                className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
+                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
               >
                 Request Manual Review
               </Button>

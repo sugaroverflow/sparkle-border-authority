@@ -35,6 +35,57 @@ export function CodeEntry() {
     navigate(`/identity-confirmation?code=${code}`)
   }
 
+  // SSSS Alert screen when code is wrong (wrong code = "SSSS" path)
+  if (showBorderAssistance) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+        <div className="w-full max-w-2xl">
+          <TerminalFrame
+            title="Security Notice"
+            subtitle="Manual review required"
+            variant="accent"
+            glowEffect
+          >
+            <div className="space-y-8 text-center py-6">
+              <div className="text-amber-400 border-2 border-amber-400/50 rounded-lg bg-amber-950/40 px-6 py-8">
+                <p className="text-4xl font-black tracking-[0.4em] text-amber-300 drop-shadow-[0_0_12px_rgba(251,191,36,0.5)]">
+                  SSSS!!
+                </p>
+                <p className="text-lg font-semibold text-amber-200 mt-3 uppercase tracking-wider">
+                  Suspicious Stellar Security Screening
+                </p>
+                <p className="text-amber-300/90 mt-4 text-base">
+                  Proceed to the border...
+                </p>
+              </div>
+              <p className="text-sm text-purple-300/80">
+                If that was a mistake and you&apos;d like to try again →{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowBorderAssistance(false)
+                    setError("")
+                    setCode("")
+                  }}
+                  className="text-purple-200 underline hover:text-purple-100 font-medium"
+                >
+                  go back
+                </button>
+              </p>
+              <Button
+                type="button"
+                onClick={() => navigate("/border-checkpoint")}
+                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold"
+              >
+                Proceed to border
+              </Button>
+            </div>
+          </TerminalFrame>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-2xl">
@@ -78,18 +129,12 @@ export function CodeEntry() {
               </div>
             )}
 
-            {showBorderAssistance && (
-              <div className="text-center text-sm text-amber-300 bg-amber-950/30 border border-amber-400/30 rounded p-3">
-                Verify your code or proceed to the border for assistance (SSSS - Secondary Something Something Suspicious Screening).
-              </div>
-            )}
-
             <div className="flex justify-center gap-4 pt-4">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => navigate(isVisitorApplication ? "/code-entry" : "/")}
-                className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
+                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
               >
                 Back
               </Button>
@@ -101,26 +146,6 @@ export function CodeEntry() {
                 Continue
               </Button>
             </div>
-
-            {showBorderAssistance && (
-              <div className="flex justify-center gap-4">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => navigate("/")}
-                  className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
-                >
-                  Start over
-                </Button>
-                <Button
-                  type="button"
-                  onClick={() => navigate("/border-checkpoint")}
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold"
-                >
-                  Proceed to border assistance
-                </Button>
-              </div>
-            )}
 
             <div className="text-center pt-6 border-t border-purple-400/20">
               {isVisitorApplication ? (

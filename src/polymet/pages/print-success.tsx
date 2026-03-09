@@ -149,7 +149,7 @@ export function PrintSuccess() {
                 <Button
                   variant="outline"
                   onClick={() => navigate(`/border-checkpoint?code=${foundGuest.code}`)}
-                  className="border-emerald-400/30 text-emerald-200 hover:bg-emerald-950/40"
+                  className="border-emerald-400/50 bg-transparent text-emerald-100 hover:bg-emerald-950/50 hover:text-white"
                 >
                   Proceed to checkpoint
                 </Button>

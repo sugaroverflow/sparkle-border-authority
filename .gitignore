@@ -42,3 +42,6 @@ coverage/
 # Optional: uncomment if you use them
 # .cache/
 # *.local
+
+# Special, app specific
+public/guests.json

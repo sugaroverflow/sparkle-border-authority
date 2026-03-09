@@ -101,3 +101,89 @@ export function StarField({ density = "medium", className }: StarFieldProps) {
     </div>
   )
 }
+
+const SHOOTING_STAR_COUNT = 4
+const shootingStarConfigs = Array.from({ length: SHOOTING_STAR_COUNT }, (_, i) => ({
+  id: i,
+  startX: -15 - Math.random() * 20,
+  startY: -5 - Math.random() * 25,
+  angle: 225 + (Math.random() * 30 - 15),
+  duration: 2.2 + Math.random() * 1.5,
+  delay: i * 3.5 + Math.random() * 4,
+  tailLength: 80 + Math.random() * 60,
+  glitterCount: 5 + Math.floor(Math.random() * 4),
+}))
+
+export function GlitterShootingStars({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn("absolute inset-0 overflow-hidden pointer-events-none", className)}
+      aria-hidden
+    >
+      <style>{`
+        @keyframes shooting-star-fly {
+          0% {
+            opacity: 0;
+            transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(0);
+          }
+          5% { opacity: 1; }
+          85% { opacity: 0.8; }
+          100% {
+            opacity: 0;
+            transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(120vmax);
+          }
+        }
+        @keyframes glitter-twinkle {
+          0%, 100% { opacity: 0.4; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+      `}</style>
+      {shootingStarConfigs.map((config) => {
+        const rad = (config.angle * Math.PI) / 180
+        return (
+          <div
+            key={config.id}
+            className="absolute left-0 top-0"
+            style={{
+              ["--sx" as string]: `${config.startX}vw`,
+              ["--sy" as string]: `${config.startY}vh`,
+              ["--angle" as string]: `${config.angle}deg`,
+              animation: `shooting-star-fly ${config.duration}s ease-in-out ${config.delay}s infinite`,
+            }}
+          >
+            <div
+              className="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] rounded-full"
+              style={{
+                width: config.tailLength,
+                background: `linear-gradient(90deg, transparent 0%, rgba(216,180,254,0.15) 15%, rgba(244,114,182,0.5) 45%, rgba(250,204,21,0.9) 75%, rgba(255,255,255,0.95) 100%)`,
+                boxShadow: "0 0 8px rgba(250,204,21,0.4), 0 0 16px rgba(244,114,182,0.2)",
+              }}
+            />
+            {Array.from({ length: config.glitterCount }, (_, j) => {
+              const t = 0.2 + (j / config.glitterCount) * 0.7
+              const x = t * config.tailLength
+              return (
+                <div
+                  key={j}
+                  className="absolute top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-amber-200/90"
+                  style={{
+                    left: x - 2,
+                    boxShadow: "0 0 4px rgba(250,204,21,0.8), 0 0 8px rgba(244,114,182,0.4)",
+                    animation: `glitter-twinkle ${0.4 + j * 0.1}s ease-in-out ${j * 0.08}s infinite`,
+                  }}
+                />
+              )
+            })}
+            <div
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(250,204,21,0.8) 40%, transparent 70%)",
+                boxShadow: "0 0 12px rgba(255,255,255,0.9), 0 0 24px rgba(250,204,21,0.6), 0 0 36px rgba(244,114,182,0.3)",
+              }}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}

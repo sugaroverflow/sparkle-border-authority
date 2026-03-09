@@ -144,7 +144,7 @@ export function PrintPreview() {
                             `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}`
                           )
                     }
-                    className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
+                    className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
                   >
                     Back
                   </Button>
