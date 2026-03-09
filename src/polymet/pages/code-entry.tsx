@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { TerminalInput } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,8 @@ export function CodeEntry() {
   const [error, setError] = useState("")
   const [showBorderAssistance, setShowBorderAssistance] = useState(false)
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const isVisitorApplication = pathname === "/visitor-application"
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,15 +39,17 @@ export function CodeEntry() {
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-2xl">
         <TerminalFrame
-          title="Immigration Code Entry"
-          subtitle="Enter your 4-character code"
+          title={isVisitorApplication ? "Immigration Application for Visitors" : "Immigration Code Entry"}
+          subtitle={isVisitorApplication ? "Enter a code from staff, or proceed to border for in-person assistance" : "Enter your 4-character code"}
           variant="accent"
           glowEffect
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center mb-8">
               <p className="text-purple-200 mb-2">
-                Please enter the immigration code from your invitation
+                {isVisitorApplication
+                  ? "If you received a code from border staff, enter it below. Otherwise use the link below for in-person assistance."
+                  : "Please enter the immigration code from your invitation"}
               </p>
               <p className="text-sm text-purple-300/70">
                 Format: 4 characters (e.g., A7K2)
@@ -84,7 +88,7 @@ export function CodeEntry() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => navigate("/")}
+                onClick={() => navigate(isVisitorApplication ? "/code-entry" : "/")}
                 className="border-purple-400/30 text-purple-200 hover:bg-purple-950/50"
               >
                 Back
@@ -119,17 +123,35 @@ export function CodeEntry() {
             )}
 
             <div className="text-center pt-6 border-t border-purple-400/20">
-              <p className="text-sm text-purple-300/70 mb-2">
-                Don't have an immigration code?
-              </p>
-              <Button
-                type="button"
-                variant="link"
-                className="text-purple-300 hover:text-purple-200"
-                onClick={() => navigate("/border-checkpoint")}
-              >
-                Proceed to border assistance
-              </Button>
+              {isVisitorApplication ? (
+                <>
+                  <p className="text-sm text-purple-300/70 mb-2">
+                    Need in-person assistance?
+                  </p>
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="text-purple-300 hover:text-purple-200"
+                    onClick={() => navigate("/border-checkpoint")}
+                  >
+                    Proceed to border assistance
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm text-purple-300/70 mb-2">
+                    Don't have an immigration code?
+                  </p>
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="text-purple-300 hover:text-purple-200"
+                    onClick={() => navigate("/visitor-application")}
+                  >
+                    Immigration application for visitors
+                  </Button>
+                </>
+              )}
             </div>
           </form>
         </TerminalFrame>

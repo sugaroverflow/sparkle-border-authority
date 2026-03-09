@@ -145,6 +145,13 @@ export function IdentityConfirmation() {
                 </p>
               </div>
             )}
+            {guest.passportType === "visitor" && (
+              <div className="p-4 bg-amber-950/20 border border-amber-400/30 rounded-lg">
+                <p className="text-sm text-amber-200 text-center">
+                  <strong>Note:</strong> You can retrieve your passport booklet by finding your designated envelope
+                </p>
+              </div>
+            )}
 
             {/* Action Buttons */}
             <div className="flex justify-center gap-4 pt-4">

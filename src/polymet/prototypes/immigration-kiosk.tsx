@@ -37,6 +37,7 @@ export default function ImmigrationKiosk() {
         {/* Main Application Flow */}
         <Route path="/" element={<KioskLayout><Welcome /></KioskLayout>} />
         <Route path="/code-entry" element={<KioskLayout><CodeEntry /></KioskLayout>} />
+        <Route path="/visitor-application" element={<KioskLayout><CodeEntry /></KioskLayout>} />
         <Route path="/identity-confirmation" element={<KioskLayout><IdentityConfirmation /></KioskLayout>} />
         <Route path="/purpose-of-visit" element={<KioskLayout><PurposeOfVisit /></KioskLayout>} />
         <Route path="/declarations" element={<KioskLayout><Declarations /></KioskLayout>} />

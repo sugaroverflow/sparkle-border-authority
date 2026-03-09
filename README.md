@@ -47,11 +47,11 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 **Visa classes** (assigned per guest or by flow)
 
-- Citizen Entry Visa  
-- Diplomatic Entry Visa  
-- Visitor Admission Permit  
-- Sparkle Transit Waiver  
-- Temporary Celebration Authorization  
+- Citizen Entry Visa
+- Diplomatic Entry Visa
+- Visitor Admission Permit
+- Sparkle Transit Waiver
+- Temporary Celebration Authorization
 
 **Document types** (for badges/issuance UI)
 
@@ -70,7 +70,7 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 Privileges are stored in each guest’s `basePrivileges` and can be extended by the decision engine (e.g. Glitter Transit Waiver, Galactic Trade Authorization). Examples used in data: Standard Sparkle Protocol, Lounge Access, Sparkle Clearance II/III, Cake Priority Queue, Polaroid Access, Trusted Agent, Hug Privilege.
 
-- **Citizens**: typically 1–2 base privileges, 240 min validity.  
+- **Citizens**: typically 1–2 base privileges, 240 min validity.
 - **VIP / Special Envoy**: more privileges, 300 min validity.
 
 ---
@@ -88,13 +88,13 @@ Privileges are stored in each guest’s `basePrivileges` and can be extended by 
 
 ## Tech stack
 
-- **Vite** – build and dev server  
-- **TypeScript** – types  
-- **React** + **React Router** – UI and routing  
-- **Tailwind CSS** – styling  
-- **shadcn-ui** – components  
-- **Recharts** – charts (e.g. admin/dashboard)  
-- **Zod** – validation where used  
+- **Vite** – build and dev server
+- **TypeScript** – types
+- **React** + **React Router** – UI and routing
+- **Tailwind CSS** – styling
+- **shadcn-ui** – components
+- **Recharts** – charts (e.g. admin/dashboard)
+- **Zod** – validation where used
 
 ---
 
@@ -189,8 +189,8 @@ If printer fails:
 
 ## Deploy
 
-- **Polymet AI** – use the project dashboard deployment.  
-- **Vercel**: `npm i -g vercel && vercel`  
+- **Polymet AI** – use the project dashboard deployment.
+- **Vercel**: `npm i -g vercel && vercel`
 - **Netlify**: `npm run build`, then upload the `dist` folder to [netlify.com/drop](https://netlify.com/drop)
 
 ---

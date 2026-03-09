@@ -212,7 +212,7 @@ export function validateApplication(purposes: string[], declarations: string[]):
   if (declarations.includes("nothing")) {
     return rejection(
       "Border Authority Not Yet Convinced",
-      'Select at least one declaration. "Nothing to Declare" is not accepted.'
+      'Sparkle Beauocracy is not convinced that you have Nothing to Declare'
     )
   }
 

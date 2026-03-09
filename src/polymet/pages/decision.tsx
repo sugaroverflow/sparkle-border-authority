@@ -4,7 +4,9 @@ import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { StatusBadge } from "@/polymet/components/status-badge"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { findGuestByCode, purposeOptions, declarationOptions, recordDecision } from "@/polymet/data/immigration-data"
+import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
 import { CheckCircleIcon, XCircleIcon, ClockIcon } from "lucide-react"
 
 export function Decision() {
@@ -102,18 +104,18 @@ export function Decision() {
                     {guest.visaClass}
                   </p>
                 </div>
-                <div className="p-4 bg-emerald-950/20 border border-emerald-400/30 rounded-lg">
-                  <p className="text-xs text-emerald-300/70 uppercase tracking-wider font-mono mb-1">
+                <div className="p-4 bg-slate-900/60 border border-purple-400/40 rounded-lg shadow-[0_0_20px_rgba(192,132,252,0.1)]">
+                  <p className="text-xs text-purple-300/70 uppercase tracking-wider font-mono mb-1">
                     Visa Number
                   </p>
-                  <p className="text-sm font-bold text-emerald-100 font-mono">
+                  <p className="text-sm font-bold text-purple-100 font-mono">
                     {visaNumber}
                   </p>
                 </div>
               </div>
 
               {/* Privileges */}
-              <div className="p-4 bg-emerald-950/20 border border-emerald-400/30 rounded-lg">
+              <div className="p-4 bg-slate-900/50 border border-emerald-400/30 rounded-lg border-t-purple-400/20 border-l-pink-400/20">
                 <p className="text-xs text-emerald-300/70 uppercase tracking-wider font-mono mb-3">
                   Privileges Granted
                 </p>
@@ -121,7 +123,10 @@ export function Decision() {
                   {privileges.map((privilege, i) => (
                     <span
                       key={i}
-                      className="text-xs px-3 py-1 bg-emerald-500/20 border border-emerald-400/30 rounded text-emerald-100"
+                      className={cn(
+                        "text-xs px-3 py-1 border rounded font-medium",
+                        getPrivilegeTagClass(i)
+                      )}
                     >
                       {privilege}
                     </span>
@@ -130,8 +135,8 @@ export function Decision() {
               </div>
 
               {/* Validity */}
-              <div className="flex items-center justify-center gap-2 text-emerald-300/70">
-                <ClockIcon className="w-4 h-4" />
+              <div className="flex items-center justify-center gap-2 text-purple-300/80">
+                <ClockIcon className="w-4 h-4 text-purple-400/80" />
                 <p className="text-sm">
                   Valid for {guest.validityMinutes} minutes from issuance
                 </p>
@@ -145,7 +150,7 @@ export function Decision() {
                       `/print-preview?code=${code}&visaNumber=${visaNumber}&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&timestamp=${timestamp}&secondary=${isSecondary}`
                     )
                   }
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-12 text-lg"
+                  className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:via-purple-500/90 hover:to-pink-500/90 text-white font-semibold px-12 text-lg border border-purple-400/20 shadow-[0_0_24px_rgba(52,211,153,0.25)]"
                 >
                   {isSecondary ? "Print Temporary Visa" : "Print Visa"}
                 </Button>

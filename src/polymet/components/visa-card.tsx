@@ -1,5 +1,7 @@
 import { type GuestRecord } from "@/polymet/data/immigration-data"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
+import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
+import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 
 interface VisaCardProps {
@@ -157,7 +159,10 @@ export function VisaCard({
             {privileges.map((privilege, i) => (
               <span
                 key={i}
-                className="text-xs px-2 py-0.5 bg-purple-500/20 border border-purple-400/30 rounded text-purple-100"
+                className={cn(
+                  "text-xs px-2 py-0.5 border rounded font-medium",
+                  getPrivilegeTagClass(i)
+                )}
               >
                 {privilege}
               </span>
