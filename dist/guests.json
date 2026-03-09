@@ -13,7 +13,8 @@
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=7A8X"
   },
   {
     "code": "Q9LT",
@@ -26,10 +27,12 @@
     "basePrivileges": [
       "Sparkle Clearance III",
       "Galactic Trade Authorization",
-      "Stratellic Advisory Access"
+      "Stratellic Advisory Access",
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Q9LT"
   },
   {
     "code": "1KSP",
@@ -44,7 +47,8 @@
       "Diplomatic Hug Immunity"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=1KSP"
   },
   {
     "code": "867B",
@@ -56,11 +60,13 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "No Sparkle Clearance",
+      "Nebula Survey Clearance",
       "Lounge Access",
       "Confetti Handling Permit"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=867B"
   },
   {
     "code": "HOGZ",
@@ -71,13 +77,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
-      "Glitter Transit Waiver",
       "Sparkle Clearance III",
+      "Glitter Transit Waiver",
       "Galactic Trade Authorization",
-      "Cake Priority Queue"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=HOGZ"
   },
   {
     "code": "5DKN",
@@ -88,11 +95,12 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Glitter Transit Waiver",
-      "Sparkle Clearance I"
+      "Sparkle Clearance I",
+      "Glitter Transit Waiver"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=5DKN"
   },
   {
     "code": "X0FC",
@@ -103,12 +111,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Galactic Trade Authorization",
       "Sparkle Clearance II",
-      "Diplomatic Hug Immunity"
+      "Galactic Trade Authorization",
+      "Diplomatic Hug Immunity",
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=X0FC"
   },
   {
     "code": "D2N5",
@@ -124,7 +134,8 @@
       "Confetti Handling Permit"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=D2N5"
   },
   {
     "code": "OPBO",
@@ -135,12 +146,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
+      "Sparkle Clearance III",
       "Glitter Transit Waiver",
       "Galactic Trade Authorization",
-      "Sparkle Clearance III"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=OPBO"
   },
   {
     "code": "0PWT",
@@ -155,7 +168,8 @@
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=0PWT"
   },
   {
     "code": "UJJM",
@@ -168,10 +182,12 @@
     "basePrivileges": [
       "Sparkle Clearance II",
       "Diplomatic Hug Immunity",
-      "Bureaucracy Bypass Permit"
+      "Bureaucracy Bypass Permit",
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=UJJM"
   },
   {
     "code": "JJQ4",
@@ -187,7 +203,8 @@
       "Special Projects Clearance"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=JJQ4"
   },
   {
     "code": "ZNST",
@@ -198,11 +215,12 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
-      "Official Sparkle Beaurcracy Diplomat",
+      "Official Sparkle Bureaucracy Diplomat",
       "Full Priority Access"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=ZNST"
   },
   {
     "code": "BNDK",
@@ -213,12 +231,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
+      "Sparkle Clearance III",
       "Glitter Transit Waiver",
       "Galactic Trade Authorization",
-      "Sparkle Clearance III"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=BNDK"
   },
   {
     "code": "Y4AJ",
@@ -231,10 +251,11 @@
     "basePrivileges": [
       "Sparkle Clearance II",
       "Cake Priority Queue",
-      "Polaroid Squad"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Y4AJ"
   },
   {
     "code": "IFOM",
@@ -245,12 +266,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
-      "Galactic Trade Authorization",
       "Sparkle Clearance II",
-      "Confetti Handling Permit"
+      "Galactic Trade Authorization",
+      "Confetti Handling Permit",
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=IFOM"
   },
   {
     "code": "PRKQ",
@@ -261,10 +284,13 @@
     "visaClass": "Special Envoy Visa",
     "validityMinutes": 240,
     "basePrivileges": [
+      "No Sparkle Clearance",
+      "Comet Tail Access",
       "Lounge Access"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=PRKQ"
   },
   {
     "code": "OZNU",
@@ -275,12 +301,13 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Galactic Trade Authorization",
       "No Sparkle Clearance",
+      "Galactic Trade Authorization",
       "Cake Priority Queue"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=OZNU"
   },
   {
     "code": "0AQP",
@@ -291,10 +318,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "No Sparkle Clearance"
+      "No Sparkle Clearance",
+      "Nebula Transit Waiver",
+      "Lounge Access",
+      "Missing Envoy - Reduced Fanfare"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=0AQP"
   },
   {
     "code": "2RFZ",
@@ -305,12 +336,14 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Lounge Access",
       "No Sparkle Clearance",
+      "Comet Observation Permit",
+      "Lounge Access",
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=2RFZ"
   },
   {
     "code": "FDQA",
@@ -321,10 +354,13 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "No Sparkle Clearance"
+      "No Sparkle Clearance",
+      "Nebula Viewing Rights",
+      "Lounge Access"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=FDQA"
   },
   {
     "code": "Q8AE",
@@ -336,10 +372,12 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "No Sparkle Clearance",
+      "Comet Dust Dispensation",
       "Lounge Access"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Q8AE"
   },
   {
     "code": "NAGS",
@@ -350,12 +388,13 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 300,
     "basePrivileges": [
-      "Glitter Transit Waiver",
       "Sparkle Clearance I",
+      "Glitter Transit Waiver",
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=NAGS"
   },
   {
     "code": "D1UM",
@@ -367,11 +406,13 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "No Sparkle Clearance",
+      "Nebula Sector Access",
       "Diplomatic Hug Immunity",
       "Cake Priority Queue"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=D1UM"
   },
   {
     "code": "ENGM",
@@ -383,11 +424,12 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Galactic Trade Authorization",
-      "Polaroid Photo Squad",
+      "Polaroid Documentation",
       "Cake Priority Queue"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=ENGM"
   },
   {
     "code": "AGAK",
@@ -398,10 +440,12 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Official Sparkle Beaurcracy Diplomat"
+      "Official Sparkle Bureaucracy Diplomat",
+      "Lounge Access"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=AGAK"
   },
   {
     "code": "HXRY",
@@ -414,10 +458,11 @@
     "basePrivileges": [
       "Sparkle Clearance II",
       "Cake Priority Queue",
-      "Polaroid Squad Access"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=HXRY"
   },
   {
     "code": "3FW1",
@@ -428,12 +473,13 @@
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
     "basePrivileges": [
-      "Glitter Transit Waiver"
-      "Official Sparkle Beaurcracy Diplomat"
+      "Official Sparkle Bureaucracy Diplomat",
+      "Glitter Transit Waiver",
       "All Access Pass"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=3FW1"
   },
   {
     "code": "BAKS",
@@ -445,10 +491,12 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "No Sparkle Clearance",
+      "Comet Trail Authorization",
       "Glitter Transit Waiver"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=BAKS"
   },
   {
     "code": "KC6F",
@@ -463,7 +511,8 @@
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=KC6F"
   },
   {
     "code": "FYWA",
@@ -478,7 +527,8 @@
       "Glitter Transit Waiver"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=FYWA"
   },
   {
     "code": "AAHR",
@@ -493,7 +543,8 @@
       "Galactic Trade Authorization"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=AAHR"
   },
   {
     "code": "9TKV",
@@ -506,10 +557,12 @@
     "basePrivileges": [
       "Sparkle Clearance II",
       "Galactic Trade Authorization",
-      "Cake Priority Queue"
+      "Cake Priority Queue",
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=9TKV"
   },
   {
     "code": "AKW0",
@@ -522,9 +575,10 @@
     "basePrivileges": [
       "Sparkle Clearance I",
       "Cake Priority Queue",
-      "Polaroid Photo Squad"
+      "Polaroid Documentation"
     ],
     "printed": false,
-    "arrived": false
+    "arrived": false,
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=AKW0"
   }
 ]

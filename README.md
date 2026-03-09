@@ -68,17 +68,21 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 **Guest status** (in `guests.json`): `Citizen` | `Visitor` | `VIP` | `Diplomat` | `Special Envoy`
 
-Privileges are stored in each guest’s `basePrivileges` and can be extended by the decision engine (e.g. Glitter Transit Waiver, Galactic Trade Authorization). Examples used in data: No Sparkle Clearance, Lounge Access, Sparkle Clearance II/III, Cake Priority Queue, Polaroid Access, Trusted Agent, Hug Privilege.
+Privileges are stored in each guest’s `basePrivileges` and can be extended by the decision engine (e.g. Glitter Transit Waiver, Galactic Trade Authorization). Examples used in data: Standard Sparkle Protocol, Lounge Access, Sparkle Clearance II/III, Cake Priority Queue, Polaroid Access, Trusted Agent, Hug Privilege.
 
 - **Citizens**: typically 1–2 base privileges, 240 min validity.  
 - **VIP / Special Envoy**: more privileges, 300 min validity.
 
 ---
 
-## Plans (reference)
+## Notes
 
-- **Immigration Kiosk Plan** (`src/polymet/plans/immigration-kiosk-plan.md`) – Original kiosk design: welcome, scan, traveler result, declaration form, document issuance, printing, border checkpoint, statistics dashboard. Visual style: spaceport terminal, navy/lilac/pink, condensed + rounded type.
-- **Immigration System Update Plan** (`src/polymet/plans/immigration-system-update-plan.md`) – Technical flow: code entry, identity confirmation, purpose of visit, declarations, processing, decision engine, secondary screening, A6 print preview/success, admin panel. Guest records keyed by 4-character code in JSON.
+- Legacy Polymet plan/example artifacts were removed to simplify maintenance.
+- The active implementation lives in:
+  - `src/polymet/prototypes/immigration-kiosk.tsx`
+  - `src/polymet/pages/*` (current routed screens)
+  - `src/polymet/components/*` (currently used UI building blocks)
+  - `src/polymet/data/immigration-data.tsx`
 
 ---
 

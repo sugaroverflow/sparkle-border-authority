@@ -103,7 +103,7 @@ export const randomPrivilegePool = [
 ]
 
 export const allPrivileges = [
-  "No Sparkle Clearance",
+  "Standard Sparkle Protocol",
   "Lounge Access",
   ...randomPrivilegePool,
 ]
@@ -118,7 +118,7 @@ export const mockGuests: GuestRecord[] = [
     passportType: "fancy",
     visaClass: "Citizen Entry Visa",
     validityMinutes: 240,
-    basePrivileges: ["No Sparkle Clearance", "Lounge Access"],
+    basePrivileges: ["Standard Sparkle Protocol", "Lounge Access"],
     printed: false,
     arrived: false,
   },
@@ -144,7 +144,7 @@ export const mockGuests: GuestRecord[] = [
     passportType: "visitor",
     visaClass: "Visitor Admission Permit",
     validityMinutes: 180,
-    basePrivileges: ["No Sparkle Clearance"],
+    basePrivileges: ["Standard Sparkle Protocol"],
     printed: false,
     arrived: false,
   },
@@ -157,7 +157,7 @@ export const mockGuests: GuestRecord[] = [
     passportType: "fancy",
     visaClass: "Citizen Entry Visa",
     validityMinutes: 360,
-    basePrivileges: ["Lounge Access", "No Sparkle Clearance"],
+    basePrivileges: ["Lounge Access", "Standard Sparkle Protocol"],
     printed: false,
     arrived: false,
   },
@@ -409,7 +409,7 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
     passportType: normalizePassportType(guest.passportType as string | undefined),
     visaClass: normalizeVisaClass(guest.visaClass as string | undefined),
     validityMinutes: Number(guest.validityMinutes ?? 180),
-    basePrivileges: Array.isArray(guest.basePrivileges) ? guest.basePrivileges : ["No Sparkle Clearance"],
+    basePrivileges: Array.isArray(guest.basePrivileges) ? guest.basePrivileges : ["Standard Sparkle Protocol"],
     printed: Boolean(guest.printed),
     arrived: Boolean(guest.arrived),
   }
@@ -534,7 +534,7 @@ export function createManualGuest(name: string, agentCode: string): GuestRecord 
     passportType: "visitor",
     visaClass: "Temporary Celebration Authorization",
     validityMinutes: 120,
-    basePrivileges: ["No Sparkle Clearance"],
+    basePrivileges: ["Standard Sparkle Protocol"],
     printed: false,
     arrived: false,
   }

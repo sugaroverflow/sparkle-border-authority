@@ -114,7 +114,7 @@ export function AdminPanel() {
       )}&manualAgentCode=${encodeURIComponent(
         manualVisaAgentCode
       )}&visaNumber=${visaNumber}&purposes=bureaucratic-chaos&declarations=excellent-vibes&privileges=${encodeURIComponent(
-        "No Sparkle Clearance"
+        "Standard Sparkle Protocol"
       )}&timestamp=${encodeURIComponent(timestamp)}`
     )
   }
