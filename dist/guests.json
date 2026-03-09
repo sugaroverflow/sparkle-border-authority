@@ -1,0 +1,530 @@
+[
+  {
+    "code": "7A8X",
+    "name": "Nicholas Botti",
+    "agentCode": "Nova",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Lounge Access",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "Q9LT",
+    "name": "Gamithra Marga",
+    "agentCode": "Comet",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance III",
+      "Galactic Trade Authorization",
+      "Stratellic Advisory Access"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "1KSP",
+    "name": "Sinead Doyle",
+    "agentCode": "Starfield",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Diplomatic Hug Immunity"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "867B",
+    "name": "John Evans",
+    "agentCode": "Nebula",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance",
+      "Lounge Access",
+      "Confetti Handling Permit"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "HOGZ",
+    "name": "Tuna Acisu",
+    "agentCode": "Glitter",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Sparkle Clearance III",
+      "Galactic Trade Authorization",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "5DKN",
+    "name": "Andreas Varotsis",
+    "agentCode": "Stardust",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Sparkle Clearance I"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "X0FC",
+    "name": "James Moulding",
+    "agentCode": "Aurora",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Sparkle Clearance II",
+      "Diplomatic Hug Immunity"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "D2N5",
+    "name": "Anouk",
+    "agentCode": "Cosmos",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Diplomatic Hug Immunity",
+      "Confetti Handling Permit"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "OPBO",
+    "name": "Hannah O'Rourke",
+    "agentCode": "Supernova",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization",
+      "Sparkle Clearance III"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "0PWT",
+    "name": "Chris Owen",
+    "agentCode": "Pulse",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Cake Priority Queue",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "UJJM",
+    "name": "Alex Vince",
+    "agentCode": "Mercury",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Diplomatic Hug Immunity",
+      "Bureaucracy Bypass Permit"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "JJQ4",
+    "name": "Theodore Keloglou",
+    "agentCode": "Vega",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Lounge Access",
+      "Special Projects Clearance"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "ZNST",
+    "name": "Francesca Galli",
+    "agentCode": "Prism",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Official Sparkle Beaurcracy Diplomat",
+      "Full Priority Access"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "BNDK",
+    "name": "Edward Saperia",
+    "agentCode": "Galaxy",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization",
+      "Sparkle Clearance III"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "Y4AJ",
+    "name": "DAVIT",
+    "agentCode": "Eclipse",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Cake Priority Queue",
+      "Polaroid Squad"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "IFOM",
+    "name": "David Powell",
+    "agentCode": "Zenith",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Sparkle Clearance II",
+      "Confetti Handling Permit"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "PRKQ",
+    "name": "Frederick O'Brien",
+    "agentCode": "Apex",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "OZNU",
+    "name": "Emily M",
+    "agentCode": "Helix",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "No Sparkle Clearance",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "0AQP",
+    "name": "Aadi K",
+    "agentCode": "Chroma",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "2RFZ",
+    "name": "Peyman Ow",
+    "agentCode": "Flux",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Lounge Access",
+      "No Sparkle Clearance",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "FDQA",
+    "name": "lewis@cantab.net",
+    "agentCode": "Ember",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "Q8AE",
+    "name": "Six Silberman",
+    "agentCode": "Blaze",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance",
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "NAGS",
+    "name": "Joshua Becker",
+    "agentCode": "Spark",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Sparkle Clearance I",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "D1UM",
+    "name": "Hoagy Davis-Digges",
+    "agentCode": "Drift",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance",
+      "Diplomatic Hug Immunity",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "ENGM",
+    "name": "Connor Dunlop",
+    "agentCode": "Echo",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Polaroid Photo Squad",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "AGAK",
+    "name": "Matt Stempeck",
+    "agentCode": "Tide",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Official Sparkle Beaurcracy Diplomat"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "HXRY",
+    "name": "Davit Jintcharadze",
+    "agentCode": "Cove",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Cake Priority Queue",
+      "Polaroid Squad Access"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "3FW1",
+    "name": "Asil Sidahmed",
+    "agentCode": "Ridge",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver"
+      "Official Sparkle Beaurcracy Diplomat"
+      "All Access Pass"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "BAKS",
+    "name": "Martina Orlea",
+    "agentCode": "Summit",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "No Sparkle Clearance",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "KC6F",
+    "name": "Zarinah Agnew",
+    "agentCode": "Lark",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "FYWA",
+    "name": "Huda",
+    "agentCode": "Frost",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "AAHR",
+    "name": "Alessandro Pedori",
+    "agentCode": "Shade",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "9TKV",
+    "name": "Jam Coombes",
+    "agentCode": "Bolt",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Galactic Trade Authorization",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false
+  },
+  {
+    "code": "AKW0",
+    "name": "Alexandra Ciocanel",
+    "agentCode": "Crest",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance I",
+      "Cake Priority Queue",
+      "Polaroid Photo Squad"
+    ],
+    "printed": false,
+    "arrived": false
+  }
+]
