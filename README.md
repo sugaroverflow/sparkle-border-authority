@@ -8,7 +8,8 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 ## Project overview
 
-- **Guest list**: Stored in `data/guests.json`. Each guest has a unique 4-character `code` (e.g. `7A8X`), `name`, `agentCode`, `status`, `passportType`, `visaClass`, `basePrivileges`, and `printed` / `arrived` flags. The app copies this file to `public/guests.json` at dev/build time so it can be fetched at runtime.
+- **Guest list**: Source of truth is `data/guests.json`. Each guest has a unique 4-character `code` (e.g. `7A8X`), `name`, `agentCode`, `status`, `passportType`, `visaClass`, `basePrivileges`, and `printed` / `arrived` flags. `public/guests.json` is generated from this file in `predev`/`prebuild`.
+- **Guest photos**: Optional headshots per guest. Put images in `public/guests/` named by code (e.g. `7A8X.jpg`) and set each guest’s `photo` in `data/guests.json` to `"/guests/7A8X.jpg"`. See `public/guests/README.example.md` for details. If `photo` is missing or invalid, the app uses a generated avatar.
 - **Visa taglines**: Random one-liners for approved visas come from `public/visa-taglines.json`.
 - **Decision engine**: Validates 1–2 purposes of visit and ≥1 declaration; can trigger secondary screening (random ~7.5%); assigns privileges from guest record plus optional extras from a pool.
 - **Printing**: A6 visa card with CSS `@page`; print preview then success/instructions.

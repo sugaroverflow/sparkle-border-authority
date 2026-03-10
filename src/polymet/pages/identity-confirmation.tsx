@@ -5,7 +5,7 @@ import { StatusBadge } from "@/polymet/components/status-badge"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode } from "@/polymet/data/immigration-data"
-import { cn } from "@/lib/utils"
+import { cn, getGuestInitials } from "@/lib/utils"
 import { ShieldCheckIcon, CreditCardIcon, AlertTriangle, PartyPopper, Sparkles } from "lucide-react"
 
 export function IdentityConfirmation() {
@@ -129,10 +129,10 @@ export function IdentityConfirmation() {
                   />
                 </div>
               ) : (
-                <div className="w-32 h-32 rounded-lg border-4 border-purple-400/30 bg-purple-950/30 flex items-center justify-center p-2">
-                  <p className="text-center font-mono text-xs text-purple-400/80 leading-tight">
-                    temp visitor, no photo found
-                  </p>
+                <div className="w-32 h-32 rounded-lg border-4 border-purple-400/30 bg-purple-950/30 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-purple-400/80">
+                    {getGuestInitials(guest.name)}
+                  </span>
                 </div>
               )}
 

@@ -1,0 +1,617 @@
+[
+  {
+    "code": "7A8X",
+    "name": "Nicholas",
+    "agentCode": "Nova",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Lounge Access",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/7A8X.png",
+    "diplomaticImmunity": true
+  },
+  {
+    "code": "Q9LT",
+    "name": "Gamithra",
+    "agentCode": "Revontuli",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance III",
+      "Galactic Trade Authorization",
+      "Stratellic Advisory Access",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/Q9LT.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Congratulations Agent (name)! In recognition of your contributions to galactic peace and your pioneering solar shade farming efforts on the asteroid belt, the Sparkle Bureaucracy salutes you. \u2728 May your harvests be abundant and the sector ever serene."
+    },
+    "diplomaticImmunity": true
+  },
+  {
+    "code": "1KSP",
+    "name": "Sinead",
+    "agentCode": "Starfield",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Diplomatic Hug Immunity"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/1KSP.jpg"
+  },
+  {
+    "code": "867B",
+    "name": "John",
+    "agentCode": "Nebula",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Nebula Survey Clearance",
+      "Lounge Access",
+      "Confetti Handling Permit"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/867B.png"
+  },
+  {
+    "code": "HOGZ",
+    "name": "Tuna",
+    "agentCode": "Glitter",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance III",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/HOGZ.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Welcome back Agent (name)! \u2728 We hope your adventures across the galaxy were smooth, and we are delighted to see you have returned in glory. The stars missed you!"
+    }
+  },
+  {
+    "code": "5DKN",
+    "name": "Andreas",
+    "agentCode": "Prism",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance I",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/5DKN.png"
+  },
+  {
+    "code": "X0FC",
+    "name": "James",
+    "agentCode": "Aurora",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Galactic Trade Authorization",
+      "Diplomatic Hug Immunity",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/X0FC.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Agent (name), for your contributions to the galaxy we have awarded you the status of Special Envoy. May the Sparkle be with you!! \u2728"
+    }
+  },
+  {
+    "code": "D2N5",
+    "name": "Anouk",
+    "agentCode": "Cosmos",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Diplomatic Hug Immunity",
+      "Confetti Handling Permit"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/D2N5.png"
+  },
+  {
+    "code": "OPBO",
+    "name": "Hannah",
+    "agentCode": "Supernova",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance III",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/OPBO.jpg",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), you are an esteemed guest and we are delighted that you have made the trip! \u2728 May your path be strewn with sparkles and your vibes ever cosmic."
+    }
+  },
+  {
+    "code": "0PWT",
+    "name": "Chris",
+    "agentCode": "Pulse",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Cake Priority Queue",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/0PWT.png"
+  },
+  {
+    "code": "UJJM",
+    "name": "Alex",
+    "agentCode": "Mercury",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Diplomatic Hug Immunity",
+      "Bureaucracy Bypass Permit",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/UJJM.png"
+  },
+  {
+    "code": "JJQ4",
+    "name": "Theodore",
+    "agentCode": "Vega",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Lounge Access",
+      "Special Projects Clearance"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/JJQ4.jpg"
+  },
+  {
+    "code": "ZNST",
+    "name": "Francesca",
+    "agentCode": "Stardust",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Official Sparkle Bureaucracy Diplomat",
+      "Full Priority Access"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/ZNST.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Congratulations Agent (name)! Thanks to your contributions to the sector, you have been promoted to Intergalactic Ambassador for the Sparkle Bureaucracy. You have diplomatic immunity and access to all strategic systems."
+    }
+  },
+  {
+    "code": "BNDK",
+    "name": "Edward",
+    "agentCode": "Galaxy",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance III",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/BNDK.jpg"
+  },
+  {
+    "code": "Y4AJ",
+    "name": "DAVIT",
+    "agentCode": "Eclipse",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Cake Priority Queue",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/Y4AJ.png"
+  },
+  {
+    "code": "IFOM",
+    "name": "David",
+    "agentCode": "Zenith",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Galactic Trade Authorization",
+      "Confetti Handling Permit",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/IFOM.png"
+  },
+  {
+    "code": "PRKQ",
+    "name": "Frederick",
+    "agentCode": "Apex",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Comet Tail Access",
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/PRKQ.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Agent Apex, we commend your contributions to today's Ration Club and wish you lightspeed in the galactic kitchen! May your utensils be swift."
+    }
+  },
+  {
+    "code": "OZNU",
+    "name": "Emily",
+    "agentCode": "Helix",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Galactic Trade Authorization",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/OZNU.png"
+  },
+  {
+    "code": "0AQP",
+    "name": "Aadi",
+    "agentCode": "Chroma",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Missing Envoy in Action",
+      "Comet Observation Permit",
+      "Diplomatic Hug Immunity"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/0AQP.png",
+    "customAlert": {
+      "variant": "warning",
+      "message": "Warning - Missing Envoy in Action. Due to your absence from missions, your diplomatic immunity has been revoked! However, in light of previous contributions, Sparkle Bureaucracy retains your citizen status."
+    }
+  },
+  {
+    "code": "2RFZ",
+    "name": "Peyman",
+    "agentCode": "Flux",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Comet Observation Permit",
+      "Lounge Access",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/2RFZ.png"
+  },
+  {
+    "code": "FDQA",
+    "name": "lewis@cantab.net",
+    "agentCode": "Ember",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Nebula Viewing Rights",
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/FDQA.png"
+  },
+  {
+    "code": "Q8AE",
+    "name": "Six",
+    "agentCode": "Blaze",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Comet Dust Dispensation",
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/Q8AE.jpg"
+  },
+  {
+    "code": "NAGS",
+    "name": "Joshua",
+    "agentCode": "Spark",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance I",
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/NAGS.jpg"
+  },
+  {
+    "code": "D1UM",
+    "name": "Hoagy",
+    "agentCode": "Vector",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Nebula Sector Access",
+      "Diplomatic Hug Immunity",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/D1UM.png"
+  },
+  {
+    "code": "ENGM",
+    "name": "Connor",
+    "agentCode": "Relay",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Polaroid Documentation",
+      "Cake Priority Queue"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/ENGM.png"
+  },
+  {
+    "code": "AGAK",
+    "name": "Matt",
+    "agentCode": "Solstice",
+    "status": "VIP",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Official Sparkle Bureaucracy Diplomat",
+      "Lounge Access"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/AGAK.png"
+  },
+  {
+    "code": "HXRY",
+    "name": "Davit",
+    "agentCode": "Quasar",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Cake Priority Queue",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/HXRY.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), for your loyalty to the Sparkle Bureaucracy and your courage in the fight for a free galaxy, we have awarded you Special Envoy status. \u2728 The Galactic Federation commends your efforts\u2014may justice and sparkles prevail."
+    }
+  },
+  {
+    "code": "3FW1",
+    "name": "Asil",
+    "agentCode": "Pulsar",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Official Sparkle Bureaucracy Diplomat",
+      "Glitter Transit Waiver",
+      "All Access Pass"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/3FW1.png"
+  },
+  {
+    "code": "BAKS",
+    "name": "Martina",
+    "agentCode": "Corona",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Comet Trail Authorization",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/BAKS.png"
+  },
+  {
+    "code": "KC6F",
+    "name": "Zarinah",
+    "agentCode": "Lyra",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/KC6F.png"
+  },
+  {
+    "code": "FYWA",
+    "name": "Huda",
+    "agentCode": "Helios",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Galactic Trade Authorization",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/FYWA.png"
+  },
+  {
+    "code": "AAHR",
+    "name": "Alessandro",
+    "agentCode": "Umbra",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Glitter Transit Waiver",
+      "Galactic Trade Authorization"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/AAHR.png"
+  },
+  {
+    "code": "9TKV",
+    "name": "Jam",
+    "agentCode": "Ionsphere",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance II",
+      "Galactic Trade Authorization",
+      "Cake Priority Queue",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/9TKV.png"
+  },
+  {
+    "code": "AKW0",
+    "name": "Alexandra",
+    "agentCode": "Vertex",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance I",
+      "Cake Priority Queue",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/AKW0.png"
+  }
+]

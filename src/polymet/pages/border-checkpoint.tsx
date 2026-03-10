@@ -20,7 +20,7 @@ export function BorderCheckpoint() {
             <SparkleEffect variant="stars" size="md" className="mx-auto" />
             <p className="text-lg text-purple-200">
               It is suspected that you are not who you say you are. <br />
-              Please proceed to the border to get from border staff.
+              Please proceed to the border to get assistance from border staff.
             </p>
             <p className="text-xl font-semibold text-amber-200/90">
               Ok byeeeeee!

@@ -44,5 +44,4 @@ coverage/
 # *.local
 
 # Special, app specific
-public/guests.json
-data/guests.json
+# Keep this section for future project-specific ignores.

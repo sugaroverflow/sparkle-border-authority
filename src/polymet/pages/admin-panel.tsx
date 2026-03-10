@@ -4,6 +4,7 @@ import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { StatTile } from "@/polymet/components/stat-tile"
 import { TerminalInput } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
+import { getGuestInitials } from "@/lib/utils"
 import { 
   getAllGuests,
   getRuntimeStatistics,
@@ -235,12 +236,16 @@ export function AdminPanel() {
             {foundGuest && (
               <div className="mt-4 p-4 bg-purple-950/30 border border-purple-400/20 rounded-lg">
                 <div className="flex items-start gap-4">
-                  {foundGuest.photo && (
+                  {foundGuest.photo ? (
                     <img
                       src={foundGuest.photo}
                       alt={foundGuest.name}
                       className="w-16 h-16 rounded border-2 border-purple-400/30"
                     />
+                  ) : (
+                    <div className="w-16 h-16 rounded border-2 border-purple-400/30 bg-purple-950/50 flex items-center justify-center text-xl font-bold text-purple-400/80">
+                      {getGuestInitials(foundGuest.name)}
+                    </div>
                   )}
                   <div className="flex-1">
                     <p className="text-lg font-bold text-purple-100">
@@ -303,12 +308,16 @@ export function AdminPanel() {
                   className="p-3 bg-slate-900/30 border border-purple-400/10 rounded flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    {guest.photo && (
+                    {guest.photo ? (
                       <img
                         src={guest.photo}
                         alt={guest.name}
                         className="w-10 h-10 rounded"
                       />
+                    ) : (
+                      <div className="w-10 h-10 rounded border border-purple-400/30 bg-purple-950/50 flex items-center justify-center text-sm font-bold text-purple-400/80 shrink-0">
+                        {getGuestInitials(guest.name)}
+                      </div>
                     )}
                     <div>
                       <p className="text-sm font-semibold text-purple-100">

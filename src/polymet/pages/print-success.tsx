@@ -102,11 +102,11 @@ export function PrintSuccess() {
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <FileTextIcon className="w-5 h-5 text-emerald-400" />
                   <p className="text-lg font-semibold text-emerald-100">
-                    Agent {guest.agentCode}, please proceed to the border.
+                    Agent {guest.agentCode}, your visa has been issued.
                   </p>
                 </div>
                 <p className="text-sm text-emerald-300/80">
-                  A border agent will verify your entry. Have your document ready.
+                  Keep your visa document with you and follow posted venue instructions.
                 </p>
               </div>
 
@@ -147,16 +147,7 @@ export function PrintSuccess() {
             </div>
 
             {/* Action Button */}
-            <div className="flex justify-center pt-4 gap-4 flex-wrap">
-              {!isManual && foundGuest && (
-                <Button
-                  variant="outline"
-                  onClick={() => navigate(`/border-checkpoint?code=${foundGuest.code}`)}
-                  className="border-emerald-400/50 bg-transparent text-emerald-100 hover:bg-emerald-950/50 hover:text-white"
-                >
-                  Proceed to checkpoint
-                </Button>
-              )}
+            <div className="flex justify-center pt-4">
               <Button
                 onClick={() => navigate("/")}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12"

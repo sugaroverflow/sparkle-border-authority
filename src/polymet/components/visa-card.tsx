@@ -1,7 +1,7 @@
 import { type GuestRecord } from "@/polymet/data/immigration-data"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
-import { cn } from "@/lib/utils"
+import { cn, getGuestInitials } from "@/lib/utils"
 import { format } from "date-fns"
 
 // Ink-friendly privilege tag classes for print (no heavy background)
@@ -162,14 +162,14 @@ export function VisaCard({
           {!guest.photo && (
             <div
               className={cn(
-                "rounded border-2 flex items-center justify-center text-center shrink-0 bg-slate-100",
+                "rounded border-2 flex items-center justify-center shrink-0 bg-slate-100 font-bold text-slate-500",
                 isPrint
-                  ? "w-10 h-10 border-slate-300 text-[6px] leading-tight text-slate-500 px-0.5"
-                  : "w-16 h-16 border-purple-400/30 text-[8px] leading-tight text-purple-400/80 px-1"
+                  ? "w-10 h-10 border-slate-300 text-[8px] px-0.5"
+                  : "w-16 h-16 border-purple-400/30 text-lg text-purple-400/80 px-1"
               )}
               aria-hidden
             >
-              temp visitor, no photo found
+              {getGuestInitials(guest.name)}
             </div>
           )}
           <div className="flex-1 min-w-0">
