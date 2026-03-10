@@ -596,5 +596,23 @@
     "printed": false,
     "arrived": false,
     "photo": "/guests/AKW0.png"
+  },
+  {
+    "code": "AAAA",
+    "name": "Fatima",
+    "agentCode": "Princess",
+    "status": "Supreme Benevolent Dictato",
+    "passportType": "fancy",
+    "visaClass": "Leader",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Sparkle Clearance Authorizer",
+      "Galactic Trade Authority",
+      "Leader of the Sparkle Planet Consortium",
+      "Birthday Princess"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/princess.png"
   }
 ]

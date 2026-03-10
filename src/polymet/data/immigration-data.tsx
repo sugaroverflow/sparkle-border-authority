@@ -1,5 +1,5 @@
 export type GuestStatus = "Visitor" | "Diplomat" | "VIP" | "Special Envoy" | "Citizen"
-export type PassportType = "visitor" | "fancy"
+export type PassportType = "visitor" | "fancy" | "standard"
 export type VisaClass =
   | "Citizen Entry Visa"
   | "Diplomatic Entry Visa"
@@ -430,8 +430,11 @@ function normalizeStatus(status: string | undefined): GuestStatus {
   return "Visitor"
 }
 
-function normalizePassportType(passportType: string | undefined): PassportType {
+function normalizePassportType(passportType: string | undefined, status: GuestStatus): PassportType {
+  // Product rule: Citizens always use standard passport type.
+  if (status === "Citizen") return "standard"
   if (passportType === "fancy") return "fancy"
+  if (passportType === "standard") return "standard"
   return "visitor"
 }
 
@@ -467,7 +470,7 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
         : guest.agentCode ?? getRandomGalacticAgentCode(),
     status: normalizedStatus,
     photo: guest.photo,
-    passportType: normalizePassportType(guest.passportType as string | undefined),
+    passportType: normalizePassportType(guest.passportType as string | undefined, normalizedStatus),
     visaClass: normalizeVisaClass(guest.visaClass as string | undefined),
     validityMinutes: Number(guest.validityMinutes ?? 180),
     basePrivileges: Array.isArray(guest.basePrivileges) ? guest.basePrivileges : ["Standard Sparkle Protocol"],

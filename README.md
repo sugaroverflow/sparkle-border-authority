@@ -11,8 +11,9 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 - **Guest list**: Source of truth is `data/guests.json`. Each guest has a unique 4-character `code` (e.g. `7A8X`), `name`, `agentCode`, `status`, `passportType`, `visaClass`, `basePrivileges`, and `printed` / `arrived` flags. `public/guests.json` is generated from this file in `predev`/`prebuild`.
 - **Guest photos**: Optional headshots per guest. Put images in `public/guests/` named by code (e.g. `7A8X.jpg`) and set each guest’s `photo` in `data/guests.json` to `"/guests/7A8X.jpg"`. See `public/guests/README.example.md` for details. If `photo` is missing or invalid, the app uses a generated avatar.
 - **Visa taglines**: Random one-liners for approved visas come from `public/visa-taglines.json`.
-- **Decision engine**: Validates 1–2 purposes of visit and ≥1 declaration; can trigger secondary screening (random ~7.5%); assigns privileges from guest record plus optional extras from a pool.
-- **Printing**: A6 visa card with CSS `@page`; print preview then success/instructions.
+- **Decision engine**: Validates 1–2 purposes of visit and ≥1 declaration; **all Visitors always go through secondary screening**, while non-visitor statuses can still trigger random screening (~7.5%).
+- **Agent code pools**: `public/agent-codes.json` supports categorized pools (`galactic`, `earthGeography`, `earthNature`). Visitors are assigned a random Earth-themed agent code.
+- **Printing**: A6 visa card with CSS `@page`; print preview uses the printable `VisaSticker` style design with status-based color palettes.
 
 ---
 
@@ -20,16 +21,16 @@ A self-service **Immigration Kiosk** web app for the **Ration Club Border Contro
 
 | Step | Route | Description |
 |------|--------|-------------|
-| 1 | `/` | **Welcome** – entry point, stats ticker, “Enter immigration code” leads to code entry |
+| 1 | `/` | **Welcome** – entry point with Start Immigration CTA and embedded Immigration Statistics dashboard below |
 | 2 | `/code-entry` | **Code entry** – guest enters 4-character code; invalid → border assistance |
 | 3 | `/identity-confirmation` | **Identity confirmation** – shows guest name/agent code/passport type; confirm to continue |
 | 4 | `/purpose-of-visit` | **Purpose of visit** – select 1–2 purposes (e.g. Cake Acquisition, Diplomacy, Dancefloor Transit) |
 | 5 | `/declarations` | **Declarations** – select at least one (e.g. Sparkles, Snacks, Excellent Vibes); “Nothing to Declare” is rejected |
-| 6 | *(optional)* | **Secondary screening** – random chance; extra question before decision |
+| 6 | `/secondary-screening` | **Secondary screening** – mandatory for Visitors; random for other statuses |
 | 7 | `/processing` | **Processing** – short animated “border authority” processing |
 | 8 | `/decision` | **Decision** – Approved (visa number, privileges) or Rejected (reason + retry caption) |
-| 9 | `/print-preview` | **Print preview** – A6 visa card layout for printing |
-| 10 | `/print-success` | **Print success** – instructions after print |
+| 9 | `/print-preview` | **Print preview** – A6 visa card layout for printing; user confirms success before continuing |
+| 10 | `/print-success` | **Print success** – post-print instructions and validity notice |
 
 **Alternative paths**
 
@@ -144,11 +145,13 @@ npm run dev
 1. Guest enters 4-char code.
 2. Guest confirms identity (name + agent code).
 3. Guest submits purpose/declarations.
-4. If approved:
+4. Visitors always answer one secondary screening question.
+5. If approved:
    - Print visa
+   - Confirm print success in preview
    - Guest sees success instructions
    - Use "Proceed to checkpoint" for border verification
-5. Border checkpoint scans and marks guest as arrived.
+6. Border checkpoint scans and marks guest as arrived.
 
 ### 3) If guest has issues
 

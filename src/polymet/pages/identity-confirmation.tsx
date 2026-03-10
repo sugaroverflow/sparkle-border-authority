@@ -203,7 +203,7 @@ export function IdentityConfirmation() {
             </div>
 
             {/* Passport Type Notice */}
-            {guest.passportType === "fancy" && (
+            {(guest.passportType === "fancy" || guest.passportType === "standard") && (
               <div className="p-4 bg-pink-950/20 border border-pink-400/30 rounded-lg">
                 <p className="text-sm text-pink-200 text-center">
                   <strong>Note:</strong> Retrieve your passport booklet by finding your named envelope
