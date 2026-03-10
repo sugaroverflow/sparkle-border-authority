@@ -45,3 +45,4 @@ coverage/
 
 # Special, app specific
 public/guests.json
+data/guests.json
