@@ -166,7 +166,10 @@ export function IdentityConfirmation() {
               <div className="p-4 bg-purple-950/30 border border-purple-400/20 rounded-lg text-center">
                 <StatusBadge
                   status={
-                    guest.status === "VIP" || guest.status === "Special Envoy" || guest.status === "Citizen"
+                    guest.status === "VIP" ||
+                    guest.status === "Special Envoy" ||
+                    guest.status === "Intergalactic Ambassador" ||
+                    guest.status === "Citizen"
                       ? "authorized"
                       : "visitor"
                   }

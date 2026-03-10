@@ -49,14 +49,14 @@ export function AgentIdentityCard({
           <div className="text-left min-w-0">
             <p
               className={cn(
-                "font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200 truncate",
-                compact ? "text-lg tracking-[0.12em]" : "text-2xl tracking-[0.16em]"
+                "font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200 whitespace-normal break-words leading-tight",
+                compact ? "text-lg tracking-[0.08em]" : "text-2xl tracking-[0.12em]"
               )}
               style={{ fontFamily: "var(--font-agent)" }}
             >
               Agent {agentCode}
             </p>
-            <p className={cn("text-emerald-200/90 truncate", compact ? "text-sm" : "text-base")}>
+            <p className={cn("text-emerald-200/90 whitespace-normal break-words leading-tight", compact ? "text-sm" : "text-base")}>
               {name}
             </p>
             {statusLabel && (

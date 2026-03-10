@@ -1,4 +1,10 @@
-export type GuestStatus = "Visitor" | "Diplomat" | "VIP" | "Special Envoy" | "Citizen"
+export type GuestStatus =
+  | "Visitor"
+  | "Diplomat"
+  | "VIP"
+  | "Special Envoy"
+  | "Intergalactic Ambassador"
+  | "Citizen"
 export type PassportType = "visitor" | "fancy" | "standard"
 export type VisaClass =
   | "Citizen Entry Visa"
@@ -421,7 +427,13 @@ function updateDerivedStats(): void {
 
 function normalizeStatus(status: string | undefined): GuestStatus {
   const value = status ?? "Visitor"
-  if (value === "Visitor" || value === "Diplomat" || value === "VIP" || value === "Special Envoy") {
+  if (
+    value === "Visitor" ||
+    value === "Diplomat" ||
+    value === "VIP" ||
+    value === "Special Envoy" ||
+    value === "Intergalactic Ambassador"
+  ) {
     return value
   }
   if (value === "Citizen") {
@@ -594,7 +606,12 @@ export function recordDecision(decision: "approved" | "rejected", status?: Guest
     runtimeStats.visasIssuedTonight += 1
     if (status === "Citizen") runtimeStats.citizensAdmitted += 1
     if (status === "Visitor") runtimeStats.visitorPasscards += 1
-    if (status === "Diplomat" || status === "Special Envoy" || status === "VIP") {
+    if (
+      status === "Diplomat" ||
+      status === "Special Envoy" ||
+      status === "Intergalactic Ambassador" ||
+      status === "VIP"
+    ) {
       runtimeStats.borderPassports += 1
     }
   } else {

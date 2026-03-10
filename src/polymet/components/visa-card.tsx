@@ -72,6 +72,17 @@ export function VisaCard({
           badgeBg: "bg-amber-100",
           badgeBorder: "border-amber-900",
         }
+      case "Intergalactic Ambassador":
+        return {
+          headerBg: "bg-indigo-50",
+          headerBorder: "border-indigo-900",
+          headerText: "text-indigo-900",
+          border: "border-indigo-900",
+          accentText: "text-indigo-900",
+          labelText: "text-indigo-700",
+          badgeBg: "bg-indigo-100",
+          badgeBorder: "border-indigo-900",
+        }
       default:
         return {
           headerBg: "bg-orange-50",
