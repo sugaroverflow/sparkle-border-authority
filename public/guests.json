@@ -36,7 +36,7 @@
     "photo": "/guests/Q9LT.png",
     "customAlert": {
       "variant": "celebratory",
-      "message": "Congratulations Agent (name)! In recognition of your contributions to galactic peace and your pioneering solar shade farming efforts on the asteroid belt, the Sparkle Bureaucracy salutes you. \u2728 May your harvests be abundant and the sector ever serene."
+      "message": "Stellar congratulations, Agent (name)! The Sparkle Beaucracy celebrates your radiant service to galactic peace and your legendary asteroid-belt farming feats. May your orbit stay bright, your harvests sparkle, and your dance card stay full. \u2728"
     },
     "diplomaticImmunity": true
   },
@@ -75,7 +75,7 @@
     "photo": "/guests/867B.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Sparkle Beaucracy has received reports of your deep-space dealings with pirates in violation of Intergalactic Treaties. This warning is now on file and your Sparkle Planet Consortium permits may be revoked."
+      "message": "Official twinkle-warning, Agent (name): reports of cheeky deep-space pirate dealings have reached the Sparkle Beaucracy. Please proceed on your best behavior, or your Sparkle Planet Consortium permits may be revoked."
     }
   },
   {
@@ -117,7 +117,7 @@
     "photo": "/guests/5DKN.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Due to your absence from strategic intelligence briefings and missions, your Special Envoy status has been revoked and your clearance downgraded. As a valued member of our advisory board, we hope to see you on Sparkle Planet Consortium more often so you can regain your status."
+      "message": "Administrative stardust notice, Agent (name): due to missed strategic briefings and missions, your Special Envoy status has been paused and your clearance temporarily downgraded. We adore your advisory contributions and hope to see you back on Sparkle Planet Consortium often enough to earn your stars again."
     }
   },
   {
@@ -139,7 +139,7 @@
     "photo": "/guests/X0FC.png",
     "customAlert": {
       "variant": "celebratory",
-      "message": "Agent (name), for your contributions to the galaxy we have awarded you the status of Special Envoy. May the Sparkle be with you!! \u2728"
+      "message": "By decree of the Sparkle Beaucracy, Agent (name) is hereby celebrated as a Special Envoy for outstanding cosmic contribution! May your passage be smooth, your paperwork brief, and your sparkle levels extremely acceptable. \u2728"
     }
   },
   {
@@ -165,7 +165,7 @@
     "agentCode": "Supernova",
     "status": "VIP",
     "passportType": "fancy",
-    "visaClass": "Citizen Entry Visa",
+    "visaClass": "Founding Council",
     "validityMinutes": 300,
     "basePrivileges": [
       "Sparkle Clearance III",
@@ -201,7 +201,7 @@
     "code": "UJJM",
     "name": "Alex",
     "agentCode": "Mercury",
-    "status": "Citizen",
+    "status": "Special Envoy",
     "passportType": "fancy",
     "visaClass": "Citizen Entry Visa",
     "validityMinutes": 240,
@@ -213,7 +213,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/UJJM.png"
+    "photo": "/guests/UJJM.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Stellar honors, Agent (name)! In gratitude for your courage and efforts during the Interstellar Incident Wars, the Sparkle Beaucracy proudly grants you Special Envoy status and warmly welcomes your visits across the Consortium."
+    }
   },
   {
     "code": "JJQ4",
@@ -249,7 +253,7 @@
     "photo": "/guests/ZNST.png",
     "customAlert": {
       "variant": "celebratory",
-      "message": "Congratulations Agent (name)! Thanks to your contributions to the sector, you have been promoted to Intergalactic Ambassador for the Sparkle Bureaucracy. You have diplomatic immunity and access to all strategic systems."
+      "message": "Fanfares and confetti, Agent (name)! In honor of your shining contributions, you are promoted to Intergalactic Ambassador of the Sparkle Beaucracy. Diplomatic immunity granted; strategic channels are now at your glittery disposal."
     }
   },
   {
@@ -258,7 +262,7 @@
     "agentCode": "Galaxy",
     "status": "VIP",
     "passportType": "fancy",
-    "visaClass": "Citizen Entry Visa",
+    "visaClass": "Founding Council",
     "validityMinutes": 300,
     "basePrivileges": [
       "Sparkle Clearance III",
@@ -268,7 +272,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/BNDK.jpg"
+    "photo": "/guests/BNDK.jpg",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Highest sparkling regards, Agent (name)! The Sparkle Beaucracy might never have been founded without your wisdom on the Interstellar Council. We warmly honor your visits and luminous presence across the Consortium."
+    }
   },
   {
     "code": "IFOM",
@@ -306,7 +314,7 @@
     "photo": "/guests/PRKQ.png",
     "customAlert": {
       "variant": "celebratory",
-      "message": "Agent Apex, we commend your contributions to today's Ration Club and wish you lightspeed in the galactic kitchen! May your utensils be swift."
+      "message": "Bravo, Agent (name)! The Sparkle Beaucracy commends your glorious service to today's Ration Club mission. May your utensils stay swift, your plating be celestial, and your kitchen run at joyful lightspeed."
     }
   },
   {
@@ -344,7 +352,7 @@
     "photo": "/guests/0AQP.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Warning - Missing Envoy in Action. Due to your absence from missions, your diplomatic immunity has been revoked! However, in light of previous contributions, Sparkle Bureaucracy retains your citizen status."
+      "message": "Galactic caution notice, Agent (name): due to extended mission absence, your diplomatic immunity has been suspended. Your citizen status remains intact by order of the Sparkle Beaucracy, and your next excellent conduct report may restore full privileges."
     }
   },
   {

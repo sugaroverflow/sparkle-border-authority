@@ -10,6 +10,7 @@ export type VisaClass =
   | "Citizen Entry Visa"
   | "Diplomatic Entry Visa"
   | "Special Envoy Visa"
+  | "Founding Council"
   | "Visitor Admission Permit"
   | "Sparkle Transit Waiver"
   | "Temporary Celebration Authorization"
@@ -455,6 +456,7 @@ function normalizeVisaClass(visaClass: string | undefined): VisaClass {
     visaClass === "Citizen Entry Visa" ||
     visaClass === "Diplomatic Entry Visa" ||
     visaClass === "Special Envoy Visa" ||
+    visaClass === "Founding Council" ||
     visaClass === "Visitor Admission Permit" ||
     visaClass === "Sparkle Transit Waiver" ||
     visaClass === "Temporary Celebration Authorization"

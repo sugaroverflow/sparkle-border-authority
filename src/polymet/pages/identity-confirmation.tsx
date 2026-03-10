@@ -107,7 +107,7 @@ export function IdentityConfirmation() {
                   )}
                 </div>
                 <p className="text-center font-mono text-sm leading-relaxed">
-                  {guest.customAlert.message.replace(/\(name\)/gi, guest.name)}
+                  {guest.customAlert.message.replace(/\(name\)/gi, guest.agentCode)}
                 </p>
               </div>
               </div>
