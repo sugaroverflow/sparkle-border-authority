@@ -95,6 +95,12 @@ export function VisaCard({
             Ration Club Border Authority
           </h1>
           <p className={cn(
+            "mt-0.5 font-normal normal-case tracking-normal",
+            isPrint ? "text-[9px] text-slate-500" : "text-[10px] text-purple-400/60"
+          )}>
+            sponsored by Sparkle Beaurocracy
+          </p>
+          <p className={cn(
             "uppercase tracking-widest font-mono mt-0.5",
             isPrint ? "text-[10px] text-slate-500" : "text-xs text-purple-300/70"
           )}>
@@ -167,32 +173,23 @@ export function VisaCard({
             </div>
           )}
           <div className="flex-1 min-w-0">
+            <p
+              className={cn(
+                "uppercase tracking-[0.15em] font-black",
+                isPrint ? "text-[11px] text-slate-700" : "text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-fuchsia-200 to-pink-200 mb-0.5"
+              )}
+            style={isPrint ? { fontFamily: "var(--font-mono)" } : { fontFamily: "var(--font-agent)" }}
+            >
+              Agent {guest.agentCode}
+            </p>
             <p className={cn(
               "uppercase tracking-wider font-mono",
               isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              Guest Name
-            </p>
-            <p className={cn(
-              "font-bold mb-0.5",
-              isPrint ? "text-xs text-slate-800" : "text-base text-purple-100 mb-1"
             )}>
               {guest.name}
             </p>
             <p className={cn(
-              "uppercase tracking-wider font-mono",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              Agent Code
-            </p>
-            <p className={cn(
-              "font-semibold mb-0.5",
-              isPrint ? "text-[10px] text-slate-700" : "text-sm text-purple-200 mb-1"
-            )}>
-              {guest.agentCode}
-            </p>
-            <p className={cn(
-              "uppercase tracking-wider font-mono",
+              "uppercase tracking-wider font-mono mt-1",
               isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
             )}>
               Status Level

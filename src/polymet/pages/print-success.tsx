@@ -85,11 +85,14 @@ export function PrintSuccess() {
 
             {/* Guest Name */}
             <div className="text-center">
-              <p className="text-2xl font-bold text-emerald-100">
-                {guest.name}
+              <p
+                className="text-2xl font-black tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200"
+                style={{ fontFamily: "var(--font-agent)" }}
+              >
+                Agent {guest.agentCode}
               </p>
-              <p className="text-sm text-emerald-300/70 mt-1">
-                Agent Code: {guest.agentCode}
+              <p className="text-base text-emerald-200/90 mt-1">
+                {guest.name}
               </p>
             </div>
 

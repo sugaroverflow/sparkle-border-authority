@@ -1,5 +1,5 @@
 /* Import fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 /* Tailwind v3 directives */
 @tailwind base;
@@ -36,6 +36,7 @@
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+  --font-agent: Orbitron, var(--font-mono);
 
   /* Shadcn colors */
   --background: 0 0% 100%;

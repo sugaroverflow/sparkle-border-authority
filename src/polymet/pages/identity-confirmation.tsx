@@ -13,13 +13,21 @@ export function IdentityConfirmation() {
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
   const [showAlert, setShowAlert] = useState(false)
+  const [showStars, setShowStars] = useState(true)
 
   const guest = findGuestByCode(code)
 
   useEffect(() => {
     if (!guest?.customAlert) return
-    const timer = setTimeout(() => setShowAlert(true), 900)
-    return () => clearTimeout(timer)
+    const t1 = setTimeout(() => {
+      setShowAlert(true)
+      setShowStars(true)
+    }, 500)
+    const t2 = setTimeout(() => setShowStars(false), 3000)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
   }, [guest?.customAlert])
 
   if (!guest) {
@@ -42,7 +50,6 @@ export function IdentityConfirmation() {
   }
 
   const firstName = guest.name.trim().split(/\s+/)[0] || guest.name
-  const agentLabel = `Agent ${firstName}`
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
@@ -56,16 +63,35 @@ export function IdentityConfirmation() {
           <div className="space-y-8">
             {/* Custom alert for special guests - appears after a delay to surprise */}
             {guest.customAlert && showAlert && (
-              <div
-                className={cn(
-                  "animate-in fade-in slide-in-from-top-4 duration-500",
-                  guest.customAlert.variant === "celebratory"
-                    ? "p-5 rounded-lg border-2 bg-gradient-to-r from-amber-950/40 to-yellow-950/30 border-amber-400/50 text-amber-100 shadow-lg shadow-amber-500/10"
-                    : guest.customAlert.variant === "cute"
-                      ? "p-5 rounded-lg border-2 bg-gradient-to-r from-pink-950/40 via-purple-950/30 to-fuchsia-950/30 border-pink-400/40 text-pink-100 shadow-lg shadow-pink-500/10"
-                      : "p-5 rounded-lg border-2 bg-red-950/50 border-red-500/70 text-red-100 shadow-lg shadow-red-900/30"
-                )}
-              >
+              <div className="relative">
+                {/* Stars around the alert - fade out after ~2.5s */}
+                <div
+                  className={cn(
+                    "pointer-events-none absolute inset-0 z-0",
+                    !showStars && "animate-out fade-out duration-500"
+                  )}
+                  style={{ margin: "-12px" }}
+                  aria-hidden
+                >
+                  <SparkleEffect variant="stars" size="sm" className="absolute -top-1 -left-1" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute -top-1 right-2" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute top-2 -right-1" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute -bottom-1 right-4" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute -bottom-1 -left-2" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute left-4 -bottom-1" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute -left-1 top-1/2 -translate-y-1/2" />
+                  <SparkleEffect variant="stars" size="sm" className="absolute -right-1 top-1/3" />
+                </div>
+                <div
+                  className={cn(
+                    "relative z-10 animate-in fade-in slide-in-from-top-4 duration-500",
+                    guest.customAlert.variant === "celebratory"
+                      ? "p-5 rounded-lg border-2 bg-gradient-to-r from-amber-950/40 to-yellow-950/30 border-amber-400/50 text-amber-100 shadow-lg shadow-amber-500/10"
+                      : guest.customAlert.variant === "cute"
+                        ? "p-5 rounded-lg border-2 bg-gradient-to-r from-pink-950/40 via-purple-950/30 to-fuchsia-950/30 border-pink-400/40 text-pink-100 shadow-lg shadow-pink-500/10"
+                        : "p-5 rounded-lg border-2 bg-red-950/50 border-red-500/70 text-red-100 shadow-lg shadow-red-900/30"
+                  )}
+                >
                 <div className="flex items-center justify-center gap-2 mb-2">
                   {guest.customAlert.variant === "celebratory" ? (
                     <PartyPopper className="w-5 h-5 text-amber-300 shrink-0" />
@@ -83,6 +109,7 @@ export function IdentityConfirmation() {
                 <p className="text-center font-mono text-sm leading-relaxed">
                   {guest.customAlert.message.replace(/\(name\)/gi, guest.name)}
                 </p>
+              </div>
               </div>
             )}
 
@@ -111,19 +138,14 @@ export function IdentityConfirmation() {
 
               <div className="space-y-3">
                 <div>
-                  <p className="text-sm text-purple-300/70 uppercase tracking-wider font-mono">
-                    Guest Name
+                  <p
+                    className="text-3xl font-black tracking-[0.2em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-fuchsia-200 to-pink-200"
+                    style={{ fontFamily: "var(--font-agent)" }}
+                  >
+                    Agent {guest.agentCode}
                   </p>
-                  <p className="text-3xl font-bold text-purple-100">
+                  <p className="text-lg text-purple-200/90 mt-1 font-medium">
                     {guest.name}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-purple-300/70 uppercase tracking-wider font-mono">
-                    {agentLabel}
-                  </p>
-                  <p className="text-xl font-mono text-purple-200">
-                    {guest.agentCode}
                   </p>
                 </div>
                 <div>

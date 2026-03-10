@@ -55,6 +55,9 @@ export function KioskLayout({ children, showHeader = true, className }: KioskLay
                   <h1 className="text-2xl font-bold text-purple-100 tracking-wider uppercase">
                     Ration Club Border Authority
                   </h1>
+                  <p className="text-xs text-purple-400/60 mt-0.5 font-normal normal-case tracking-normal">
+                    sponsored by Sparkle Beaurocracy
+                  </p>
                   <p className="text-sm text-purple-300/70 mt-1">
                     Immigration Terminal System
                   </p>
@@ -77,7 +80,10 @@ export function KioskLayout({ children, showHeader = true, className }: KioskLay
         <footer className="border-t border-purple-400/20 bg-slate-950/50 backdrop-blur-sm">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between text-sm text-purple-300/70">
-              <p>© 2024 Ration Club Border Authority</p>
+              <p>
+                © 2024 Ration Club Border Authority
+                <span className="text-xs text-purple-400/50 ml-1">sponsored by Sparkle Beaurocracy</span>
+              </p>
               <p className="font-mono">v1.0.0</p>
             </div>
           </div>

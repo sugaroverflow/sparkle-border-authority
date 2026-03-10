@@ -88,8 +88,14 @@ export function Decision() {
 
               {/* Guest Info */}
               <div className="text-center">
-                <p className="text-2xl font-bold text-emerald-100 mb-2">
-                  {guest.name} ({guest.agentCode})
+                <p
+                  className="text-3xl font-black tracking-[0.2em] uppercase mb-1 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200 drop-shadow-[0_0_20px_rgba(52,211,153,0.3)]"
+                  style={{ fontFamily: "var(--font-agent)" }}
+                >
+                  Agent {guest.agentCode}
+                </p>
+                <p className="text-base text-emerald-200/90 font-medium">
+                  {guest.name}
                 </p>
                 <StatusBadge status="authorized" size="lg" showSparkles />
               </div>
