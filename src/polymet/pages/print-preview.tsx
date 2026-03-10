@@ -1,6 +1,11 @@
-import { useRef } from "react"
-import { useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import {
+  FlowActionRow,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
+import { FlowErrorState } from "@/polymet/components/flow-error-state"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { VisaCard, visaPrintStyles } from "@/polymet/components/visa-card"
 import { Button } from "@/components/ui/button"
@@ -11,46 +16,46 @@ import {
   declarationOptions,
   getRandomVisaCopyMessage,
 } from "@/polymet/data/immigration-data"
+import {
+  createApplicationId,
+  parseBooleanParam,
+  parseCsvParam,
+  toApprovedDecisionRoute,
+  toPrintSuccessRoute,
+} from "@/polymet/flow-routes"
 import { PrinterIcon, DownloadIcon } from "lucide-react"
-import html2canvas from "html2canvas"
 
 export function PrintPreview() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const visaCaptureRef = useRef<HTMLDivElement>(null)
   const [printAttempted, setPrintAttempted] = useState(false)
+  const [printConfirmed, setPrintConfirmed] = useState(false)
 
   const code = searchParams.get("code") || ""
   const visaNumber = searchParams.get("visaNumber") || ""
-  const purposes = searchParams.get("purposes")?.split(",") || []
-  const declarations = searchParams.get("declarations")?.split(",") || []
-  const privileges = searchParams.get("privileges")?.split(",") || []
+  const purposes = parseCsvParam(searchParams.get("purposes"))
+  const declarations = parseCsvParam(searchParams.get("declarations"))
+  const privileges = parseCsvParam(searchParams.get("privileges"))
   const timestamp = searchParams.get("timestamp") || new Date().toISOString()
-  const isSecondary = searchParams.get("secondary") === "true"
+  const isSecondary = parseBooleanParam(searchParams.get("secondary"))
   const isManual = searchParams.get("manual") === "1"
   const manualName = searchParams.get("manualName") || ""
   const manualAgentCode = searchParams.get("manualAgentCode") || ""
+  const applicationId = searchParams.get("applicationId") || undefined
 
   const lookedUpGuest = findGuestByCode(code)
-  const manualGuest =
-    isManual && manualName && manualAgentCode
-      ? createManualGuest(manualName, manualAgentCode)
-      : null
+  const manualGuest = useMemo(
+    () =>
+      isManual && manualName && manualAgentCode
+        ? createManualGuest(manualName, manualAgentCode)
+        : null,
+    [isManual, manualName, manualAgentCode]
+  )
   const guest = lookedUpGuest ?? manualGuest
 
   if (!guest) {
-    return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
-        <TerminalFrame title="Error" variant="warning">
-          <p className="text-center text-purple-200">Guest not found. Please start over.</p>
-          <div className="flex justify-center mt-6">
-            <Button onClick={() => navigate("/")}>
-              Return to Start
-            </Button>
-          </div>
-        </TerminalFrame>
-      </div>
-    )
+    return <FlowErrorState message="Guest not found. Please start over." onButtonClick={() => navigate("/")} />
   }
 
   const getPurposeLabels = () => {
@@ -61,7 +66,7 @@ export function PrintPreview() {
     return declarations.map(d => declarationOptions.find(opt => opt.value === d)?.label || d)
   }
 
-  const randomVisaCopy = getRandomVisaCopyMessage()
+  const randomVisaCopy = useMemo(() => getRandomVisaCopyMessage(), [])
   const effectiveVisaClass = isSecondary
     ? "Temporary Celebration Authorization"
     : guest.visaClass
@@ -72,18 +77,42 @@ export function PrintPreview() {
   }
 
   const handleContinueAfterPrint = () => {
+    const printProofToken = createApplicationId()
+    if (typeof window !== "undefined" && printConfirmed) {
+      window.sessionStorage.setItem(
+        `print-proof:${printProofToken}`,
+        JSON.stringify({
+          code: code || null,
+          issuedAt: Date.now(),
+        })
+      )
+    }
+
     if (isManual) {
       navigate(
-        `/print-success?manual=1&manualName=${encodeURIComponent(
-          guest.name
-        )}&manualAgentCode=${encodeURIComponent(
-          guest.agentCode
-        )}&manualValidity=${guest.validityMinutes}&secondary=${isSecondary}`
+        toPrintSuccessRoute({
+          manual: true,
+          manualName: guest.name,
+          manualAgentCode: guest.agentCode,
+          manualValidity: guest.validityMinutes,
+          secondary: isSecondary,
+          applicationId,
+          printedConfirmed: printConfirmed,
+          printProofToken,
+        })
       )
       return
     }
 
-    navigate(`/print-success?code=${code}&secondary=${isSecondary}`)
+    navigate(
+      toPrintSuccessRoute({
+        code,
+        secondary: isSecondary,
+        applicationId,
+        printedConfirmed: printConfirmed,
+        printProofToken,
+      })
+    )
   }
 
   const handleDownloadPng = async () => {
@@ -91,6 +120,7 @@ export function PrintPreview() {
     if (!wrapper) return
     const el = (wrapper.firstElementChild ?? wrapper) as HTMLElement
     try {
+      const { default: html2canvas } = await import("html2canvas")
       const canvas = await html2canvas(el, {
         scale: 2,
         useCORS: true,
@@ -140,17 +170,26 @@ export function PrintPreview() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex justify-center gap-4 pt-4 flex-wrap">
+                <FlowActionRow className="flex-wrap">
                   <Button
                     variant="outline"
                     onClick={() =>
                       isManual
                         ? navigate("/admin")
                         : navigate(
-                            `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}`
+                            toApprovedDecisionRoute({
+                              code,
+                              purposes,
+                              declarations,
+                              privileges,
+                              visaNumber,
+                              timestamp,
+                              secondary: isSecondary,
+                              applicationId: applicationId ?? `back-${code}-${visaNumber}`,
+                            })
                           )
                     }
-                    className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+                    className={secondaryActionButtonClass}
                   >
                     Back
                   </Button>
@@ -164,23 +203,33 @@ export function PrintPreview() {
                   </Button>
                   <Button
                     onClick={handlePrint}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12 text-lg"
+                    className={`${primaryActionButtonClass} px-12 text-lg`}
                   >
                     <PrinterIcon className="w-5 h-5 mr-2" />
                     {isManual ? "Print Manual Visa" : "Print Visa"}
                   </Button>
                   <Button
                     onClick={handleContinueAfterPrint}
-                    disabled={!printAttempted}
+                    disabled={!printAttempted || !printConfirmed}
                     className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Continue After Successful Print
                   </Button>
-                </div>
+                </FlowActionRow>
                 {!printAttempted && (
                   <p className="text-center text-xs text-purple-300/70">
                     Print first, then continue only if printing succeeded.
                   </p>
+                )}
+                {printAttempted && (
+                  <label className="flex items-center justify-center gap-2 text-sm text-purple-200">
+                    <input
+                      type="checkbox"
+                      checked={printConfirmed}
+                      onChange={(event) => setPrintConfirmed(event.target.checked)}
+                    />
+                    I have confirmed the visa printed successfully
+                  </label>
                 )}
               </div>
             </TerminalFrame>

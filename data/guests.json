@@ -117,7 +117,7 @@
     "photo": "/guests/5DKN.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Administrative stardust notice, Agent (name): due to missed strategic briefings and missions, your Special Envoy status has been paused and your clearance temporarily downgraded. We adore your advisory contributions and hope to see you back on Sparkle Planet Consortium often enough to earn your stars again."
+      "message": "Administrative stardust notice, Agent (name): due to your absence at strategic briefings, your Special Envoy status has been paused and your clearance temporarily downgraded. We adore your advisory contributions and hope to see you back on Sparkle Planet Consortium often enough to earn your stars again."
     }
   },
   {
@@ -139,7 +139,7 @@
     "photo": "/guests/X0FC.png",
     "customAlert": {
       "variant": "celebratory",
-      "message": "By decree of the Sparkle Bureaucracy, Agent (name) is hereby celebrated as a Special Envoy for outstanding cosmic contribution! May your passage be smooth, your paperwork brief, and your sparkle levels extremely acceptable. \u2728"
+      "message": "By decree of the Sparkle Bureaucracy, Agent (name) is hereby promoted to Special Envoy for outstanding cosmic contribution! May your passage be smooth, your paperwork brief, and the sparkles be with you! \u2728"
     }
   },
   {
@@ -178,7 +178,7 @@
     "photo": "/guests/OPBO.jpg",
     "customAlert": {
       "variant": "cute",
-      "message": "Agent (name), you are an esteemed guest and we are delighted that you have made the trip! \u2728 May your path be strewn with sparkles and your vibes ever cosmic."
+      "message": "Agent (name), you are an esteemed guest of the Sparkle Planet Consortium and we are delighted that you have made the trip! \u2728 May your path be strewn with sparkles and your vibes ever cosmic."
     }
   },
   {
@@ -195,7 +195,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/0PWT.png"
+    "photo": "/guests/0PWT.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), we have been informed of your efforts in regard to tracking the elusive and corrupt dealings of Deep Space Disruptors. \u2728 We are honored to welcome to the Sparkle Planet Consortium!"
+    }
   },
   {
     "code": "UJJM",
@@ -234,7 +238,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/JJQ4.jpg"
+    "photo": "/guests/JJQ4.jpg",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Agent (name), we are delighted to welcome you and your whimsy to the Sparkle Planet Consortium! \u2728 You have been granted Special Projects Clearance as your contributions to the Consortium is greatly appreciated."
+    }
   },
   {
     "code": "ZNST",
@@ -352,7 +360,7 @@
     "photo": "/guests/0AQP.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Galactic caution notice, Agent (name): due to extended mission absence, your diplomatic immunity has been suspended. Your citizen status remains intact by order of the Sparkle Bureaucracy, and your next excellent conduct report may restore full privileges."
+      "message": "Galactic caution notice, Agent (name): due to extended mission absence, your diplomatic immunity has been suspended. However by order of the Sparkle Bureaucracy, we have retained your citizen status due to your past contributions to the Consortium."
     }
   },
   {
@@ -406,7 +414,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/Q8AE.jpg"
+    "photo": "/guests/Q8AE.jpg",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Bravo, Agent (name)! The Sparkle Bureaucracy commends your commitment to avoiding all artificial, managed and fabricated intellgiences. \u2728 We are honored to welcome you to the Sparkle Planet Consortium!"
+    }
   },
   {
     "code": "NAGS",

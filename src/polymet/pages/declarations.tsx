@@ -1,15 +1,22 @@
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import {
+  FlowActionRow,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
+import { OptionCard } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
 import { declarationOptions } from "@/polymet/data/immigration-data"
-import { CheckIcon, AlertCircleIcon } from "lucide-react"
+import { parseCsvParam, toProcessingRoute, toPurposeOfVisitRoute } from "@/polymet/flow-routes"
+import { AlertCircleIcon } from "lucide-react"
 
 export function Declarations() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
-  const purposes = searchParams.get("purposes") || ""
+  const purposes = parseCsvParam(searchParams.get("purposes"))
 
   const [selectedDeclarations, setSelectedDeclarations] = useState<string[]>([])
 
@@ -22,8 +29,7 @@ export function Declarations() {
   }
 
   const handleContinue = () => {
-    const declarationsParam = selectedDeclarations.join(",")
-    navigate(`/processing?code=${code}&purposes=${purposes}&declarations=${declarationsParam}`)
+    navigate(toProcessingRoute(code, purposes, selectedDeclarations))
   }
 
   const isValid = selectedDeclarations.length >= 1
@@ -57,30 +63,21 @@ export function Declarations() {
                 const isNothing = option.value === "nothing"
 
                 return (
-                  <button
+                  <OptionCard
                     key={option.value}
                     onClick={() => toggleDeclaration(option.value)}
-                    className={`
-                      relative p-6 rounded-lg border-2 transition-all
-                      ${
-                        isSelected
-                          ? isNothing
-                            ? "bg-red-600/30 border-red-400 shadow-lg shadow-red-500/30"
-                            : "bg-purple-600/30 border-purple-400 shadow-lg shadow-purple-500/30"
-                          : "bg-slate-900/30 border-purple-400/20 hover:border-purple-400/50 hover:bg-purple-950/30"
-                      }
-                    `}
-                  >
-                    {isSelected && (
-                      <div className={`absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center ${isNothing ? "bg-red-500" : "bg-purple-500"}`}>
-                        <CheckIcon className="w-4 h-4 text-white" />
-                      </div>
-                    )}
-                    <div className="text-4xl mb-3">{option.icon}</div>
-                    <p className="text-sm font-semibold text-purple-100 text-center">
-                      {option.label}
-                    </p>
-                  </button>
+                    selected={isSelected}
+                    icon={option.icon}
+                    label={option.label}
+                    className="p-6 justify-center text-center"
+                    selectedClassName={
+                      isNothing
+                        ? "bg-red-600/30 border-red-400 shadow-lg shadow-red-500/30"
+                        : "bg-purple-600/30 border-purple-400 shadow-lg shadow-purple-500/30"
+                    }
+                    selectedBadgeClassName={isNothing ? "bg-red-500" : "bg-purple-500"}
+                    unselectedClassName="bg-slate-900/30 border-purple-400/20 hover:border-purple-400/50 hover:bg-purple-950/30"
+                  />
                 )
               })}
             </div>
@@ -100,22 +97,22 @@ export function Declarations() {
               </div>
             )}
 
-            <div className="flex justify-center gap-4 pt-6">
+            <FlowActionRow className="pt-6">
               <Button
                 variant="outline"
-                onClick={() => navigate(`/purpose-of-visit?code=${code}`)}
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+                onClick={() => navigate(toPurposeOfVisitRoute(code))}
+                className={secondaryActionButtonClass}
               >
                 Back
               </Button>
               <Button
                 onClick={handleContinue}
                 disabled={!isValid}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12 disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`${primaryActionButtonClass} px-12 disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 Submit Declaration
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>

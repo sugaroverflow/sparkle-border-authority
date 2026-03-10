@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import {
+  FlowActionRow,
+  visitorPrimaryActionButtonClass,
+  visitorSecondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { TerminalInput } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
 import { registerVisitorGuest } from "@/polymet/data/immigration-data"
+import { toPurposeOfVisitRoute } from "@/polymet/flow-routes"
 import { AlertCircleIcon, UserPlusIcon } from "lucide-react"
 
 export function VisitorSignup() {
@@ -22,7 +28,7 @@ export function VisitorSignup() {
     }
 
     const guest = registerVisitorGuest(trimmed)
-    navigate(`/purpose-of-visit?code=${guest.code}`)
+    navigate(toPurposeOfVisitRoute(guest.code))
   }
 
   return (
@@ -68,24 +74,24 @@ export function VisitorSignup() {
               </div>
             )}
 
-            <div className="flex justify-center gap-4 pt-4">
+            <FlowActionRow>
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => navigate("/code-entry")}
-                className="border-teal-400/50 bg-transparent text-teal-100 hover:bg-teal-950/50 hover:text-white"
+                className={visitorSecondaryActionButtonClass}
               >
                 Back
               </Button>
               <Button
                 type="submit"
                 disabled={!name.trim()}
-                className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8"
+                className={`${visitorPrimaryActionButtonClass} px-8`}
               >
                 <UserPlusIcon className="w-5 h-5 mr-2" />
                 Continue as visitor
               </Button>
-            </div>
+            </FlowActionRow>
 
             <div className="text-center pt-6 border-t border-teal-400/20">
               <p className="text-sm text-teal-300/70 mb-2">

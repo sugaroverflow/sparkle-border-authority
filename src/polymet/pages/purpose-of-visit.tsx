@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import {
+  FlowActionRow,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
+import { OptionCard } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
 import { purposeOptions } from "@/polymet/data/immigration-data"
-import { CheckIcon } from "lucide-react"
+import { toDeclarationsRoute, toIdentityConfirmationRoute } from "@/polymet/flow-routes"
 
 export function PurposeOfVisit() {
   const [searchParams] = useSearchParams()
@@ -24,8 +30,7 @@ export function PurposeOfVisit() {
   }
 
   const handleContinue = () => {
-    const purposesParam = selectedPurposes.join(",")
-    navigate(`/declarations?code=${code}&purposes=${purposesParam}`)
+    navigate(toDeclarationsRoute(code, selectedPurposes))
   }
 
   const isValid = selectedPurposes.length >= 1 && selectedPurposes.length <= 2
@@ -58,31 +63,21 @@ export function PurposeOfVisit() {
                 const isDisabled = !isSelected && selectedPurposes.length >= 2
 
                 return (
-                  <button
+                  <OptionCard
                     key={option.value}
                     onClick={() => togglePurpose(option.value)}
                     disabled={isDisabled}
-                    className={`
-                      relative p-6 rounded-lg border-2 transition-all
-                      ${
-                        isSelected
-                          ? "bg-purple-600/30 border-purple-400 shadow-lg shadow-purple-500/30"
-                          : isDisabled
-                          ? "bg-slate-900/30 border-purple-400/10 opacity-50 cursor-not-allowed"
-                          : "bg-slate-900/30 border-purple-400/20 hover:border-purple-400/50 hover:bg-purple-950/30"
-                      }
-                    `}
-                  >
-                    {isSelected && (
-                      <div className="absolute top-2 right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                        <CheckIcon className="w-4 h-4 text-white" />
-                      </div>
-                    )}
-                    <div className="text-4xl mb-3">{option.icon}</div>
-                    <p className="text-sm font-semibold text-purple-100 text-center">
-                      {option.label}
-                    </p>
-                  </button>
+                    selected={isSelected}
+                    icon={option.icon}
+                    label={option.label}
+                    className="p-6 justify-center text-center"
+                    unselectedClassName={
+                      isDisabled
+                        ? "bg-slate-900/30 border-purple-400/10 opacity-50 cursor-not-allowed"
+                        : "bg-slate-900/30 border-purple-400/20 hover:border-purple-400/50 hover:bg-purple-950/30"
+                    }
+                    selectedBadgeClassName="bg-purple-500"
+                  />
                 )
               })}
             </div>
@@ -93,22 +88,22 @@ export function PurposeOfVisit() {
               </div>
             )}
 
-            <div className="flex justify-center gap-4 pt-6">
+            <FlowActionRow className="pt-6">
               <Button
                 variant="outline"
-                onClick={() => navigate(isVisitor ? "/visitor-signup" : `/identity-confirmation?code=${code}`)}
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+                onClick={() => navigate(isVisitor ? "/visitor-signup" : toIdentityConfirmationRoute(code))}
+                className={secondaryActionButtonClass}
               >
                 Back
               </Button>
               <Button
                 onClick={handleContinue}
                 disabled={!isValid}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12 disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`${primaryActionButtonClass} px-12 disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 Continue
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>

@@ -351,6 +351,7 @@ const GUEST_STATE_KEY = "sparkle_border_guest_state_v1"
 const STATS_KEY = "sparkle_border_stats_v1"
 
 let runtimeStats: Statistics = { ...mockStatistics }
+const RECORDED_DECISIONS_KEY = "sparkle_border_recorded_decisions_v1"
 
 function hasBrowserStorage(): boolean {
   return typeof window !== "undefined" && typeof window.localStorage !== "undefined"
@@ -406,6 +407,23 @@ function loadRuntimeStats(): void {
   } catch {
     runtimeStats = { ...mockStatistics }
   }
+}
+
+function loadRecordedDecisionIds(): Set<string> {
+  if (!hasBrowserStorage()) return new Set()
+  try {
+    const raw = window.localStorage.getItem(RECORDED_DECISIONS_KEY)
+    if (!raw) return new Set()
+    const parsed = JSON.parse(raw) as string[]
+    return new Set(Array.isArray(parsed) ? parsed : [])
+  } catch {
+    return new Set()
+  }
+}
+
+function saveRecordedDecisionIds(ids: Set<string>): void {
+  if (!hasBrowserStorage()) return
+  window.localStorage.setItem(RECORDED_DECISIONS_KEY, JSON.stringify([...ids]))
 }
 
 function saveRuntimeStats(): void {
@@ -622,6 +640,28 @@ export function recordDecision(decision: "approved" | "rejected", status?: Guest
 
   updateDerivedStats()
   saveRuntimeStats()
+}
+
+export function recordDecisionOnce(
+  applicationId: string | undefined,
+  decision: "approved" | "rejected",
+  status?: GuestStatus
+): boolean {
+  const normalizedId = applicationId?.trim()
+  if (!normalizedId) {
+    recordDecision(decision, status)
+    return true
+  }
+
+  const recordedIds = loadRecordedDecisionIds()
+  if (recordedIds.has(normalizedId)) {
+    return false
+  }
+
+  recordDecision(decision, status)
+  recordedIds.add(normalizedId)
+  saveRecordedDecisionIds(recordedIds)
+  return true
 }
 
 export function getRuntimeStatistics(): Statistics {

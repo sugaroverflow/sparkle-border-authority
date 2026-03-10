@@ -1,5 +1,8 @@
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { FlowActionRow, primaryActionButtonClass } from "@/polymet/components/flow-action-row"
+import { FlowErrorState } from "@/polymet/components/flow-error-state"
+import { OptionCard } from "@/polymet/components/form-field"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { Button } from "@/components/ui/button"
 import { 
@@ -7,16 +10,19 @@ import {
   secondaryScreeningQuestions,
   assignPrivileges,
   generateVisaNumber,
+  recordDecisionOnce,
 } from "@/polymet/data/immigration-data"
-import { AlertCircleIcon, CheckIcon } from "lucide-react"
+import { createApplicationId, parseCsvParam, toApprovedDecisionRoute } from "@/polymet/flow-routes"
+import { AlertCircleIcon } from "lucide-react"
 
 export function SecondaryScreening() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
   const code = searchParams.get("code") || ""
-  const purposes = searchParams.get("purposes")?.split(",") || []
-  const declarations = searchParams.get("declarations")?.split(",") || []
+  const purposes = parseCsvParam(searchParams.get("purposes"))
+  const declarations = parseCsvParam(searchParams.get("declarations"))
+  const applicationId = searchParams.get("applicationId") || createApplicationId()
 
   const guest = findGuestByCode(code)
   
@@ -29,18 +35,7 @@ export function SecondaryScreening() {
   const [selectedAnswer, setSelectedAnswer] = useState("")
 
   if (!guest) {
-    return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
-        <TerminalFrame title="Error" variant="warning">
-          <p className="text-center text-purple-200">Guest not found. Please start over.</p>
-          <div className="flex justify-center mt-6">
-            <Button onClick={() => navigate("/")}>
-              Return to Start
-            </Button>
-          </div>
-        </TerminalFrame>
-      </div>
-    )
+    return <FlowErrorState message="Guest not found. Please start over." onButtonClick={() => navigate("/")} />
   }
 
   const handleSubmit = () => {
@@ -50,9 +45,19 @@ export function SecondaryScreening() {
     const privileges = assignPrivileges(guest)
     const visaNumber = generateVisaNumber()
     const timestamp = new Date().toISOString()
+    recordDecisionOnce(applicationId, "approved", guest.status)
 
     navigate(
-      `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}&secondary=true`
+      toApprovedDecisionRoute({
+        code,
+        purposes,
+        declarations,
+        privileges,
+        visaNumber,
+        timestamp,
+        secondary: true,
+        applicationId,
+      })
     )
   }
 
@@ -91,33 +96,15 @@ export function SecondaryScreening() {
               </p>
 
               <div className="space-y-3">
-                {question.options.map((option) => {
-                  const isSelected = selectedAnswer === option
-
-                  return (
-                    <button
-                      key={option}
-                      onClick={() => setSelectedAnswer(option)}
-                      className={`
-                        w-full p-4 rounded-lg border-2 transition-all text-left
-                        ${
-                          isSelected
-                            ? "bg-purple-600/30 border-purple-400 shadow-lg shadow-purple-500/30"
-                            : "bg-slate-900/30 border-purple-400/20 hover:border-purple-400/50 hover:bg-purple-950/30"
-                        }
-                      `}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-purple-100">{option}</span>
-                        {isSelected && (
-                          <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                            <CheckIcon className="w-4 h-4 text-white" />
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  )
-                })}
+                {question.options.map((option) => (
+                  <OptionCard
+                    key={option}
+                    onClick={() => setSelectedAnswer(option)}
+                    selected={selectedAnswer === option}
+                    label={option}
+                    className="w-full"
+                  />
+                ))}
               </div>
             </div>
 
@@ -128,15 +115,15 @@ export function SecondaryScreening() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex justify-center gap-4 pt-4">
+            <FlowActionRow>
               <Button
                 onClick={handleSubmit}
                 disabled={!selectedAnswer}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12 disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`${primaryActionButtonClass} px-12 disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 Submit Answer
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>

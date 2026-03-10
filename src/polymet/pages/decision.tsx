@@ -1,11 +1,21 @@
-import { useEffect, useRef } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { AgentIdentityCard } from "@/polymet/components/agent-identity-card"
+import {
+  FlowActionRow,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
+import { FlowErrorState } from "@/polymet/components/flow-error-state"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { findGuestByCode, purposeOptions, declarationOptions, recordDecision } from "@/polymet/data/immigration-data"
+import { findGuestByCode, purposeOptions, declarationOptions } from "@/polymet/data/immigration-data"
+import {
+  parseBooleanParam,
+  parseCsvParam,
+  toPrintPreviewRoute,
+} from "@/polymet/flow-routes"
 import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
 import { AlertTriangleIcon, CheckCircleIcon, Clock3Icon, ClockIcon, XCircleIcon } from "lucide-react"
 
@@ -17,37 +27,18 @@ export function Decision() {
   const decision = searchParams.get("decision") as "approved" | "rejected" | null
   const reason = searchParams.get("reason") || ""
   const retryCaption = searchParams.get("retryCaption") || "Review your selections and try again."
-  const purposes = searchParams.get("purposes")?.split(",") || []
-  const declarations = searchParams.get("declarations")?.split(",") || []
-  const privileges = searchParams.get("privileges")?.split(",") || []
+  const purposes = parseCsvParam(searchParams.get("purposes"))
+  const declarations = parseCsvParam(searchParams.get("declarations"))
+  const privileges = parseCsvParam(searchParams.get("privileges"))
   const visaNumber = searchParams.get("visaNumber") || ""
   const timestamp = searchParams.get("timestamp") || ""
-  const isSecondary = searchParams.get("secondary") === "true"
+  const isSecondary = parseBooleanParam(searchParams.get("secondary"))
+  const applicationId = searchParams.get("applicationId") || undefined
 
   const guest = findGuestByCode(code)
-  const didRecordDecision = useRef(false)
-
-  useEffect(() => {
-    if (!guest || !decision || didRecordDecision.current) {
-      return
-    }
-    recordDecision(decision, guest.status)
-    didRecordDecision.current = true
-  }, [decision, guest])
 
   if (!guest || !decision) {
-    return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
-        <TerminalFrame title="Error" variant="warning">
-          <p className="text-center text-purple-200">Invalid request. Please start over.</p>
-          <div className="flex justify-center mt-6">
-            <Button onClick={() => navigate("/")}>
-              Return to Start
-            </Button>
-          </div>
-        </TerminalFrame>
-      </div>
-    )
+    return <FlowErrorState message="Invalid request. Please start over." onButtonClick={() => navigate("/")} />
   }
 
   const getPurposeLabels = () => {
@@ -173,15 +164,24 @@ export function Decision() {
               </div>
 
               {/* Action Button */}
-              <div className="flex justify-center pt-4">
+              <FlowActionRow className="pt-0">
                 <Button
                   onClick={() =>
                     navigate(
-                      `/print-preview?code=${code}&visaNumber=${visaNumber}&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&timestamp=${timestamp}&secondary=${isSecondary}`
+                      toPrintPreviewRoute({
+                        code,
+                        visaNumber,
+                        purposes,
+                        declarations,
+                        privileges,
+                        timestamp,
+                        secondary: isSecondary,
+                        applicationId,
+                      })
                     )
                   }
                   className={cn(
-                    "text-white font-semibold px-12 text-lg border",
+                    "px-12 text-lg border",
                     hasWarningAlert
                       ? "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-indigo-600 hover:from-violet-500 hover:via-fuchsia-500 hover:to-indigo-500 border-violet-300/30 shadow-[0_0_24px_rgba(168,85,247,0.35)]"
                       : isVisitor
@@ -191,7 +191,7 @@ export function Decision() {
                 >
                   {isSecondary || isVisitor ? "Print Temporary Visa" : "Print Visa"}
                 </Button>
-              </div>
+              </FlowActionRow>
             </div>
           </TerminalFrame>
         </div>
@@ -254,21 +254,21 @@ export function Decision() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex justify-center gap-4 pt-4">
+            <FlowActionRow>
               <Button
                 variant="outline"
                 onClick={() => navigate("/")}
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+                className={secondaryActionButtonClass}
               >
                 Start over
               </Button>
               <Button
                 onClick={() => navigate("/border-checkpoint")}
-                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold px-8"
+                className={cn(primaryActionButtonClass, "px-8 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500")}
               >
                 Proceed to border for assistance
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { FlowActionRow, primaryActionButtonClass } from "@/polymet/components/flow-action-row"
+import { FlowErrorState } from "@/polymet/components/flow-error-state"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { StatusBadge } from "@/polymet/components/status-badge"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
@@ -32,16 +34,11 @@ export function IdentityConfirmation() {
 
   if (!guest) {
     return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
-        <TerminalFrame title="Error" variant="warning">
-          <p className="text-center text-purple-200">Guest not found. Please try again.</p>
-          <div className="flex justify-center mt-6">
-            <Button onClick={() => navigate("/code-entry")}>
-              Back to Code Entry
-            </Button>
-          </div>
-        </TerminalFrame>
-      </div>
+      <FlowErrorState
+        message="Guest not found. Please try again."
+        buttonLabel="Back to Code Entry"
+        onButtonClick={() => navigate("/code-entry")}
+      />
     )
   }
 
@@ -222,14 +219,14 @@ export function IdentityConfirmation() {
             )}
 
             {/* Action Buttons */}
-            <div className="flex justify-center gap-4 pt-4">
+            <FlowActionRow>
               <Button
                 onClick={handleConfirm}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12"
+                className={`${primaryActionButtonClass} px-12`}
               >
                 Confirm Identity
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>

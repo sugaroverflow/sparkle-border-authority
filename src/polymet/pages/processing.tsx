@@ -8,7 +8,15 @@ import {
   findGuestByCode,
   assignPrivileges,
   generateVisaNumber,
+  recordDecisionOnce,
 } from "@/polymet/data/immigration-data"
+import {
+  createApplicationId,
+  parseCsvParam,
+  toApprovedDecisionRoute,
+  toRejectedDecisionRoute,
+  toSecondaryScreeningRoute,
+} from "@/polymet/flow-routes"
 import { LoaderIcon } from "lucide-react"
 
 const processingMessages = [
@@ -26,8 +34,9 @@ export function Processing() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
-  const purposes = searchParams.get("purposes")?.split(",") || []
-  const declarations = searchParams.get("declarations")?.split(",") || []
+  const purposes = parseCsvParam(searchParams.get("purposes"))
+  const declarations = parseCsvParam(searchParams.get("declarations"))
+  const applicationId = searchParams.get("applicationId") || createApplicationId()
 
   const [currentMessage, setCurrentMessage] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -77,8 +86,17 @@ export function Processing() {
       const privileges = assignPrivileges(guest)
       const visaNumber = generateVisaNumber()
       const timestamp = new Date().toISOString()
+      recordDecisionOnce(applicationId, "approved", guest.status)
       navigate(
-        `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}`
+        toApprovedDecisionRoute({
+          code,
+          purposes,
+          declarations,
+          privileges,
+          visaNumber,
+          timestamp,
+          applicationId,
+        })
       )
       return
     }
@@ -87,13 +105,14 @@ export function Processing() {
     const validation = validateApplication(purposes, declarations)
 
     if (!validation.valid) {
-      // Rejected
+      recordDecisionOnce(applicationId, "rejected", guest.status)
       navigate(
-        `/decision?code=${code}&decision=rejected&reason=${encodeURIComponent(
-          validation.reason || "Border Authority Not Yet Convinced"
-        )}&retryCaption=${encodeURIComponent(
-          validation.retryCaption || "Review your selections and try again."
-        )}`
+        toRejectedDecisionRoute({
+          code,
+          reason: validation.reason || "Border Authority Not Yet Convinced",
+          retryCaption: validation.retryCaption || "Review your selections and try again.",
+          applicationId,
+        })
       )
       return
     }
@@ -102,7 +121,7 @@ export function Processing() {
     const needsSecondary = shouldTriggerSecondaryScreeningForGuest(guest.status)
 
     if (needsSecondary) {
-      navigate(`/secondary-screening?code=${code}&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}`)
+      navigate(toSecondaryScreeningRoute(code, purposes, declarations, applicationId))
       return
     }
 
@@ -111,8 +130,17 @@ export function Processing() {
     const visaNumber = generateVisaNumber()
     const timestamp = new Date().toISOString()
 
+    recordDecisionOnce(applicationId, "approved", guest.status)
     navigate(
-      `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}`
+      toApprovedDecisionRoute({
+        code,
+        purposes,
+        declarations,
+        privileges,
+        visaNumber,
+        timestamp,
+        applicationId,
+      })
     )
   }
 

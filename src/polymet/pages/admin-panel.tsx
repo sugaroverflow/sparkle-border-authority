@@ -12,8 +12,14 @@ import {
   generateVisaNumber,
   assignPrivileges,
   markGuestArrived,
+  recordDecisionOnce,
   type GuestRecord 
 } from "@/polymet/data/immigration-data"
+import {
+  createApplicationId,
+  toApprovedDecisionRoute,
+  toPrintPreviewRoute,
+} from "@/polymet/flow-routes"
 import { 
   UsersIcon, 
   ShieldCheckIcon, 
@@ -75,10 +81,19 @@ export function AdminPanel() {
     const timestamp = new Date().toISOString()
     const defaultPurposes = "bureaucratic-chaos"
     const defaultDeclarations = "excellent-vibes"
-    const defaultPrivileges = encodeURIComponent(guest.basePrivileges.join(","))
+    const applicationId = createApplicationId()
 
     navigate(
-      `/print-preview?code=${guest.code}&visaNumber=${visaNumber}&purposes=${defaultPurposes}&declarations=${defaultDeclarations}&privileges=${defaultPrivileges}&timestamp=${encodeURIComponent(timestamp)}&reprint=true`
+      toPrintPreviewRoute({
+        code: guest.code,
+        visaNumber,
+        purposes: [defaultPurposes],
+        declarations: [defaultDeclarations],
+        privileges: guest.basePrivileges,
+        timestamp,
+        reprint: true,
+        applicationId,
+      })
     )
   }
 
@@ -90,14 +105,23 @@ export function AdminPanel() {
     }
     const visaNumber = generateVisaNumber()
     const timestamp = new Date().toISOString()
-    const purposes = "bureaucratic-chaos"
-    const declarations = "excellent-vibes"
-    const privileges = encodeURIComponent(assignPrivileges(guest).join(","))
+    const purposes = ["bureaucratic-chaos"]
+    const declarations = ["excellent-vibes"]
+    const privileges = assignPrivileges(guest)
+    const applicationId = createApplicationId()
+    recordDecisionOnce(applicationId, "approved", guest.status)
 
     navigate(
-      `/decision?code=${guest.code}&decision=approved&purposes=${purposes}&declarations=${declarations}&privileges=${privileges}&visaNumber=${visaNumber}&timestamp=${encodeURIComponent(
-        timestamp
-      )}&override=1`
+      toApprovedDecisionRoute({
+        code: guest.code,
+        purposes,
+        declarations,
+        privileges,
+        visaNumber,
+        timestamp,
+        override: true,
+        applicationId,
+      })
     )
   }
 
@@ -109,14 +133,19 @@ export function AdminPanel() {
 
     const visaNumber = generateVisaNumber()
     const timestamp = new Date().toISOString()
+    const applicationId = createApplicationId()
     navigate(
-      `/print-preview?manual=1&manualName=${encodeURIComponent(
-        manualVisaName
-      )}&manualAgentCode=${encodeURIComponent(
-        manualVisaAgentCode
-      )}&visaNumber=${visaNumber}&purposes=bureaucratic-chaos&declarations=excellent-vibes&privileges=${encodeURIComponent(
-        "Standard Sparkle Protocol"
-      )}&timestamp=${encodeURIComponent(timestamp)}`
+      toPrintPreviewRoute({
+        manual: true,
+        manualName: manualVisaName,
+        manualAgentCode: manualVisaAgentCode,
+        visaNumber,
+        purposes: ["bureaucratic-chaos"],
+        declarations: ["excellent-vibes"],
+        privileges: ["Standard Sparkle Protocol"],
+        timestamp,
+        applicationId,
+      })
     )
   }
 

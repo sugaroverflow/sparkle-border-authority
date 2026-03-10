@@ -1,9 +1,17 @@
 import { useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
+import {
+  FlowActionRow,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+  visitorPrimaryActionButtonClass,
+  visitorSecondaryActionButtonClass,
+} from "@/polymet/components/flow-action-row"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { TerminalInput } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode } from "@/polymet/data/immigration-data"
+import { toIdentityConfirmationRoute } from "@/polymet/flow-routes"
 import { cn } from "@/lib/utils"
 import { AlertCircleIcon } from "lucide-react"
 
@@ -33,7 +41,7 @@ export function CodeEntry() {
     }
 
     // Navigate to identity confirmation with guest code
-    navigate(`/identity-confirmation?code=${code}`)
+    navigate(toIdentityConfirmationRoute(code))
   }
 
   // SSSS Alert screen when code is wrong (wrong code = "SSSS" path)
@@ -133,23 +141,23 @@ export function CodeEntry() {
               </div>
             )}
 
-            <div className="flex justify-center gap-4 pt-4">
+            <FlowActionRow>
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => navigate(isVisitorApplication ? "/code-entry" : "/")}
-                className={isVisitorApplication ? "border-teal-400/50 bg-transparent text-teal-100 hover:bg-teal-950/50 hover:text-white" : "border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"}
+                className={isVisitorApplication ? visitorSecondaryActionButtonClass : secondaryActionButtonClass}
               >
                 Back
               </Button>
               <Button
                 type="submit"
                 disabled={code.length !== 4}
-                className={isVisitorApplication ? "bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8" : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-8"}
+                className={`${isVisitorApplication ? visitorPrimaryActionButtonClass : primaryActionButtonClass} px-8`}
               >
                 Continue
               </Button>
-            </div>
+            </FlowActionRow>
 
             <div className={cn("text-center pt-6 border-t", isVisitorApplication ? "border-teal-400/20" : "border-purple-400/20")}>
               {isVisitorApplication ? (
@@ -187,7 +195,7 @@ export function CodeEntry() {
                   </p>
                   <Button
                     type="button"
-                    className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8"
+                    className={`${visitorPrimaryActionButtonClass} px-8`}
                     onClick={() => navigate("/visitor-signup")}
                   >
                     I&apos;m a visitor

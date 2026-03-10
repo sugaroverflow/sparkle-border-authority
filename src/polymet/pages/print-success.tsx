@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { FlowActionRow, primaryActionButtonClass } from "@/polymet/components/flow-action-row"
+import { FlowErrorState } from "@/polymet/components/flow-error-state"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { AgentIdentityCard } from "@/polymet/components/agent-identity-card"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode, markGuestPrinted } from "@/polymet/data/immigration-data"
+import { parseBooleanParam } from "@/polymet/flow-routes"
 import { CheckCircleIcon, FileTextIcon, StampIcon } from "lucide-react"
 
 export function PrintSuccess() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
-  const isSecondary = searchParams.get("secondary") === "true"
+  const isSecondary = parseBooleanParam(searchParams.get("secondary"))
   const isManual = searchParams.get("manual") === "1"
+  const printedConfirmed = searchParams.get("printedConfirmed") === "1"
+  const printProofToken = searchParams.get("printProofToken") || ""
   const manualName = searchParams.get("manualName") || ""
   const manualAgentCode = searchParams.get("manualAgentCode") || ""
   const manualValidity = Number(searchParams.get("manualValidity") || 120)
@@ -32,10 +37,25 @@ export function PrintSuccess() {
     : null
 
   useEffect(() => {
-    if (code && !isManual) {
+    const hasValidPrintProof = (() => {
+      if (!printedConfirmed || !printProofToken || typeof window === "undefined") return false
+      const raw = window.sessionStorage.getItem(`print-proof:${printProofToken}`)
+      if (!raw) return false
+      try {
+        const parsed = JSON.parse(raw) as { code?: string | null; issuedAt?: number }
+        window.sessionStorage.removeItem(`print-proof:${printProofToken}`)
+        const proofCode = parsed.code ?? null
+        const proofRecent = typeof parsed.issuedAt === "number" && Date.now() - parsed.issuedAt < 5 * 60 * 1000
+        return proofRecent && proofCode === code
+      } catch {
+        return false
+      }
+    })()
+
+    if (code && !isManual && hasValidPrintProof) {
       markGuestPrinted(code)
     }
-  }, [code, isManual])
+  }, [code, isManual, printedConfirmed, printProofToken])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,18 +72,7 @@ export function PrintSuccess() {
   }, [navigate])
 
   if (!guest) {
-    return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
-        <TerminalFrame title="Error" variant="warning">
-          <p className="text-center text-purple-200">Guest not found.</p>
-          <div className="flex justify-center mt-6">
-            <Button onClick={() => navigate("/")}>
-              Return to Start
-            </Button>
-          </div>
-        </TerminalFrame>
-      </div>
-    )
+    return <FlowErrorState message="Guest not found." onButtonClick={() => navigate("/")} />
   }
 
   return (
@@ -147,14 +156,14 @@ export function PrintSuccess() {
             </div>
 
             {/* Action Button */}
-            <div className="flex justify-center pt-4">
+            <FlowActionRow className="pt-0">
               <Button
                 onClick={() => navigate("/")}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12"
+                className={`${primaryActionButtonClass} px-12`}
               >
                 Start over
               </Button>
-            </div>
+            </FlowActionRow>
           </div>
         </TerminalFrame>
       </div>
