@@ -7,6 +7,7 @@ interface StatusBadgeProps {
   size?: "sm" | "md" | "lg"
   showIcon?: boolean
   showSparkles?: boolean
+  labelOverride?: string
   className?: string
 }
 
@@ -15,6 +16,7 @@ export function StatusBadge({
   size = "md",
   showIcon = true,
   showSparkles = false,
+  labelOverride,
   className,
 }: StatusBadgeProps) {
   const statusConfig = {
@@ -99,7 +101,7 @@ export function StatusBadge({
         )}
       >
         {showIcon && <Icon className={sizeStyles[size].icon} />}
-        <span>{config.label}</span>
+        <span>{labelOverride ?? config.label}</span>
       </div>
     </div>
   )

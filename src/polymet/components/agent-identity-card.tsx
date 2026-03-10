@@ -7,6 +7,9 @@ interface AgentIdentityCardProps {
   photo?: string
   statusLabel?: string
   showAuthorizedBadge?: boolean
+  badgeStatus?: "authorized" | "denied" | "pending" | "visitor"
+  badgeLabel?: string
+  badgeClassName?: string
   compact?: boolean
   className?: string
 }
@@ -17,6 +20,9 @@ export function AgentIdentityCard({
   photo,
   statusLabel,
   showAuthorizedBadge = false,
+  badgeStatus,
+  badgeLabel,
+  badgeClassName,
   compact = false,
   className,
 }: AgentIdentityCardProps) {
@@ -67,7 +73,15 @@ export function AgentIdentityCard({
           </div>
         </div>
       </div>
-      {showAuthorizedBadge && <StatusBadge status="authorized" size="lg" showSparkles />}
+      {(showAuthorizedBadge || badgeStatus) && (
+        <StatusBadge
+          status={badgeStatus ?? "authorized"}
+          labelOverride={badgeLabel}
+          size="lg"
+          showSparkles={badgeStatus ? false : true}
+          className={badgeClassName}
+        />
+      )}
     </div>
   )
 }

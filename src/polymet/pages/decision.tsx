@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { findGuestByCode, purposeOptions, declarationOptions, recordDecision } from "@/polymet/data/immigration-data"
 import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
-import { CheckCircleIcon, XCircleIcon, ClockIcon } from "lucide-react"
+import { AlertTriangleIcon, CheckCircleIcon, Clock3Icon, ClockIcon, XCircleIcon } from "lucide-react"
 
 export function Decision() {
   const [searchParams] = useSearchParams()
@@ -59,12 +59,18 @@ export function Decision() {
   }
 
   if (decision === "approved") {
+    const isVisitor = guest.status === "Visitor"
+    const hasWarningAlert = guest.customAlert?.variant === "warning"
+    const headerTitle = isVisitor ? "Visa on Arrival Approved" : "Visa Approved"
+    const headerSubtitle = isVisitor ? "Temporary authorization granted" : "Authorization granted"
+    const displayStatusLabel = isVisitor ? "Temporary Approved" : guest.status
+
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
         <div className="w-full max-w-3xl">
           <TerminalFrame
-            title="Visa Approved"
-            subtitle="Authorization granted"
+            title={headerTitle}
+            subtitle={headerSubtitle}
             variant="success"
             glowEffect
           >
@@ -72,7 +78,13 @@ export function Decision() {
               {/* Success Icon */}
               <div className="flex justify-center relative">
                 <div className="relative">
-                  <CheckCircleIcon className="w-32 h-32 text-emerald-400" />
+                  {hasWarningAlert ? (
+                    <AlertTriangleIcon className="w-32 h-32 text-violet-300" />
+                  ) : isVisitor ? (
+                    <Clock3Icon className="w-32 h-32 text-amber-400" />
+                  ) : (
+                    <CheckCircleIcon className="w-32 h-32 text-emerald-400" />
+                  )}
                   <SparkleEffect
                     variant="sparkles"
                     size="lg"
@@ -86,12 +98,30 @@ export function Decision() {
                 </div>
               </div>
 
+              {isVisitor && (
+                <div className="p-4 bg-amber-950/25 border border-orange-400/40 rounded-lg">
+                  <p className="text-sm text-amber-100 text-center leading-relaxed">
+                    You have been temporarily approved for a visa on arrival to the party on Sparkle Planet Consortium. Please be advised that any unauthorized behavior may result in the termination of your visa.
+                  </p>
+                </div>
+              )}
+
+              {hasWarningAlert && (
+                <div className="p-4 bg-violet-950/25 border border-violet-400/40 rounded-lg">
+                  <p className="text-sm text-violet-100 text-center leading-relaxed">
+                    Fear not. Sparkle Beaucracy is benevolent and your presence is appreciated. Your envoy renewal is under Intergalactic Court review; please be prepared to make your case to border agents.
+                  </p>
+                </div>
+              )}
+
               <AgentIdentityCard
                 agentCode={guest.agentCode}
                 name={guest.name}
                 photo={guest.photo}
-                statusLabel={guest.status}
-                showAuthorizedBadge
+                statusLabel={displayStatusLabel}
+                badgeStatus={hasWarningAlert ? "visitor" : isVisitor ? "pending" : "authorized"}
+                badgeLabel={hasWarningAlert ? "Tentatively Authorized" : isVisitor ? "Temporary Approved" : undefined}
+                badgeClassName={hasWarningAlert ? "text-violet-200" : undefined}
               />
 
               {/* Visa Details */}
@@ -150,9 +180,16 @@ export function Decision() {
                       `/print-preview?code=${code}&visaNumber=${visaNumber}&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&timestamp=${timestamp}&secondary=${isSecondary}`
                     )
                   }
-                  className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:via-purple-500/90 hover:to-pink-500/90 text-white font-semibold px-12 text-lg border border-purple-400/20 shadow-[0_0_24px_rgba(52,211,153,0.25)]"
+                  className={cn(
+                    "text-white font-semibold px-12 text-lg border",
+                    hasWarningAlert
+                      ? "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-indigo-600 hover:from-violet-500 hover:via-fuchsia-500 hover:to-indigo-500 border-violet-300/30 shadow-[0_0_24px_rgba(168,85,247,0.35)]"
+                      : isVisitor
+                      ? "bg-gradient-to-r from-amber-500 via-orange-500 to-pink-500 hover:from-amber-400 hover:via-orange-400 hover:to-pink-400 border-orange-300/30 shadow-[0_0_24px_rgba(251,146,60,0.35)]"
+                      : "bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:via-purple-500/90 hover:to-pink-500/90 border-purple-400/20 shadow-[0_0_24px_rgba(52,211,153,0.25)]"
+                  )}
                 >
-                  {isSecondary ? "Print Temporary Visa" : "Print Visa"}
+                  {isSecondary || isVisitor ? "Print Temporary Visa" : "Print Visa"}
                 </Button>
               </div>
             </div>

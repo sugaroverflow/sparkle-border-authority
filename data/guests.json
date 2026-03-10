@@ -72,7 +72,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/867B.png"
+    "photo": "/guests/867B.png",
+    "customAlert": {
+      "variant": "warning",
+      "message": "Sparkle Beaucracy has received reports of your deep-space dealings with pirates in violation of Intergalactic Treaties. This warning is now on file and your Sparkle Planet Consortium permits may be revoked."
+    }
   },
   {
     "code": "HOGZ",
@@ -110,7 +114,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/5DKN.png"
+    "photo": "/guests/5DKN.png",
+    "customAlert": {
+      "variant": "warning",
+      "message": "Due to your absence from strategic intelligence briefings and missions, your Special Envoy status has been revoked and your clearance downgraded. As a valued member of our advisory board, we hope to see you on Sparkle Planet Consortium more often so you can regain your status."
+    }
   },
   {
     "code": "X0FC",
@@ -336,7 +344,7 @@
     "photo": "/guests/0AQP.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Warning - Missing Envoy in Action. Due to your absence from missions, your diplomatic immunity has been revoked! However, in light of previous contributions, Sparkle Bureaucracy retains your citizen status."
+      "message": "Alert - Missing Envoy in Action. Due to your absence from missions, your diplomatic immunity has been revoked! However, in light of previous contributions, Sparkle Bureaucracy retains your citizen status."
     }
   },
   {
@@ -385,7 +393,8 @@
     "basePrivileges": [
       "Standard Sparkle Protocol",
       "Comet Dust Dispensation",
-      "Lounge Access"
+      "Lounge Access",
+      "Artificial and Created Technological Intellgences Immunity"
     ],
     "printed": false,
     "arrived": false,
