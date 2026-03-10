@@ -1,4 +1,5 @@
 import { useRef } from "react"
+import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { VisaCard, visaPrintStyles } from "@/polymet/components/visa-card"
@@ -17,6 +18,7 @@ export function PrintPreview() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const visaCaptureRef = useRef<HTMLDivElement>(null)
+  const [printAttempted, setPrintAttempted] = useState(false)
 
   const code = searchParams.get("code") || ""
   const visaNumber = searchParams.get("visaNumber") || ""
@@ -65,22 +67,23 @@ export function PrintPreview() {
     : guest.visaClass
 
   const handlePrint = () => {
+    setPrintAttempted(true)
     window.print()
-    // After printing, navigate to success page
-    setTimeout(() => {
-      if (isManual) {
-        navigate(
-          `/print-success?manual=1&manualName=${encodeURIComponent(
-            guest.name
-          )}&manualAgentCode=${encodeURIComponent(
-            guest.agentCode
-          )}&manualValidity=${guest.validityMinutes}&secondary=${isSecondary}`
-        )
-        return
-      }
+  }
 
-      navigate(`/print-success?code=${code}&secondary=${isSecondary}`)
-    }, 1000)
+  const handleContinueAfterPrint = () => {
+    if (isManual) {
+      navigate(
+        `/print-success?manual=1&manualName=${encodeURIComponent(
+          guest.name
+        )}&manualAgentCode=${encodeURIComponent(
+          guest.agentCode
+        )}&manualValidity=${guest.validityMinutes}&secondary=${isSecondary}`
+      )
+      return
+    }
+
+    navigate(`/print-success?code=${code}&secondary=${isSecondary}`)
   }
 
   const handleDownloadPng = async () => {
@@ -166,7 +169,19 @@ export function PrintPreview() {
                     <PrinterIcon className="w-5 h-5 mr-2" />
                     {isManual ? "Print Manual Visa" : "Print Visa"}
                   </Button>
+                  <Button
+                    onClick={handleContinueAfterPrint}
+                    disabled={!printAttempted}
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Continue After Successful Print
+                  </Button>
                 </div>
+                {!printAttempted && (
+                  <p className="text-center text-xs text-purple-300/70">
+                    Print first, then continue only if printing succeeded.
+                  </p>
+                )}
               </div>
             </TerminalFrame>
           </div>

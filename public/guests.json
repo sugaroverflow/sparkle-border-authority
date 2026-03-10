@@ -263,23 +263,6 @@
     "photo": "/guests/BNDK.jpg"
   },
   {
-    "code": "Y4AJ",
-    "name": "DAVIT",
-    "agentCode": "Eclipse",
-    "status": "VIP",
-    "passportType": "fancy",
-    "visaClass": "Citizen Entry Visa",
-    "validityMinutes": 300,
-    "basePrivileges": [
-      "Sparkle Clearance II",
-      "Cake Priority Queue",
-      "Polaroid Documentation"
-    ],
-    "printed": false,
-    "arrived": false,
-    "photo": "/guests/Y4AJ.png"
-  },
-  {
     "code": "IFOM",
     "name": "David",
     "agentCode": "Zenith",

@@ -1,14 +1,40 @@
-[
-  "Galaxy",
-  "Comet",
-  "Starfield",
-  "Nebula",
-  "Glitter",
-  "Stardust",
-  "Aurora",
-  "Cosmos",
-  "Supernova",
-  "Moonbeam",
-  "Orbit",
-  "Quasar"
-]
+{
+  "galactic": [
+    "Galaxy",
+    "Comet",
+    "Starfield",
+    "Nebula",
+    "Glitter",
+    "Stardust",
+    "Cosmos",
+    "Supernova",
+    "Moonbeam",
+    "Orbit",
+    "Quasar",
+    "Pulsar"
+  ],
+  "earthGeography": [
+    "Atlas",
+    "Delta",
+    "Sahara",
+    "Amazon",
+    "Alpine",
+    "Everest",
+    "Canyon",
+    "Tundra",
+    "Sierra",
+    "Pacifica"
+  ],
+  "earthNature": [
+    "Aurora",
+    "Coral",
+    "Cedar",
+    "Willow",
+    "Ember",
+    "Breeze",
+    "Rainier",
+    "Solstice",
+    "River",
+    "Meadow"
+  ]
+}

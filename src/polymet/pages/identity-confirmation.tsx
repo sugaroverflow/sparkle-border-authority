@@ -117,11 +117,13 @@ export function IdentityConfirmation() {
             <div className="flex items-center justify-center gap-6">
               {guest.photo ? (
                 <div className="relative">
-                  <img
-                    src={guest.photo}
-                    alt={guest.name}
-                    className="w-32 h-32 rounded-lg border-4 border-purple-400/30"
-                  />
+                  <div className="galactic-photo-frame">
+                    <img
+                      src={guest.photo}
+                      alt={guest.name}
+                      className="galactic-photo w-32 h-32"
+                    />
+                  </div>
                   <SparkleEffect
                     variant="sparkles"
                     size="sm"

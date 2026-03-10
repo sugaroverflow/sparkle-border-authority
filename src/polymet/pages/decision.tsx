@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
-import { StatusBadge } from "@/polymet/components/status-badge"
+import { AgentIdentityCard } from "@/polymet/components/agent-identity-card"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -86,19 +86,13 @@ export function Decision() {
                 </div>
               </div>
 
-              {/* Guest Info */}
-              <div className="text-center">
-                <p
-                  className="text-3xl font-black tracking-[0.2em] uppercase mb-1 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200 drop-shadow-[0_0_20px_rgba(52,211,153,0.3)]"
-                  style={{ fontFamily: "var(--font-agent)" }}
-                >
-                  Agent {guest.agentCode}
-                </p>
-                <p className="text-base text-emerald-200/90 font-medium">
-                  {guest.name}
-                </p>
-                <StatusBadge status="authorized" size="lg" showSparkles />
-              </div>
+              <AgentIdentityCard
+                agentCode={guest.agentCode}
+                name={guest.name}
+                photo={guest.photo}
+                statusLabel={guest.status}
+                showAuthorizedBadge
+              />
 
               {/* Visa Details */}
               <div className="grid grid-cols-2 gap-4">

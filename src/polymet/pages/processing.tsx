@@ -4,7 +4,7 @@ import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { 
   validateApplication, 
-  shouldTriggerSecondaryScreening,
+  shouldTriggerSecondaryScreeningForGuest,
   findGuestByCode,
   assignPrivileges,
   generateVisaNumber,
@@ -99,7 +99,7 @@ export function Processing() {
     }
 
     // Check for secondary screening
-    const needsSecondary = shouldTriggerSecondaryScreening()
+    const needsSecondary = shouldTriggerSecondaryScreeningForGuest(guest.status)
 
     if (needsSecondary) {
       navigate(`/secondary-screening?code=${code}&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}`)

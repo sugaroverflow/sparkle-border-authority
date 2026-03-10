@@ -21,7 +21,6 @@ import {
   XCircleIcon,
   SearchIcon,
   PrinterIcon,
-  BookOpenIcon,
   CheckCircleIcon,
 } from "lucide-react"
 
@@ -238,11 +237,13 @@ export function AdminPanel() {
               <div className="mt-4 p-4 bg-purple-950/30 border border-purple-400/20 rounded-lg">
                 <div className="flex items-start gap-4">
                   {foundGuest.photo ? (
-                    <img
-                      src={foundGuest.photo}
-                      alt={foundGuest.name}
-                      className="w-16 h-16 rounded border-2 border-purple-400/30"
-                    />
+                    <div className="galactic-photo-frame">
+                      <img
+                        src={foundGuest.photo}
+                        alt={foundGuest.name}
+                        className="galactic-photo w-16 h-16"
+                      />
+                    </div>
                   ) : (
                     <div className="w-16 h-16 rounded border-2 border-purple-400/30 bg-purple-950/50 flex items-center justify-center text-xl font-bold text-purple-400/80">
                       {getGuestInitials(foundGuest.name)}
@@ -310,11 +311,13 @@ export function AdminPanel() {
                 >
                   <div className="flex items-center gap-3">
                     {guest.photo ? (
-                      <img
-                        src={guest.photo}
-                        alt={guest.name}
-                        className="w-10 h-10 rounded"
-                      />
+                      <div className="galactic-photo-frame">
+                        <img
+                          src={guest.photo}
+                          alt={guest.name}
+                          className="galactic-photo w-10 h-10"
+                        />
+                      </div>
                     ) : (
                       <div className="w-10 h-10 rounded border border-purple-400/30 bg-purple-950/50 flex items-center justify-center text-sm font-bold text-purple-400/80 shrink-0">
                         {getGuestInitials(guest.name)}
@@ -359,14 +362,6 @@ export function AdminPanel() {
               >
                 <PrinterIcon className="w-4 h-4 mr-2" />
                 Run Printer Test
-              </Button>
-              <Button
-                onClick={() => navigate("/passport-export")}
-                variant="outline"
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
-              >
-                <BookOpenIcon className="w-4 h-4 mr-2" />
-                Passport Export
               </Button>
               <Button
                 onClick={() => setIsAuthenticated(false)}

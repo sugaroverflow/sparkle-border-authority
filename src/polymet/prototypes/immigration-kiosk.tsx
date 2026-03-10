@@ -15,7 +15,6 @@ import { BorderCheckpoint } from "@/polymet/pages/border-checkpoint"
 import { VisitorSignup } from "@/polymet/pages/visitor-signup"
 import { AdminPanel } from "@/polymet/pages/admin-panel"
 import { StatisticsDashboard } from "@/polymet/pages/statistics-dashboard"
-import { PassportExport } from "@/polymet/pages/passport-export"
 import { initializeImmigrationData } from "@/polymet/data/immigration-data"
 
 export default function ImmigrationKiosk() {
@@ -54,7 +53,6 @@ export default function ImmigrationKiosk() {
         <Route path="/border-checkpoint" element={<KioskLayout><BorderCheckpoint /></KioskLayout>} />
         <Route path="/admin" element={<KioskLayout><AdminPanel /></KioskLayout>} />
         <Route path="/statistics-dashboard" element={<KioskLayout><StatisticsDashboard /></KioskLayout>} />
-        <Route path="/passport-export" element={<PassportExport />} />
       </Routes>
     </Router>
   )

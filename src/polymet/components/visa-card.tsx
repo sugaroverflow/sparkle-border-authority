@@ -1,20 +1,6 @@
 import { type GuestRecord } from "@/polymet/data/immigration-data"
-import { SparkleEffect } from "@/polymet/components/sparkle-effect"
-import { getPrivilegeTagClass } from "@/polymet/components/privilege-tag-variants"
-import { cn, getGuestInitials } from "@/lib/utils"
+import { getGuestInitials } from "@/lib/utils"
 import { format } from "date-fns"
-
-// Ink-friendly privilege tag classes for print (no heavy background)
-const PRINT_PRIVILEGE_TAG_CLASSES = [
-  "bg-transparent border-emerald-600 text-emerald-800",
-  "bg-transparent border-purple-600 text-purple-800",
-  "bg-transparent border-pink-600 text-pink-800",
-  "bg-transparent border-amber-600 text-amber-800",
-]
-
-function getPrivilegeTagClassPrint(index: number): string {
-  return cn("text-[10px] px-1.5 py-0.5 border rounded font-medium", PRINT_PRIVILEGE_TAG_CLASSES[index % PRINT_PRIVILEGE_TAG_CLASSES.length])
-}
 
 interface VisaCardProps {
   guest: GuestRecord
@@ -40,256 +26,177 @@ export function VisaCard({
   size = "preview",
 }: VisaCardProps) {
   const isPrint = size === "print"
+  const effectiveVisaClassRaw =
+    guest.status === "Visitor"
+      ? `${visaClassOverride ?? guest.visaClass} - Temporary Authorization`
+      : visaClassOverride ?? guest.visaClass
+  const effectiveVisaClass = effectiveVisaClassRaw.length > 33
+    ? `${effectiveVisaClassRaw.slice(0, 33)}...`
+    : effectiveVisaClassRaw
+
+  const formatDate = (date: Date) =>
+    `${format(date, "MMM dd, yyyy")} ${format(date, "HH:mm")}`
+
+  const getColorScheme = () => {
+    switch (guest.status) {
+      case "Diplomat":
+        return {
+          headerBg: "bg-purple-50",
+          headerBorder: "border-purple-900",
+          headerText: "text-purple-900",
+          border: "border-purple-900",
+          accentText: "text-purple-900",
+          labelText: "text-purple-700",
+          badgeBg: "bg-purple-100",
+          badgeBorder: "border-purple-900",
+        }
+      case "VIP":
+        return {
+          headerBg: "bg-blue-50",
+          headerBorder: "border-blue-900",
+          headerText: "text-blue-900",
+          border: "border-blue-900",
+          accentText: "text-blue-900",
+          labelText: "text-blue-700",
+          badgeBg: "bg-blue-100",
+          badgeBorder: "border-blue-900",
+        }
+      case "Special Envoy":
+        return {
+          headerBg: "bg-amber-50",
+          headerBorder: "border-amber-900",
+          headerText: "text-amber-900",
+          border: "border-amber-900",
+          accentText: "text-amber-900",
+          labelText: "text-amber-700",
+          badgeBg: "bg-amber-100",
+          badgeBorder: "border-amber-900",
+        }
+      default:
+        return {
+          headerBg: "bg-orange-50",
+          headerBorder: "border-red-900",
+          headerText: "text-red-900",
+          border: "border-red-900",
+          accentText: "text-red-900",
+          labelText: "text-orange-700",
+          badgeBg: "bg-amber-100",
+          badgeBorder: "border-orange-900",
+        }
+    }
+  }
+
+  const colors = getColorScheme()
+  const issueDate = new Date(issueTimestamp)
 
   return (
-    <div
-      className={cn(
-        "relative rounded-lg overflow-hidden flex flex-col",
-        isPrint
-          ? "w-[105mm] h-[148mm] min-h-0 bg-white border-2 border-slate-300"
-          : "bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 border-2 border-purple-400/30 w-full max-w-md aspect-[105/148]"
-      )}
-      style={isPrint ? { pageBreakAfter: "always" } : undefined}
-    >
-      {/* Background: gradient for screen, none for print */}
-      {!isPrint && (
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 10px,
-              rgba(168, 85, 247, 0.1) 10px,
-              rgba(168, 85, 247, 0.1) 20px
-            )`
-          }} />
-        </div>
-      )}
+    <div className="visa-sticker relative" style={isPrint ? { pageBreakAfter: "always" } : undefined}>
+      <div className={`absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 ${colors.border} z-10`} />
+      <div className={`absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 ${colors.border} z-10`} />
+      <div className={`absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 ${colors.border} z-10`} />
+      <div className={`absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 ${colors.border} z-10`} />
 
-      {/* Corner Sparkles - screen only */}
-      {!isPrint && (
-        <>
-          <div className="absolute top-2 right-2">
-            <SparkleEffect variant="stars" size="sm" />
-          </div>
-          <div className="absolute bottom-2 left-2">
-            <SparkleEffect variant="stars" size="sm" />
-          </div>
-        </>
-      )}
-
-      {/* Content - compact in print */}
-      <div className={cn(
-        "relative h-full flex flex-col min-h-0",
-        isPrint ? "p-3" : "p-6"
-      )}>
-        {/* Header */}
-        <div className={cn(
-          "text-center border-b pb-2 mb-2 shrink-0",
-          isPrint ? "border-slate-300" : "border-purple-400/30"
-        )}>
-          <h1 className={cn(
-            "font-bold uppercase tracking-wider font-mono",
-            isPrint ? "text-sm text-slate-800" : "text-lg text-purple-100"
-          )}>
-            Ration Club Border Authority
-          </h1>
-          <p className={cn(
-            "mt-0.5 font-normal normal-case tracking-normal",
-            isPrint ? "text-[9px] text-slate-500" : "text-[10px] text-purple-400/60"
-          )}>
-            sponsored by Sparkle Beaurocracy
-          </p>
-          <p className={cn(
-            "uppercase tracking-widest font-mono mt-0.5",
-            isPrint ? "text-[10px] text-slate-500" : "text-xs text-purple-300/70"
-          )}>
-            Immigration Terminal
-          </p>
-        </div>
-
-        {/* Visa Class & Number */}
-        <div className="flex justify-between items-start mb-2 shrink-0">
-          <div>
-            <p className={cn(
-              "uppercase tracking-wider font-mono",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              Visa Class
-            </p>
-            <p className={cn(
-              "font-bold font-mono",
-              isPrint ? "text-[10px] text-slate-800" : "text-sm text-purple-100"
-            )}>
-              {visaClassOverride ?? guest.visaClass}
-            </p>
-          </div>
-          <div className="text-right">
-            <p className={cn(
-              "uppercase tracking-wider font-mono",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              Visa No.
-            </p>
-            <p className={cn(
-              "font-bold font-mono",
-              isPrint ? "text-[10px] text-slate-800" : "text-sm text-purple-100"
-            )}>
-              {visaNumber}
-            </p>
-          </div>
-        </div>
-
-        {/* Guest Info */}
-        <div className={cn(
-          "flex gap-2 mb-2 pb-2 border-b shrink-0",
-          isPrint ? "border-slate-200" : "border-purple-400/20"
-        )}>
-          {guest.photo && !isPrint && (
-            <img
-              src={guest.photo}
-              alt={guest.name}
-              className="w-16 h-16 rounded border-2 border-purple-400/30"
-            />
-          )}
-          {guest.photo && isPrint && (
-            <img
-              src={guest.photo}
-              alt={guest.name}
-              className="w-10 h-10 rounded border border-slate-300"
-            />
-          )}
-          {!guest.photo && (
-            <div
-              className={cn(
-                "rounded border-2 flex items-center justify-center shrink-0 bg-slate-100 font-bold text-slate-500",
-                isPrint
-                  ? "w-10 h-10 border-slate-300 text-[8px] px-0.5"
-                  : "w-16 h-16 border-purple-400/30 text-lg text-purple-400/80 px-1"
-              )}
-              aria-hidden
-            >
-              {getGuestInitials(guest.name)}
-            </div>
-          )}
-          <div className="flex-1 min-w-0">
-            <p
-              className={cn(
-                "uppercase tracking-[0.15em] font-black",
-                isPrint ? "text-[11px] text-slate-700" : "text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-fuchsia-200 to-pink-200 mb-0.5"
-              )}
-            style={isPrint ? { fontFamily: "var(--font-mono)" } : { fontFamily: "var(--font-agent)" }}
-            >
-              Agent {guest.agentCode}
-            </p>
-            <p className={cn(
-              "uppercase tracking-wider font-mono",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              {guest.name}
-            </p>
-            <p className={cn(
-              "uppercase tracking-wider font-mono mt-1",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70"
-            )}>
-              Status Level
-            </p>
-            <p className={cn(
-              "font-semibold",
-              isPrint ? "text-[10px] text-slate-700" : "text-sm text-purple-200"
-            )}>
-              {guest.status}
-            </p>
-          </div>
-        </div>
-
-        {/* Purpose & Declarations - single column in print to avoid cut-off */}
-        <div className={cn(
-          "mb-2 pb-2 border-b shrink-0 min-h-0",
-          isPrint ? "border-slate-200 grid grid-cols-2 gap-x-3 gap-y-1" : "border-purple-400/20 grid grid-cols-2 gap-3 mb-3 pb-3"
-        )}>
-          <div className="min-w-0">
-            <p className={cn(
-              "uppercase tracking-wider font-mono mb-0.5",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70 mb-1"
-            )}>
-              Purpose
-            </p>
-            <div className="space-y-0">
-              {purposes.map((purpose, i) => (
-                <p key={i} className={cn(
-                  isPrint ? "text-[10px] text-slate-800" : "text-xs text-purple-100"
-                )}>
-                  • {purpose}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div className="min-w-0">
-            <p className={cn(
-              "uppercase tracking-wider font-mono mb-0.5",
-              isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70 mb-1"
-            )}>
-              Declarations
-            </p>
-            <div className="space-y-0">
-              {declarations.map((declaration, i) => (
-                <p key={i} className={cn(
-                  isPrint ? "text-[10px] text-slate-800" : "text-xs text-purple-100"
-                )}>
-                  • {declaration}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Privileges */}
-        <div className="mb-2 shrink-0">
-          <p className={cn(
-            "uppercase tracking-wider font-mono mb-0.5",
-            isPrint ? "text-[9px] text-slate-500" : "text-xs text-purple-300/70 mb-1"
-          )}>
-            Privileges Granted
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {privileges.map((privilege, i) => (
-              <span
-                key={i}
-                className={cn(
-                  "text-xs px-2 py-0.5 border rounded font-medium",
-                  isPrint ? getPrivilegeTagClassPrint(i) : getPrivilegeTagClass(i)
-                )}
-              >
-                {privilege}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Footer - ensure it's visible */}
-        <div className="mt-auto shrink-0 pt-1">
-          <p className={cn(
-            "italic text-center mb-1",
-            isPrint ? "text-[9px] text-slate-600" : "text-xs text-purple-300/70 mb-2"
-          )}>
-            {visaCopy}
-          </p>
-          <div className={cn(
-            "flex justify-between items-end font-mono",
-            isPrint ? "text-[9px] text-slate-600" : "text-xs text-purple-300/70"
-          )}>
+      <div className={`w-full h-full rounded-lg border-4 overflow-hidden bg-white ${colors.border} shadow-lg flex flex-col`}>
+        <div className={`${colors.headerBg} px-4 py-3 border-b-2 ${colors.headerBorder}`}>
+          <div className="flex items-start justify-between">
             <div>
-              <p>Issued: {format(new Date(issueTimestamp), "MMM dd, yyyy HH:mm")}</p>
-              <p>Valid: {guest.validityMinutes} minutes</p>
+              <h3 className={`text-[9px] font-bold tracking-wider ${colors.headerText} uppercase leading-tight`}>
+                RATION CLUB BORDER AUTHORITY
+              </h3>
+              <p className={`text-[7px] ${colors.labelText} mt-0.5 leading-tight`}>sponsored by Sparkle Bureaucracy</p>
+              <p className={`text-[7px] ${colors.labelText} mt-0.5 uppercase tracking-wide leading-tight`}>IMMIGRATION TERMINAL</p>
+            </div>
+            <div className="text-sm">✦</div>
+          </div>
+        </div>
+
+        <div className="px-4 pt-3 pb-2 space-y-2.5">
+          <div className={`flex justify-between items-start pb-2 border-b ${colors.border}`}>
+            <div>
+              <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide`}>Visa Class</p>
+              <p className={`text-sm font-bold ${colors.accentText} leading-tight`}>{effectiveVisaClass}</p>
             </div>
             <div className="text-right">
-              <p className="mb-0.5">Border Officer</p>
-              <div className={cn(
-                "border-t w-24",
-                isPrint ? "border-slate-400" : "border-purple-400/30"
-              )} />
+              <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide`}>Visa No.</p>
+              <p className={`text-sm font-mono font-bold ${colors.accentText} leading-tight`}>{visaNumber}</p>
             </div>
+          </div>
+
+          <div className={`flex gap-3 pb-2 border-b ${colors.border}`}>
+            <div className={`w-11 h-14 border ${colors.border} bg-slate-50 flex items-center justify-center overflow-hidden rounded`}>
+              {guest.photo ? (
+                <img src={guest.photo} alt={guest.name} className="w-full h-full object-cover object-center" />
+              ) : (
+                <div className={`text-xs font-bold ${colors.accentText}`}>{getGuestInitials(guest.name)}</div>
+              )}
+            </div>
+
+            <div className="flex-1 space-y-1.5 min-w-0">
+              <div>
+                <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide`}>Guest Name</p>
+                <p className={`text-[10px] font-bold ${colors.accentText} truncate`} title={guest.name}>
+                  {guest.name}
+                </p>
+              </div>
+              <div>
+                <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide`}>Agent Code</p>
+                <p className={`text-[9px] font-mono ${colors.accentText} truncate`} title={guest.agentCode}>
+                  {guest.agentCode}
+                </p>
+              </div>
+              <div>
+                <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide`}>Status Level</p>
+                <p className={`text-[9px] font-semibold ${colors.accentText}`}>{guest.status}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`grid grid-cols-2 gap-2 pb-2 border-b ${colors.border}`}>
+            <div>
+              <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide mb-1`}>Purpose</p>
+              <div className="space-y-0.5">
+                {purposes.map((purpose, i) => (
+                  <p key={i} className={`text-[9px] ${colors.accentText} leading-tight truncate`}>• {purpose}</p>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide mb-1`}>Declarations</p>
+              <div className="space-y-0.5">
+                {declarations.map((declaration, i) => (
+                  <p key={i} className={`text-[9px] ${colors.accentText} leading-tight truncate`}>• {declaration}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {privileges.length > 0 && (
+            <div className={`pb-2 border-b ${colors.border}`}>
+              <p className={`text-[7px] ${colors.labelText} uppercase tracking-wide mb-1`}>Privileges Granted</p>
+              <div className="flex flex-wrap gap-1">
+                {privileges.map((privilege) => (
+                  <span
+                    key={privilege}
+                    className={`text-[7px] ${colors.badgeBg} ${colors.accentText} px-1.5 py-0.5 rounded border ${colors.badgeBorder} font-medium leading-tight`}
+                  >
+                    {privilege}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex-1" />
+
+        <div className="px-4 pb-3 space-y-1">
+          <p className={`text-[7px] ${colors.labelText} text-center`}>{visaCopy}</p>
+          <div className="flex justify-between items-end">
+            <div className={`text-[7px] ${colors.labelText} font-mono`}>
+              <p>Issued: {formatDate(issueDate)}</p>
+              <p>Valid: {guest.validityMinutes} minutes</p>
+            </div>
+            <p className={`text-[7px] ${colors.accentText} font-semibold`}>Border Officer</p>
           </div>
         </div>
       </div>
@@ -336,5 +243,16 @@ export const visaPrintStyles = `
       height: 148mm !important;
       flex-shrink: 0 !important;
     }
+
+    .visa-sticker {
+      width: 105mm !important;
+      height: 148mm !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .visa-sticker {
+    width: 105mm;
+    height: 148mm;
   }
 `

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
+import { AgentIdentityCard } from "@/polymet/components/agent-identity-card"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode, markGuestPrinted } from "@/polymet/data/immigration-data"
@@ -18,13 +19,17 @@ export function PrintSuccess() {
   const [secondsRemaining, setSecondsRemaining] = useState(30)
 
   const foundGuest = findGuestByCode(code)
-  const guest = foundGuest ?? (isManual
+  const guest = foundGuest
+    ? foundGuest
+    : isManual
     ? {
         name: manualName || "Manual Guest",
         agentCode: manualAgentCode || "Galaxy",
         validityMinutes: manualValidity,
+        photo: undefined,
+        status: undefined,
       }
-    : null)
+    : null
 
   useEffect(() => {
     if (code && !isManual) {
@@ -83,18 +88,13 @@ export function PrintSuccess() {
               </div>
             </div>
 
-            {/* Guest Name */}
-            <div className="text-center">
-              <p
-                className="text-2xl font-black tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200"
-                style={{ fontFamily: "var(--font-agent)" }}
-              >
-                Agent {guest.agentCode}
-              </p>
-              <p className="text-base text-emerald-200/90 mt-1">
-                {guest.name}
-              </p>
-            </div>
+            <AgentIdentityCard
+              agentCode={guest.agentCode}
+              name={guest.name}
+              photo={guest.photo}
+              statusLabel={guest.status}
+              compact
+            />
 
             {/* Instructions */}
             <div className="space-y-4">

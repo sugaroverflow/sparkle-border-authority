@@ -80,6 +80,11 @@ export interface ValidationResult {
 }
 
 type GuestRegistryRecord = Partial<GuestRecord> & { code?: string; name?: string }
+type AgentCodeConfig = {
+  galactic?: string[]
+  earthGeography?: string[]
+  earthNature?: string[]
+}
 
 export const purposeOptions: FormOption[] = [
   { value: "cake-acquisition", label: "Cake Acquisition", icon: "🎂" },
@@ -247,6 +252,25 @@ export function shouldTriggerSecondaryScreening(): boolean {
   return Math.random() < 0.075
 }
 
+function getRandomValue(values: string[], fallback: string): string {
+  if (values.length === 0) return fallback
+  return values[Math.floor(Math.random() * values.length)]
+}
+
+function getRandomGalacticAgentCode(): string {
+  return getRandomValue(runtimeGalacticAgentCodePool, "Galaxy")
+}
+
+function getRandomEarthAgentCode(): string {
+  const earthPool = [...runtimeEarthGeographyAgentCodePool, ...runtimeEarthNatureAgentCodePool]
+  return getRandomValue(earthPool, "Visitor")
+}
+
+export function shouldTriggerSecondaryScreeningForGuest(status?: GuestStatus): boolean {
+  if (status === "Visitor") return true
+  return shouldTriggerSecondaryScreening()
+}
+
 export function assignPrivileges(guest: GuestRecord): string[] {
   const privileges = [...guest.basePrivileges]
   const available = randomPrivilegePool.filter((p) => !privileges.includes(p))
@@ -288,9 +312,33 @@ export const agentCodePool = [
   "Supernova",
 ]
 
+export const earthGeographyAgentCodePool = [
+  "Atlas",
+  "Delta",
+  "Sahara",
+  "Amazon",
+  "Alpine",
+  "Everest",
+  "Canyon",
+  "Tundra",
+]
+
+export const earthNatureAgentCodePool = [
+  "Aurora",
+  "Coral",
+  "Cedar",
+  "Willow",
+  "Ember",
+  "Breeze",
+  "Rainier",
+  "Solstice",
+]
+
 let guestRegistry: GuestRecord[] = [...mockGuests]
 let runtimeVisaCopyMessages: string[] = [...visaCopyMessages]
-let runtimeAgentCodePool: string[] = [...agentCodePool]
+let runtimeGalacticAgentCodePool: string[] = [...agentCodePool]
+let runtimeEarthGeographyAgentCodePool: string[] = [...earthGeographyAgentCodePool]
+let runtimeEarthNatureAgentCodePool: string[] = [...earthNatureAgentCodePool]
 let initializationPromise: Promise<void> | null = null
 const GUEST_STATE_KEY = "sparkle_border_guest_state_v1"
 const STATS_KEY = "sparkle_border_stats_v1"
@@ -407,11 +455,17 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
   }
 
   const isEdward = guest.name.toLowerCase().includes("edward")
+  const normalizedStatus = normalizeStatus(guest.status as string | undefined)
   return {
     code: guest.code.toUpperCase(),
     name: isEdward ? "Edward" : guest.name,
-    agentCode: isEdward ? "Galaxy" : guest.agentCode ?? runtimeAgentCodePool[0] ?? "Galaxy",
-    status: normalizeStatus(guest.status as string | undefined),
+    agentCode:
+      isEdward
+        ? "Galaxy"
+        : normalizedStatus === "Visitor"
+        ? getRandomEarthAgentCode()
+        : guest.agentCode ?? getRandomGalacticAgentCode(),
+    status: normalizedStatus,
     photo: guest.photo,
     passportType: normalizePassportType(guest.passportType as string | undefined),
     visaClass: normalizeVisaClass(guest.visaClass as string | undefined),
@@ -445,9 +499,19 @@ export async function initializeImmigrationData(): Promise<void> {
       ])
 
       if (agentCodesRes.ok) {
-        const loadedCodes = (await agentCodesRes.json()) as string[]
+        const loadedCodes = (await agentCodesRes.json()) as string[] | AgentCodeConfig
         if (Array.isArray(loadedCodes) && loadedCodes.length > 0) {
-          runtimeAgentCodePool = loadedCodes
+          runtimeGalacticAgentCodePool = loadedCodes
+        } else if (loadedCodes && typeof loadedCodes === "object" && !Array.isArray(loadedCodes)) {
+          if (Array.isArray(loadedCodes.galactic) && loadedCodes.galactic.length > 0) {
+            runtimeGalacticAgentCodePool = loadedCodes.galactic
+          }
+          if (Array.isArray(loadedCodes.earthGeography) && loadedCodes.earthGeography.length > 0) {
+            runtimeEarthGeographyAgentCodePool = loadedCodes.earthGeography
+          }
+          if (Array.isArray(loadedCodes.earthNature) && loadedCodes.earthNature.length > 0) {
+            runtimeEarthNatureAgentCodePool = loadedCodes.earthNature
+          }
         }
       }
 
@@ -561,7 +625,12 @@ export function createManualGuest(name: string, agentCode: string): GuestRecord 
 
 /** Register a visitor (no immigration code). Adds them to the registry and returns the guest. */
 export function registerVisitorGuest(name: string, agentCode: string = "Visitor"): GuestRecord {
-  const guest = createManualGuest(name.trim(), agentCode.trim() || "Visitor")
+  const suppliedAgentCode = agentCode.trim()
+  const resolvedAgentCode =
+    suppliedAgentCode.length > 0 && suppliedAgentCode !== "Visitor"
+      ? suppliedAgentCode
+      : getRandomEarthAgentCode()
+  const guest = createManualGuest(name.trim(), resolvedAgentCode)
   guestRegistry = [...guestRegistry, guest]
   return guest
 }
