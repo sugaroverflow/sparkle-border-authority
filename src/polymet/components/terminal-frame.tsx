@@ -5,7 +5,7 @@ interface TerminalFrameProps {
   children: ReactNode
   title?: string
   subtitle?: string
-  variant?: "default" | "accent" | "success" | "warning"
+  variant?: "default" | "accent" | "success" | "warning" | "visitor"
   className?: string
   glowEffect?: boolean
   cornerBrackets?: boolean
@@ -25,6 +25,7 @@ export function TerminalFrame({
     accent: "border-pink-400/40 bg-slate-900/60",
     success: "border-emerald-400/40 bg-slate-900/60",
     warning: "border-amber-400/40 bg-slate-900/60",
+    visitor: "border-teal-400/40 bg-slate-900/60",
   }
 
   const glowStyles = {
@@ -32,6 +33,7 @@ export function TerminalFrame({
     accent: "shadow-[0_0_20px_rgba(244,114,182,0.15)]",
     success: "shadow-[0_0_20px_rgba(52,211,153,0.15)]",
     warning: "shadow-[0_0_20px_rgba(251,191,36,0.15)]",
+    visitor: "shadow-[0_0_20px_rgba(20,184,166,0.2)]",
   }
 
   return (
@@ -39,14 +41,22 @@ export function TerminalFrame({
       {/* Corner Brackets */}
       {cornerBrackets && (
         <>
-          {/* Top Left */}
-          <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-purple-300/50" />
-          {/* Top Right */}
-          <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-purple-300/50" />
-          {/* Bottom Left */}
-          <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-purple-300/50" />
-          {/* Bottom Right */}
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-purple-300/50" />
+          <div className={cn(
+            "absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2",
+            variant === "visitor" ? "border-teal-300/50" : "border-purple-300/50"
+          )} />
+          <div className={cn(
+            "absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2",
+            variant === "visitor" ? "border-teal-300/50" : "border-purple-300/50"
+          )} />
+          <div className={cn(
+            "absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2",
+            variant === "visitor" ? "border-teal-300/50" : "border-purple-300/50"
+          )} />
+          <div className={cn(
+            "absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2",
+            variant === "visitor" ? "border-teal-300/50" : "border-purple-300/50"
+          )} />
         </>
       )}
 
@@ -61,14 +71,23 @@ export function TerminalFrame({
       >
         {/* Header */}
         {(title || subtitle) && (
-          <div className="border-b border-purple-400/20 px-6 py-4 bg-slate-950/30">
+          <div className={cn(
+            "border-b px-6 py-4 bg-slate-950/30",
+            variant === "visitor" ? "border-teal-400/20" : "border-purple-400/20"
+          )}>
             {title && (
-              <h3 className="text-lg font-bold tracking-wider text-purple-100 uppercase">
+              <h3 className={cn(
+                "text-lg font-bold tracking-wider uppercase",
+                variant === "visitor" ? "text-teal-100" : "text-purple-100"
+              )}>
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-sm text-purple-300/70 mt-1">{subtitle}</p>
+              <p className={cn(
+                "text-sm mt-1",
+                variant === "visitor" ? "text-teal-300/70" : "text-purple-300/70"
+              )}>{subtitle}</p>
             )}
           </div>
         )}

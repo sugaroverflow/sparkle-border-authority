@@ -72,6 +72,17 @@ export function Processing() {
       return
     }
 
+    // Diplomatic immunity: approve regardless of declarations
+    if (guest.diplomaticImmunity) {
+      const privileges = assignPrivileges(guest)
+      const visaNumber = generateVisaNumber()
+      const timestamp = new Date().toISOString()
+      navigate(
+        `/decision?code=${code}&decision=approved&purposes=${purposes.join(",")}&declarations=${declarations.join(",")}&privileges=${privileges.join(",")}&visaNumber=${visaNumber}&timestamp=${timestamp}`
+      )
+      return
+    }
+
     // Validate application
     const validation = validateApplication(purposes, declarations)
 

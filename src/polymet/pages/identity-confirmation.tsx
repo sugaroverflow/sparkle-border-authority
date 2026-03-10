@@ -4,7 +4,7 @@ import { StatusBadge } from "@/polymet/components/status-badge"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode } from "@/polymet/data/immigration-data"
-import { UserIcon, ShieldCheckIcon, CreditCardIcon } from "lucide-react"
+import { UserIcon, ShieldCheckIcon, CreditCardIcon, AlertTriangle, PartyPopper, Sparkles } from "lucide-react"
 
 export function IdentityConfirmation() {
   const [searchParams] = useSearchParams()
@@ -32,11 +32,6 @@ export function IdentityConfirmation() {
     navigate(`/purpose-of-visit?code=${code}`)
   }
 
-  const handleManualReview = () => {
-    // In a real app, this would trigger a staff notification
-    alert("Manual review requested. Please wait for border authority assistance.")
-  }
-
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-3xl">
@@ -47,6 +42,37 @@ export function IdentityConfirmation() {
           glowEffect
         >
           <div className="space-y-8">
+            {/* Custom alert for special guests */}
+            {guest.customAlert && (
+              <div
+                className={
+                  guest.customAlert.variant === "celebratory"
+                    ? "p-5 rounded-lg border-2 bg-gradient-to-r from-amber-950/40 to-yellow-950/30 border-amber-400/50 text-amber-100 shadow-lg shadow-amber-500/10"
+                    : guest.customAlert.variant === "cute"
+                      ? "p-5 rounded-lg border-2 bg-gradient-to-r from-pink-950/40 via-purple-950/30 to-fuchsia-950/30 border-pink-400/40 text-pink-100 shadow-lg shadow-pink-500/10"
+                      : "p-5 rounded-lg border-2 bg-red-950/50 border-red-500/70 text-red-100 shadow-lg shadow-red-900/30"
+                }
+              >
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  {guest.customAlert.variant === "celebratory" ? (
+                    <PartyPopper className="w-5 h-5 text-amber-300 shrink-0" />
+                  ) : guest.customAlert.variant === "cute" ? (
+                    <Sparkles className="w-5 h-5 text-pink-300 shrink-0" />
+                  ) : (
+                    <AlertTriangle className="w-5 h-5 text-red-400 shrink-0" />
+                  )}
+                  {guest.customAlert.variant === "warning" && (
+                    <span className="font-mono text-xs uppercase tracking-widest text-red-300">
+                      Official notice
+                    </span>
+                  )}
+                </div>
+                <p className="text-center font-mono text-sm leading-relaxed">
+                  {guest.customAlert.message.replace(/\(name\)/gi, guest.name)}
+                </p>
+              </div>
+            )}
+
             {/* Guest Photo and Name */}
             <div className="flex items-center justify-center gap-6">
               {guest.photo ? (
@@ -155,13 +181,6 @@ export function IdentityConfirmation() {
 
             {/* Action Buttons */}
             <div className="flex justify-center gap-4 pt-4">
-              <Button
-                variant="outline"
-                onClick={handleManualReview}
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
-              >
-                Request Manual Review
-              </Button>
               <Button
                 onClick={handleConfirm}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-12"

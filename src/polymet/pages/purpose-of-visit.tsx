@@ -9,6 +9,7 @@ export function PurposeOfVisit() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
+  const isVisitor = code.startsWith("MAN-")
 
   const [selectedPurposes, setSelectedPurposes] = useState<string[]>([])
 
@@ -95,7 +96,7 @@ export function PurposeOfVisit() {
             <div className="flex justify-center gap-4 pt-6">
               <Button
                 variant="outline"
-                onClick={() => navigate(`/identity-confirmation?code=${code}`)}
+                onClick={() => navigate(isVisitor ? "/visitor-signup" : `/identity-confirmation?code=${code}`)}
                 className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
               >
                 Back

@@ -12,6 +12,7 @@ import { Decision } from "@/polymet/pages/decision"
 import { PrintPreview } from "@/polymet/pages/print-preview"
 import { PrintSuccess } from "@/polymet/pages/print-success"
 import { BorderCheckpoint } from "@/polymet/pages/border-checkpoint"
+import { VisitorSignup } from "@/polymet/pages/visitor-signup"
 import { AdminPanel } from "@/polymet/pages/admin-panel"
 import { StatisticsDashboard } from "@/polymet/pages/statistics-dashboard"
 import { initializeImmigrationData } from "@/polymet/data/immigration-data"
@@ -38,6 +39,7 @@ export default function ImmigrationKiosk() {
         <Route path="/" element={<KioskLayout><Welcome /></KioskLayout>} />
         <Route path="/code-entry" element={<KioskLayout><CodeEntry /></KioskLayout>} />
         <Route path="/visitor-application" element={<KioskLayout><CodeEntry /></KioskLayout>} />
+        <Route path="/visitor-signup" element={<KioskLayout><VisitorSignup /></KioskLayout>} />
         <Route path="/identity-confirmation" element={<KioskLayout><IdentityConfirmation /></KioskLayout>} />
         <Route path="/purpose-of-visit" element={<KioskLayout><PurposeOfVisit /></KioskLayout>} />
         <Route path="/declarations" element={<KioskLayout><Declarations /></KioskLayout>} />

@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { VisaCard, visaPrintStyles } from "@/polymet/components/visa-card"
@@ -9,11 +10,13 @@ import {
   declarationOptions,
   getRandomVisaCopyMessage,
 } from "@/polymet/data/immigration-data"
-import { PrinterIcon } from "lucide-react"
+import { PrinterIcon, DownloadIcon } from "lucide-react"
+import html2canvas from "html2canvas"
 
 export function PrintPreview() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
+  const visaCaptureRef = useRef<HTMLDivElement>(null)
 
   const code = searchParams.get("code") || ""
   const visaNumber = searchParams.get("visaNumber") || ""
@@ -80,6 +83,28 @@ export function PrintPreview() {
     }, 1000)
   }
 
+  const handleDownloadPng = async () => {
+    const wrapper = visaCaptureRef.current
+    if (!wrapper) return
+    const el = (wrapper.firstElementChild ?? wrapper) as HTMLElement
+    try {
+      const canvas = await html2canvas(el, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        width: el.offsetWidth,
+        height: el.offsetHeight,
+      })
+      const dataUrl = canvas.toDataURL("image/png")
+      const a = document.createElement("a")
+      a.href = dataUrl
+      a.download = `visa-${guest.name.replace(/\s+/g, "-")}-${visaNumber}.png`
+      a.click()
+    } catch (e) {
+      console.error("PNG export failed", e)
+    }
+  }
+
   return (
     <>
       <style>{visaPrintStyles}</style>
@@ -94,18 +119,9 @@ export function PrintPreview() {
               glowEffect
             >
               <div className="space-y-8">
-                <div className="text-center">
-                  <p className="text-purple-200 mb-2">
-                    Please review the visa details before printing
-                  </p>
-                  <p className="text-sm text-purple-300/70">
-                    Ensure printer is loaded with A6 adhesive sheets
-                  </p>
-                </div>
-
-                {/* Visa Preview */}
+                {/* Visa Preview - show print-style (ink-friendly) so preview matches print */}
                 <div className="flex justify-center">
-                  <div className="w-full max-w-2xl">
+                  <div ref={visaCaptureRef} className="w-full max-w-2xl flex justify-center" style={{ maxWidth: "148mm" }}>
                     <VisaCard
                       guest={guest}
                       visaNumber={visaNumber}
@@ -115,26 +131,13 @@ export function PrintPreview() {
                       issueTimestamp={timestamp}
                       visaCopy={randomVisaCopy}
                       visaClassOverride={effectiveVisaClass}
-                      size="preview"
+                      size="print"
                     />
                   </div>
                 </div>
 
-                {/* Printing Instructions */}
-                <div className="p-4 bg-purple-950/20 border border-purple-400/20 rounded-lg">
-                  <p className="text-sm text-purple-200 font-semibold mb-2">
-                    Printing Instructions:
-                  </p>
-                  <ul className="text-sm text-purple-300/70 space-y-1 list-disc list-inside">
-                    <li>Ensure printer is connected and ready</li>
-                    <li>Use A6 adhesive sheet paper (148mm × 105mm)</li>
-                    <li>Set orientation to portrait</li>
-                    <li>No margins required</li>
-                  </ul>
-                </div>
-
                 {/* Action Buttons */}
-                <div className="flex justify-center gap-4 pt-4">
+                <div className="flex justify-center gap-4 pt-4 flex-wrap">
                   <Button
                     variant="outline"
                     onClick={() =>
@@ -147,6 +150,14 @@ export function PrintPreview() {
                     className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
                   >
                     Back
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={handleDownloadPng}
+                    className="border-teal-400/50 bg-transparent text-teal-100 hover:bg-teal-950/50 hover:text-white"
+                  >
+                    <DownloadIcon className="w-5 h-5 mr-2" />
+                    Download PNG
                   </Button>
                   <Button
                     onClick={handlePrint}

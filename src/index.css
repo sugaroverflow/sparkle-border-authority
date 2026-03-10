@@ -117,3 +117,32 @@ body {
   color: hsl(var(--foreground));
   background-color: hsl(var(--background));
 }
+
+/* Glitter shooting stars – keyframes use vars set on each star element */
+@keyframes glitter-shooting-star-fly {
+  0% {
+    opacity: 0;
+    transform: translate(var(--star-sx), var(--star-sy)) rotate(var(--star-angle)) translateX(0);
+  }
+  6% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--star-sx), var(--star-sy)) rotate(var(--star-angle)) translateX(120vmax);
+  }
+}
+
+@keyframes glitter-twinkle-dot {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}

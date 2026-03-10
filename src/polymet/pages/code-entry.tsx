@@ -4,6 +4,7 @@ import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { TerminalInput } from "@/polymet/components/form-field"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode } from "@/polymet/data/immigration-data"
+import { cn } from "@/lib/utils"
 import { AlertCircleIcon } from "lucide-react"
 
 export function CodeEntry() {
@@ -92,17 +93,17 @@ export function CodeEntry() {
         <TerminalFrame
           title={isVisitorApplication ? "Immigration Application for Visitors" : "Immigration Code Entry"}
           subtitle={isVisitorApplication ? "Enter a code from staff, or proceed to border for in-person assistance" : "Enter your 4-character code"}
-          variant="accent"
+          variant={isVisitorApplication ? "visitor" : "accent"}
           glowEffect
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center mb-8">
-              <p className="text-purple-200 mb-2">
+              <p className={isVisitorApplication ? "text-teal-200 mb-2" : "text-purple-200 mb-2"}>
                 {isVisitorApplication
                   ? "If you received a code from border staff, enter it below. Otherwise use the link below for in-person assistance."
                   : "Please enter the immigration code from your invitation"}
               </p>
-              <p className="text-sm text-purple-300/70">
+              <p className={isVisitorApplication ? "text-sm text-teal-300/70" : "text-sm text-purple-300/70"}>
                 Format: 4 characters (e.g., A7K2)
               </p>
             </div>
@@ -117,7 +118,10 @@ export function CodeEntry() {
                 }}
                 placeholder="Enter code..."
                 maxLength={4}
-                className="text-center text-3xl font-mono tracking-widest w-64 uppercase"
+                className={cn(
+                  "text-center text-3xl font-mono tracking-widest w-64 uppercase",
+                  isVisitorApplication && "border-teal-400/30 focus:border-teal-400/60 focus:ring-teal-400/20"
+                )}
                 autoFocus
               />
             </div>
@@ -134,47 +138,71 @@ export function CodeEntry() {
                 type="button"
                 variant="outline"
                 onClick={() => navigate(isVisitorApplication ? "/code-entry" : "/")}
-                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+                className={isVisitorApplication ? "border-teal-400/50 bg-transparent text-teal-100 hover:bg-teal-950/50 hover:text-white" : "border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"}
               >
                 Back
               </Button>
               <Button
                 type="submit"
                 disabled={code.length !== 4}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-8"
+                className={isVisitorApplication ? "bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8" : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold px-8"}
               >
                 Continue
               </Button>
             </div>
 
-            <div className="text-center pt-6 border-t border-purple-400/20">
+            <div className={cn("text-center pt-6 border-t", isVisitorApplication ? "border-teal-400/20" : "border-purple-400/20")}>
               {isVisitorApplication ? (
                 <>
-                  <p className="text-sm text-purple-300/70 mb-2">
+                  <p className="text-sm text-teal-300/70 mb-2">
                     Need in-person assistance?
                   </p>
                   <Button
                     type="button"
                     variant="link"
-                    className="text-purple-300 hover:text-purple-200"
+                    className="text-teal-300 hover:text-teal-200"
                     onClick={() => navigate("/border-checkpoint")}
                   >
                     Proceed to border assistance
                   </Button>
-                </>
-              ) : (
-                <>
-                  <p className="text-sm text-purple-300/70 mb-2">
-                    Don't have an immigration code?
+                  <p className="text-sm text-teal-300/70 mt-4 mb-2">
+                    No code? Start the visitor application with your name.
                   </p>
                   <Button
                     type="button"
                     variant="link"
-                    className="text-purple-300 hover:text-purple-200"
-                    onClick={() => navigate("/visitor-application")}
+                    className="text-teal-200 hover:text-teal-100 font-semibold"
+                    onClick={() => navigate("/visitor-signup")}
                   >
-                    Immigration application for visitors
+                    I&apos;m a visitor — enter my name
                   </Button>
+                </>
+              ) : (
+                <>
+                  <p className="text-base font-semibold text-teal-200 mb-2">
+                    Don&apos;t have an immigration code?
+                  </p>
+                  <p className="text-sm text-teal-300/80 mb-4">
+                    Immigration application for visitors
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Button
+                      type="button"
+                      size="lg"
+                      className="w-full sm:w-auto bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8 py-6 text-lg border-2 border-teal-400/30 shadow-lg shadow-teal-500/20"
+                      onClick={() => navigate("/visitor-signup")}
+                    >
+                      I&apos;m a visitor
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="link"
+                      className="text-teal-300 hover:text-teal-200 text-sm"
+                      onClick={() => navigate("/visitor-application")}
+                    >
+                      Or enter a code from staff
+                    </Button>
+                  </div>
                 </>
               )}
             </div>

@@ -3,6 +3,7 @@ export type PassportType = "visitor" | "fancy"
 export type VisaClass =
   | "Citizen Entry Visa"
   | "Diplomatic Entry Visa"
+  | "Special Envoy Visa"
   | "Visitor Admission Permit"
   | "Sparkle Transit Waiver"
   | "Temporary Celebration Authorization"
@@ -19,6 +20,10 @@ export interface GuestRecord {
   basePrivileges: string[]
   printed: boolean
   arrived: boolean
+  /** When true, guest is always approved regardless of purposes/declarations. */
+  diplomaticImmunity?: boolean
+  /** Optional custom alert shown on identity confirmation (e.g. celebratory or warning). Message can use "(name)" for guest name. */
+  customAlert?: { variant: "celebratory" | "warning" | "cute"; message: string }
 }
 
 export interface ApplicationSubmission {
@@ -134,6 +139,7 @@ export const mockGuests: GuestRecord[] = [
     basePrivileges: ["Lounge Access"],
     printed: false,
     arrived: false,
+    diplomaticImmunity: true,
   },
   {
     code: "C5T1",
@@ -385,6 +391,7 @@ function normalizeVisaClass(visaClass: string | undefined): VisaClass {
   if (
     visaClass === "Citizen Entry Visa" ||
     visaClass === "Diplomatic Entry Visa" ||
+    visaClass === "Special Envoy Visa" ||
     visaClass === "Visitor Admission Permit" ||
     visaClass === "Sparkle Transit Waiver" ||
     visaClass === "Temporary Celebration Authorization"
@@ -412,6 +419,8 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
     basePrivileges: Array.isArray(guest.basePrivileges) ? guest.basePrivileges : ["Standard Sparkle Protocol"],
     printed: Boolean(guest.printed),
     arrived: Boolean(guest.arrived),
+    diplomaticImmunity: Boolean(guest.diplomaticImmunity),
+    customAlert: guest.customAlert,
   }
 }
 
@@ -537,5 +546,13 @@ export function createManualGuest(name: string, agentCode: string): GuestRecord 
     basePrivileges: ["Standard Sparkle Protocol"],
     printed: false,
     arrived: false,
+    diplomaticImmunity: false,
   }
+}
+
+/** Register a visitor (no immigration code). Adds them to the registry and returns the guest. */
+export function registerVisitorGuest(name: string, agentCode: string = "Visitor"): GuestRecord {
+  const guest = createManualGuest(name.trim(), agentCode.trim() || "Visitor")
+  guestRegistry = [...guestRegistry, guest]
+  return guest
 }
