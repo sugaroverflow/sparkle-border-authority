@@ -185,24 +185,13 @@ export function CodeEntry() {
                   <p className="text-sm text-teal-300/80 mb-4">
                     Immigration application for visitors
                   </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <Button
-                      type="button"
-                      size="lg"
-                      className="w-full sm:w-auto bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8 py-6 text-lg border-2 border-teal-400/30 shadow-lg shadow-teal-500/20"
-                      onClick={() => navigate("/visitor-signup")}
-                    >
-                      I&apos;m a visitor
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="link"
-                      className="text-teal-300 hover:text-teal-200 text-sm"
-                      onClick={() => navigate("/visitor-application")}
-                    >
-                      Or enter a code from staff
-                    </Button>
-                  </div>
+                  <Button
+                    type="button"
+                    className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold px-8"
+                    onClick={() => navigate("/visitor-signup")}
+                  >
+                    I&apos;m a visitor
+                  </Button>
                 </>
               )}
             </div>

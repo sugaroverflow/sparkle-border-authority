@@ -420,7 +420,16 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
     printed: Boolean(guest.printed),
     arrived: Boolean(guest.arrived),
     diplomaticImmunity: Boolean(guest.diplomaticImmunity),
-    customAlert: guest.customAlert,
+    customAlert:
+      guest.customAlert &&
+      typeof guest.customAlert === "object" &&
+      "variant" in guest.customAlert &&
+      "message" in guest.customAlert
+        ? {
+            variant: guest.customAlert.variant as "celebratory" | "warning" | "cute",
+            message: String(guest.customAlert.message),
+          }
+        : undefined,
   }
 }
 
@@ -430,7 +439,7 @@ export async function initializeImmigrationData(): Promise<void> {
   initializationPromise = (async () => {
     try {
       const [guestsRes, taglinesRes, agentCodesRes] = await Promise.all([
-        fetch("/guests.json"),
+        fetch("/guests.json", { cache: "no-store" }),
         fetch("/visa-taglines.json"),
         fetch("/agent-codes.json"),
       ])

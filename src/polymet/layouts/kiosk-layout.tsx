@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { StarField, GlitterShootingStars } from "@/polymet/components/sparkle-effect"
+import { StarField } from "@/polymet/components/sparkle-effect"
 import { cn } from "@/lib/utils"
 
 interface KioskLayoutProps {
@@ -40,7 +40,6 @@ export function KioskLayout({ children, showHeader = true, className }: KioskLay
     <div className="dark min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
       {/* Star Field Background */}
       <StarField density="medium" />
-      <GlitterShootingStars />
 
       {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-pink-900/10 pointer-events-none" />

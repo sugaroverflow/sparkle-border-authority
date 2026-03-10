@@ -121,7 +121,7 @@ export function PrintPreview() {
               <div className="space-y-8">
                 {/* Visa Preview - show print-style (ink-friendly) so preview matches print */}
                 <div className="flex justify-center">
-                  <div ref={visaCaptureRef} className="w-full max-w-2xl flex justify-center" style={{ maxWidth: "148mm" }}>
+                  <div ref={visaCaptureRef} className="w-full max-w-2xl flex justify-center" style={{ maxWidth: "105mm" }}>
                     <VisaCard
                       guest={guest}
                       visaNumber={visaNumber}

@@ -46,8 +46,8 @@ export function VisaCard({
       className={cn(
         "relative rounded-lg overflow-hidden flex flex-col",
         isPrint
-          ? "w-[148mm] h-[105mm] min-h-0 bg-white border-2 border-slate-300"
-          : "bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 border-2 border-purple-400/30 w-full max-w-md aspect-[148/105]"
+          ? "w-[105mm] h-[148mm] min-h-0 bg-white border-2 border-slate-300"
+          : "bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 border-2 border-purple-400/30 w-full max-w-md aspect-[105/148]"
       )}
       style={isPrint ? { pageBreakAfter: "always" } : undefined}
     >
@@ -152,6 +152,19 @@ export function VisaCard({
               alt={guest.name}
               className="w-10 h-10 rounded border border-slate-300"
             />
+          )}
+          {!guest.photo && (
+            <div
+              className={cn(
+                "rounded border-2 flex items-center justify-center text-center shrink-0 bg-slate-100",
+                isPrint
+                  ? "w-10 h-10 border-slate-300 text-[6px] leading-tight text-slate-500 px-0.5"
+                  : "w-16 h-16 border-purple-400/30 text-[8px] leading-tight text-purple-400/80 px-1"
+              )}
+              aria-hidden
+            >
+              temp visitor, no photo found
+            </div>
           )}
           <div className="flex-1 min-w-0">
             <p className={cn(
@@ -287,11 +300,11 @@ export function VisaCard({
   )
 }
 
-// Print-specific styles: only the visa prints, fit to A6, no app chrome
+// Print-specific styles: only the visa prints, fit to A6 portrait, no app chrome
 export const visaPrintStyles = `
   @media print {
     @page {
-      size: 148mm 105mm;
+      size: 105mm 148mm;
       margin: 0;
     }
     
@@ -310,8 +323,8 @@ export const visaPrintStyles = `
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      width: 148mm !important;
-      height: 105mm !important;
+      width: 105mm !important;
+      height: 148mm !important;
       margin: 0 !important;
       padding: 0 !important;
       background: white !important;
@@ -322,8 +335,8 @@ export const visaPrintStyles = `
     }
     
     .visa-print-container > * {
-      width: 148mm !important;
-      height: 105mm !important;
+      width: 105mm !important;
+      height: 148mm !important;
       flex-shrink: 0 !important;
     }
   }

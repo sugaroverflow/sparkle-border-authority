@@ -1,17 +1,26 @@
+import { useState, useEffect } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { TerminalFrame } from "@/polymet/components/terminal-frame"
 import { StatusBadge } from "@/polymet/components/status-badge"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
 import { Button } from "@/components/ui/button"
 import { findGuestByCode } from "@/polymet/data/immigration-data"
-import { UserIcon, ShieldCheckIcon, CreditCardIcon, AlertTriangle, PartyPopper, Sparkles } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { ShieldCheckIcon, CreditCardIcon, AlertTriangle, PartyPopper, Sparkles } from "lucide-react"
 
 export function IdentityConfirmation() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const code = searchParams.get("code") || ""
+  const [showAlert, setShowAlert] = useState(false)
 
   const guest = findGuestByCode(code)
+
+  useEffect(() => {
+    if (!guest?.customAlert) return
+    const timer = setTimeout(() => setShowAlert(true), 900)
+    return () => clearTimeout(timer)
+  }, [guest?.customAlert])
 
   if (!guest) {
     return (
@@ -32,6 +41,9 @@ export function IdentityConfirmation() {
     navigate(`/purpose-of-visit?code=${code}`)
   }
 
+  const firstName = guest.name.trim().split(/\s+/)[0] || guest.name
+  const agentLabel = `Agent ${firstName}`
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-3xl">
@@ -42,16 +54,17 @@ export function IdentityConfirmation() {
           glowEffect
         >
           <div className="space-y-8">
-            {/* Custom alert for special guests */}
-            {guest.customAlert && (
+            {/* Custom alert for special guests - appears after a delay to surprise */}
+            {guest.customAlert && showAlert && (
               <div
-                className={
+                className={cn(
+                  "animate-in fade-in slide-in-from-top-4 duration-500",
                   guest.customAlert.variant === "celebratory"
                     ? "p-5 rounded-lg border-2 bg-gradient-to-r from-amber-950/40 to-yellow-950/30 border-amber-400/50 text-amber-100 shadow-lg shadow-amber-500/10"
                     : guest.customAlert.variant === "cute"
                       ? "p-5 rounded-lg border-2 bg-gradient-to-r from-pink-950/40 via-purple-950/30 to-fuchsia-950/30 border-pink-400/40 text-pink-100 shadow-lg shadow-pink-500/10"
                       : "p-5 rounded-lg border-2 bg-red-950/50 border-red-500/70 text-red-100 shadow-lg shadow-red-900/30"
-                }
+                )}
               >
                 <div className="flex items-center justify-center gap-2 mb-2">
                   {guest.customAlert.variant === "celebratory" ? (
@@ -89,8 +102,10 @@ export function IdentityConfirmation() {
                   />
                 </div>
               ) : (
-                <div className="w-32 h-32 rounded-lg border-4 border-purple-400/30 bg-purple-950/30 flex items-center justify-center">
-                  <UserIcon className="w-16 h-16 text-purple-400/50" />
+                <div className="w-32 h-32 rounded-lg border-4 border-purple-400/30 bg-purple-950/30 flex items-center justify-center p-2">
+                  <p className="text-center font-mono text-xs text-purple-400/80 leading-tight">
+                    temp visitor, no photo found
+                  </p>
                 </div>
               )}
 
@@ -105,7 +120,7 @@ export function IdentityConfirmation() {
                 </div>
                 <div>
                   <p className="text-sm text-purple-300/70 uppercase tracking-wider font-mono">
-                    Agent Code
+                    {agentLabel}
                   </p>
                   <p className="text-xl font-mono text-purple-200">
                     {guest.agentCode}

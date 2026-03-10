@@ -61,9 +61,9 @@ interface StarFieldProps {
 
 export function StarField({ density = "medium", className }: StarFieldProps) {
   const starCount = {
-    low: 8,
-    medium: 15,
-    high: 25,
+    low: 20,
+    medium: 45,
+    high: 80,
   }
 
   const stars = Array.from({ length: starCount[density] }, (_, i) => ({
@@ -73,6 +73,9 @@ export function StarField({ density = "medium", className }: StarFieldProps) {
     delay: `${Math.random() * 3}s`,
     duration: `${2 + Math.random() * 2}s`,
     size: Math.random() > 0.7 ? "lg" : Math.random() > 0.4 ? "md" : "sm",
+    blink: Math.random() < 0.35,
+    blinkDelay: `${Math.random() * 2}s`,
+    blinkDuration: `${1.5 + Math.random() * 1.5}s`,
   }))
 
   return (
@@ -85,16 +88,21 @@ export function StarField({ density = "medium", className }: StarFieldProps) {
             left: star.left,
             top: star.top,
             animationDelay: star.delay,
+            ...(star.blink && {
+              animation: `star-blink ${star.blinkDuration} ease-in-out infinite`,
+              animationDelay: star.blinkDelay,
+            }),
           }}
         >
           <StarIcon
             className={cn(
-              "text-purple-200/30 animate-pulse",
+              "text-purple-200/30",
+              !star.blink && "animate-pulse",
               star.size === "lg" && "w-3 h-3",
               star.size === "md" && "w-2 h-2",
               star.size === "sm" && "w-1.5 h-1.5"
             )}
-            style={{ animationDuration: star.duration }}
+            style={!star.blink ? { animationDuration: star.duration } : undefined}
           />
         </div>
       ))}
@@ -102,73 +110,3 @@ export function StarField({ density = "medium", className }: StarFieldProps) {
   )
 }
 
-const SHOOTING_STAR_COUNT = 5
-const shootingStarConfigs = Array.from({ length: SHOOTING_STAR_COUNT }, (_, i) => ({
-  id: i,
-  startX: `${-12 - Math.random() * 18}vw`,
-  startY: `${-8 - Math.random() * 20}vh`,
-  angle: 228 + (Math.random() * 24 - 12),
-  duration: 2 + Math.random() * 1.2,
-  delay: i * 2.8 + Math.random() * 3,
-  tailLength: 100 + Math.random() * 80,
-  glitterCount: 6 + Math.floor(Math.random() * 4),
-}))
-
-const STAR_BOX_WIDTH = 220
-const STAR_BOX_HEIGHT = 28
-
-export function GlitterShootingStars({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn("absolute inset-0 overflow-hidden pointer-events-none z-[1]", className)}
-      aria-hidden
-    >
-      {shootingStarConfigs.map((config) => (
-        <div
-          key={config.id}
-          className="absolute left-0 top-0 will-change-transform"
-          style={{
-            width: STAR_BOX_WIDTH,
-            height: STAR_BOX_HEIGHT,
-            ["--star-sx" as string]: config.startX,
-            ["--star-sy" as string]: config.startY,
-            ["--star-angle" as string]: `${config.angle}deg`,
-            animation: `glitter-shooting-star-fly ${config.duration}s ease-in-out ${config.delay}s infinite`,
-          }}
-        >
-          <div
-            className="absolute left-0 top-1/2 h-[3px] -translate-y-1/2 rounded-full"
-            style={{
-              width: config.tailLength,
-              background: "linear-gradient(90deg, transparent 0%, rgba(216,180,254,0.25) 12%, rgba(244,114,182,0.6) 40%, rgba(250,204,21,0.95) 70%, rgba(255,255,255,1) 95%)",
-              boxShadow: "0 0 10px rgba(250,204,21,0.5), 0 0 20px rgba(244,114,182,0.25)",
-            }}
-          />
-          {Array.from({ length: config.glitterCount }, (_, j) => {
-            const t = 0.15 + (j / config.glitterCount) * 0.75
-            const x = t * config.tailLength
-            return (
-              <div
-                key={j}
-                className="absolute left-0 top-1/2 w-1.5 h-1.5 rounded-full bg-amber-200"
-                style={{
-                  left: x,
-                  transform: "translate(-50%, -50%)",
-                  boxShadow: "0 0 6px rgba(250,204,21,0.9), 0 0 10px rgba(244,114,182,0.5)",
-                  animation: `glitter-twinkle-dot ${0.35 + j * 0.08}s ease-in-out ${j * 0.06}s infinite`,
-                }}
-              />
-            )
-          })}
-          <div
-            className="absolute left-0 top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(250,204,21,0.85) 35%, rgba(244,114,182,0.4) 60%, transparent 75%)",
-              boxShadow: "0 0 14px rgba(255,255,255,0.95), 0 0 28px rgba(250,204,21,0.7), 0 0 42px rgba(244,114,182,0.35)",
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  )
-}
