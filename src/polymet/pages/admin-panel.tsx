@@ -21,6 +21,7 @@ import {
   XCircleIcon,
   SearchIcon,
   PrinterIcon,
+  BookOpenIcon,
   CheckCircleIcon,
 } from "lucide-react"
 
@@ -358,6 +359,14 @@ export function AdminPanel() {
               >
                 <PrinterIcon className="w-4 h-4 mr-2" />
                 Run Printer Test
+              </Button>
+              <Button
+                onClick={() => navigate("/passport-export")}
+                variant="outline"
+                className="border-purple-400/50 bg-transparent text-purple-100 hover:bg-purple-950/50 hover:text-white"
+              >
+                <BookOpenIcon className="w-4 h-4 mr-2" />
+                Passport Export
               </Button>
               <Button
                 onClick={() => setIsAuthenticated(false)}

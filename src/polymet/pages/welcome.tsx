@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { SparkleEffect } from "@/polymet/components/sparkle-effect"
-import { StatisticsTicker } from "@/polymet/components/statistics-ticker"
+import { StatisticsDashboard } from "@/polymet/pages/statistics-dashboard"
 import { SparklesIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -38,9 +38,6 @@ export function Welcome() {
           </div>
         </div>
 
-        {/* Statistics Ticker */}
-        <StatisticsTicker />
-
         {/* Start Button */}
         <div className="flex justify-center pt-8">
           <Link to="/code-entry">
@@ -48,16 +45,12 @@ export function Welcome() {
               size="lg"
               className="text-xl px-12 py-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold uppercase tracking-wider shadow-lg shadow-purple-500/50 border-2 border-purple-400/30"
             >
-              Start Immigration Application
+              Start Immigration
             </Button>
           </Link>
         </div>
 
-        {/* Quick Info */}
-        <div className="text-center text-sm text-purple-300/70 space-y-2">
-          <p>Have your 4-character immigration code ready</p>
-          <p className="text-xs">Processing time: approximately 2-3 minutes</p>
-        </div>
+        <StatisticsDashboard />
       </div>
     </div>
   )

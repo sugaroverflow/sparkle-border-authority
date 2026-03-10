@@ -45,3 +45,4 @@ coverage/
 
 # Special, app specific
 # Keep this section for future project-specific ignores.
+.vercel
