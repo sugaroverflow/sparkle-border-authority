@@ -109,7 +109,7 @@ export function Decision() {
               {hasWarningAlert && (
                 <div className="p-4 bg-violet-950/25 border border-violet-400/40 rounded-lg">
                   <p className="text-sm text-violet-100 text-center leading-relaxed">
-                    Fear not. Sparkle Beaucracy is benevolent and your presence is appreciated. Your envoy renewal is under Intergalactic Court review; please be prepared to make your case to border agents.
+                    Fear not. Sparkle Bureaucracy is benevolent and your presence is appreciated. Your envoy renewal is under Intergalactic Court review; please be prepared to make your case to border agents.
                   </p>
                 </div>
               )}
