@@ -10,7 +10,8 @@
     "basePrivileges": [
       "Lounge Access",
       "Glitter Transit Waiver",
-      "Galactic Trade Authorization"
+      "Galactic Trade Authorization",
+      "Wormhole Queue Priority"
     ],
     "printed": false,
     "arrived": false,
@@ -50,7 +51,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Glitter Transit Waiver",
-      "Diplomatic Hug Immunity"
+      "Diplomatic Hug Immunity",
+      "Orbital Afterparty Navigation Rights",
+      "Asteroid Lounge Backstage Access"
     ],
     "printed": false,
     "arrived": false,
@@ -110,7 +113,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Sparkle Clearance I",
-      "Glitter Transit Waiver"
+      "Glitter Transit Waiver",
+      "Wormhole Queue Priority",
+      "Starlight Karaoke Immunity"
     ],
     "printed": false,
     "arrived": false,
@@ -153,11 +158,16 @@
     "basePrivileges": [
       "Glitter Transit Waiver",
       "Diplomatic Hug Immunity",
-      "Confetti Handling Permit"
+      "Confetti Handling Permit",
+      "Planetary Parade Marshal Access"
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/D2N5.png"
+    "photo": "/guests/D2N5.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), we are thrilled you made the trip. We remain grateful for your consultation last millennium, which greatly improved our data transparency and interoperability with neighboring galaxies."
+    }
   },
   {
     "code": "OPBO",
@@ -191,7 +201,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Cake Priority Queue",
-      "Galactic Trade Authorization"
+      "Galactic Trade Authorization",
+      "Planetary Parade Marshal Access",
+      "Nebula Dancefloor Clearance"
     ],
     "printed": false,
     "arrived": false,
@@ -234,7 +246,8 @@
     "basePrivileges": [
       "Glitter Transit Waiver",
       "Lounge Access",
-      "Special Projects Clearance"
+      "Special Projects Clearance",
+      "Zero-Gravity Glitter Dispensation"
     ],
     "printed": false,
     "arrived": false,
@@ -254,7 +267,9 @@
     "validityMinutes": 300,
     "basePrivileges": [
       "Official Sparkle Bureaucracy Diplomat",
-      "Full Priority Access"
+      "Full Priority Access",
+      "Starlight Karaoke Immunity",
+      "Cosmic Costume Fast-Track"
     ],
     "printed": false,
     "arrived": false,
@@ -315,7 +330,8 @@
     "basePrivileges": [
       "Standard Sparkle Protocol",
       "Comet Tail Access",
-      "Lounge Access"
+      "Lounge Access",
+      "Asteroid Lounge Backstage Access"
     ],
     "printed": false,
     "arrived": false,
@@ -329,18 +345,23 @@
     "code": "OZNU",
     "name": "Emily",
     "agentCode": "Helix",
-    "status": "Citizen",
+    "status": "Special Envoy",
     "passportType": "fancy",
-    "visaClass": "Citizen Entry Visa",
-    "validityMinutes": 240,
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 300,
     "basePrivileges": [
       "Standard Sparkle Protocol",
       "Galactic Trade Authorization",
-      "Cake Priority Queue"
+      "Cake Priority Queue",
+      "Mooncake Logistics Override"
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/OZNU.png"
+    "photo": "/guests/OZNU.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "By decree of the Benevolent Dictator, Agent (name) is granted Special Envoy status for the wonderful birthday surprise. It is truly an honor to host you at the Consortium."
+    }
   },
   {
     "code": "0AQP",
@@ -353,14 +374,15 @@
     "basePrivileges": [
       "Missing Envoy in Action",
       "Comet Observation Permit",
-      "Diplomatic Hug Immunity"
+      "Diplomatic Hug Immunity",
+      "Wormhole Queue Priority"
     ],
     "printed": false,
     "arrived": false,
     "photo": "/guests/0AQP.png",
     "customAlert": {
       "variant": "warning",
-      "message": "Galactic caution notice, Agent (name): due to extended mission absence, your diplomatic immunity has been suspended. However by order of the Sparkle Bureaucracy, we have retained your citizen status due to your past contributions to the Consortium."
+      "message": "Administrative notice, Agent (name): your status has been temporarily reduced due to mission absences. In recognition of your past contributions, you may petition the Benevolent Dictator with Form FC3 to restore your citizen status."
     }
   },
   {
@@ -392,7 +414,8 @@
     "basePrivileges": [
       "Standard Sparkle Protocol",
       "Nebula Viewing Rights",
-      "Lounge Access"
+      "Lounge Access",
+      "Wormhole Queue Priority"
     ],
     "printed": false,
     "arrived": false,
@@ -431,11 +454,16 @@
     "basePrivileges": [
       "Sparkle Clearance I",
       "Glitter Transit Waiver",
-      "Galactic Trade Authorization"
+      "Galactic Trade Authorization",
+      "Orbital Afterparty Navigation Rights"
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/NAGS.jpg"
+    "photo": "/guests/NAGS.jpg",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), your negotiation maneuvers are smoother than a comet slingshot. The Consortium trusts you to broker peace between even the rowdiest star systems."
+    }
   },
   {
     "code": "D1UM",
@@ -466,7 +494,8 @@
     "basePrivileges": [
       "Galactic Trade Authorization",
       "Polaroid Documentation",
-      "Cake Priority Queue"
+      "Cake Priority Queue",
+      "Starlight Karaoke Immunity"
     ],
     "printed": false,
     "arrived": false,
@@ -482,7 +511,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Official Sparkle Bureaucracy Diplomat",
-      "Lounge Access"
+      "Lounge Access",
+      "Cosmic Costume Fast-Track",
+      "Orbital Afterparty Navigation Rights"
     ],
     "printed": false,
     "arrived": false,
@@ -499,7 +530,8 @@
     "basePrivileges": [
       "Sparkle Clearance II",
       "Cake Priority Queue",
-      "Polaroid Documentation"
+      "Polaroid Documentation",
+      "Zero-Gravity Glitter Dispensation"
     ],
     "printed": false,
     "arrived": false,
@@ -520,7 +552,8 @@
     "basePrivileges": [
       "Official Sparkle Bureaucracy Diplomat",
       "Glitter Transit Waiver",
-      "All Access Pass"
+      "All Access Pass",
+      "Orbital Afterparty Navigation Rights"
     ],
     "printed": false,
     "arrived": false,
@@ -537,7 +570,8 @@
     "basePrivileges": [
       "Standard Sparkle Protocol",
       "Comet Trail Authorization",
-      "Glitter Transit Waiver"
+      "Glitter Transit Waiver",
+      "Planetary Parade Marshal Access"
     ],
     "printed": false,
     "arrived": false,
@@ -553,7 +587,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Glitter Transit Waiver",
-      "Galactic Trade Authorization"
+      "Galactic Trade Authorization",
+      "Cosmic Costume Fast-Track",
+      "Orbital Afterparty Navigation Rights"
     ],
     "printed": false,
     "arrived": false,
@@ -569,7 +605,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Galactic Trade Authorization",
-      "Glitter Transit Waiver"
+      "Glitter Transit Waiver",
+      "Zero-Gravity Glitter Dispensation",
+      "Mooncake Logistics Override"
     ],
     "printed": false,
     "arrived": false,
@@ -585,7 +623,9 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Glitter Transit Waiver",
-      "Galactic Trade Authorization"
+      "Galactic Trade Authorization",
+      "Wormhole Queue Priority",
+      "Starlight Karaoke Immunity"
     ],
     "printed": false,
     "arrived": false,
@@ -607,7 +647,11 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/9TKV.png"
+    "photo": "/guests/9TKV.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), your interstellar maps have prevented at least three accidental detours into the party moon. The Consortium adores your cosmic cartography. \ud83e\ude90"
+    }
   },
   {
     "code": "AKW0",
@@ -620,11 +664,16 @@
     "basePrivileges": [
       "Sparkle Clearance I",
       "Cake Priority Queue",
-      "Polaroid Documentation"
+      "Polaroid Documentation",
+      "Starlight Karaoke Immunity"
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/AKW0.png"
+    "photo": "/guests/AKW0.png",
+    "customAlert": {
+      "variant": "cute",
+      "message": "Agent (name), thank you for your brilliant advice and consultation on the Consortium citizenship programme. Your guidance keeps our onboarding delightfully stellar."
+    }
   },
   {
     "code": "DLCN",
@@ -636,11 +685,17 @@
     "validityMinutes": 240,
     "basePrivileges": [
       "Standard Sparkle Protocol",
-      "Glitter Transit Waiver"
+      "Glitter Transit Waiver",
+      "Strategic Shadow Liaison Clearance",
+      "Quantum Signals Intelligence Access"
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/DLCN.png"
+    "photo": "/guests/DLCN.png",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Agent (name), thank you for always being around to rescue the Consortium in times of distress. Your calm precision keeps our orbit stable and our missions on course."
+    }
   },
   {
     "code": "AAAA",
@@ -671,14 +726,33 @@
     "basePrivileges": [
       "Arcade Access",
       "Simulation Sandbox Permit",
-      "Polaroid Documentation"
+      "Polaroid Documentation",
+      "Asteroid Lounge Backstage Access"
     ],
     "printed": false,
     "arrived": false,
     "photo": "/guests/S4MB.jpg",
     "customAlert": {
-      "variant": "celebratory",
-      "message": "Agent (name), your systems are calibrated for maximum fun. Welcome to the Sparkle Planet Consortium game grid."
+      "variant": "cute",
+      "message": "Agent (name), your weekly visits are a radiant tradition at the Consortium. You bring joy to every sector and keep morale sparkling across the galaxy. \u2728"
     }
+  },
+  {
+    "code": "NNB3",
+    "name": "Niba",
+    "agentCode": "Altair",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Glitter Transit Waiver",
+      "Special Access Science Projects",
+      "VIP Press Pass"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/NNB3.png"
   }
 ]
