@@ -225,8 +225,8 @@
   },
   {
     "code": "JJQ4",
-    "name": "Theodore",
-    "agentCode": "Vega",
+    "name": "Theo",
+    "agentCode": "Betelgeuse",
     "status": "Citizen",
     "passportType": "fancy",
     "visaClass": "Citizen Entry Visa",
@@ -421,7 +421,7 @@
     }
   },
   {
-    "code": "NAGS",
+    "code": "N3AS",
     "name": "Joshua",
     "agentCode": "Spark",
     "status": "Special Envoy",
@@ -627,6 +627,22 @@
     "photo": "/guests/AKW0.png"
   },
   {
+    "code": "DLCN",
+    "name": "Declan",
+    "agentCode": "Beacon",
+    "status": "Citizen",
+    "passportType": "fancy",
+    "visaClass": "Citizen Entry Visa",
+    "validityMinutes": 240,
+    "basePrivileges": [
+      "Standard Sparkle Protocol",
+      "Glitter Transit Waiver"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/DLCN.png"
+  },
+  {
     "code": "AAAA",
     "name": "Fatima",
     "agentCode": "Princess",
@@ -643,5 +659,26 @@
     "printed": false,
     "arrived": false,
     "photo": "/guests/princess.png"
+  },
+  {
+    "code": "S4MB",
+    "name": "Sam",
+    "agentCode": "Orion",
+    "status": "Special Envoy",
+    "passportType": "fancy",
+    "visaClass": "Special Envoy Visa",
+    "validityMinutes": 300,
+    "basePrivileges": [
+      "Arcade Access",
+      "Simulation Sandbox Permit",
+      "Polaroid Documentation"
+    ],
+    "printed": false,
+    "arrived": false,
+    "photo": "/guests/S4MB.jpg",
+    "customAlert": {
+      "variant": "celebratory",
+      "message": "Agent (name), your systems are calibrated for maximum fun. Welcome to the Sparkle Planet Consortium game grid."
+    }
   }
 ]
