@@ -691,7 +691,6 @@
     ],
     "printed": false,
     "arrived": false,
-    "photo": "/guests/DLCN.png",
     "customAlert": {
       "variant": "celebratory",
       "message": "Agent (name), thank you for always being around to rescue the Consortium in times of distress. Your calm precision keeps our orbit stable and our missions on course."
@@ -752,7 +751,6 @@
       "VIP Press Pass"
     ],
     "printed": false,
-    "arrived": false,
-    "photo": "/guests/NNB3.png"
+    "arrived": false
   }
 ]
