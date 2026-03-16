@@ -67,6 +67,9 @@ interface PersistedGuestFlags {
 }
 
 type PersistedGuestMap = Record<string, PersistedGuestFlags>
+const forcedGuestPhotos: Record<string, string> = {
+  DLCN: "/guests/DLCN-vampire.png",
+}
 
 export interface FormOption {
   value: string
@@ -489,10 +492,12 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
     return null
   }
 
+  const normalizedCode = guest.code.toUpperCase()
+  const forcedPhoto = forcedGuestPhotos[normalizedCode]
   const isEdward = guest.name.toLowerCase().includes("edward")
   const normalizedStatus = normalizeStatus(guest.status as string | undefined)
   return {
-    code: guest.code.toUpperCase(),
+    code: normalizedCode,
     name: isEdward ? "Edward" : guest.name,
     agentCode:
       isEdward
@@ -501,7 +506,7 @@ function normalizeGuest(guest: GuestRegistryRecord): GuestRecord | null {
         ? getRandomEarthAgentCode()
         : guest.agentCode ?? getRandomGalacticAgentCode(),
     status: normalizedStatus,
-    photo: guest.photo,
+    photo: forcedPhoto ?? guest.photo,
     passportType: normalizePassportType(guest.passportType as string | undefined, normalizedStatus),
     visaClass: normalizeVisaClass(guest.visaClass as string | undefined),
     validityMinutes: Number(guest.validityMinutes ?? 180),
